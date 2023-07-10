@@ -1,0 +1,38 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+
+type Reagent @model{
+  id: ID!
+  name: String!
+  qualityControlInterval: String!
+  item: [Item] @hasMany (indexName: "byReagent", fields: ["id"])
+}
+
+type Item @model {
+  id: ID!
+  reagentID: ID! @index(name: "byReagent")
+  reagent: Reagent @belongsTo (fields: ["reagentID"])
+  expirationDate: AWSDate
+  receivedDate: AWSDate
+  quantity: Float!
+  updates: [UpdatedItem] @hasMany (indexName: "byItem", fields: ["id"])
+  qualityControl: [QualityControl] @hasMany (indexName: "byItem", fields: ["id"])
+}
+
+type UpdatedItem @model {
+  id: ID!
+  itemID: ID! @index (name: "byItem")
+  addedOrRemoved: String!
+  dateUpdated: AWSDate
+  quantity: Float!
+  comment: String
+}
+
+type QualityControl @model {
+  id: ID!
+  itemID: ID! @index (name: "byItem")
+  datePerformed: AWSDate
+  performedBy: String!
+  comment: String
+}
