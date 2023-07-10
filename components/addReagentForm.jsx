@@ -14,7 +14,7 @@ const AddReagentForm = () => {
         qualityControlInterval: ""
     });
 
-    const qualityControlIntervalOptions = ["Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
+    const qualityControlIntervalOptions = ["Test","Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
 
 
     const handleSubmit = async(e) => {
@@ -56,7 +56,7 @@ const AddReagentForm = () => {
                         name="reagentName"
                         type="text"
                         value={reagent.name}
-                        placeholder="Reagent Name"
+                        placeholder="Reagent Names"
                         onChange={(e) => setReagent({ ...reagent, name: e.target.value })}
                         required
                     /></p>
