@@ -1,15 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import { API, graphqlOperation, Auth } from 'aws-amplify';
 import awsconfig from '../src/aws-exports';
-// import {createReagent} from '../src/graphql/mutations';
 import * as mutations from '../src/graphql/mutations';
-//comment
+import {v4 as uuidv4} from 'uuid';
 
 const AddReagentForm = () => {
 
     //State to keep track of the form
     const [reagent, setReagent] = useState({
-        id: "789",
+        id: "",
         name: "",
         qualityControlInterval: ""
     });
@@ -19,6 +18,9 @@ const AddReagentForm = () => {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
+        //create a unique id
+        let uniqueID = uuidv4();
+        setReagent({...reagent, id: uniqueID})
         const reagentParams = {
             input: reagent
         };
@@ -28,24 +30,7 @@ const AddReagentForm = () => {
         }catch (err){
             console.log(err)
         }
-        
-        
     }
-    // const handleSubmit = async(e) => {
-    //     e.preventDefault();
-        
-    //     try{
-    //         console.log(reagent);
-    //         await API.graphql({ 
-    //             query: mutations.createReagent, 
-    //             variables: { input: reagent }
-    //           });
-    //     }catch (err){
-    //         console.log(err)
-    //     }
-        
-        
-    // }
 
     return(
         <div>
