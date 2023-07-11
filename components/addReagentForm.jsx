@@ -13,19 +13,20 @@ const AddReagentForm = () => {
         qualityControlInterval: ""
     });
 
-    const qualityControlIntervalOptions = ["Test","Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
+    const qualityControlIntervalOptions = ["Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
 
 
     const handleSubmit = async(e) => {
         e.preventDefault();
+
         //create a unique id
         let uniqueID = uuidv4();
         setReagent({...reagent, id: uniqueID})
+
         const reagentParams = {
             input: reagent
         };
         try{
-            console.log(reagent);
             await API.graphql(graphqlOperation(mutations.createReagent, reagentParams));
         }catch (err){
             console.log(err)
