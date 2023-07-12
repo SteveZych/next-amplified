@@ -15,6 +15,7 @@ const AddReagentForm = () => {
 
     const qualityControlIntervalOptions = ["Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
 
+    //useEffect to query for existing reagents and put them in a table
 
     const handleSubmit = async(e) => {
         e.preventDefault();
