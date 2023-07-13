@@ -17,14 +17,17 @@ const AddReagentForm = () => {
     const qualityControlIntervalOptions = ["Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
 
     //useEffect to query for existing reagents and put them in a table
-    useEffect(async() =>{
+    useEffect(() =>{
         //make an API call 
-        try{
-            let data = await API.graphql(graphqlOperation(queries.listReagents, reagentParams));
-            console.log(data);
-        }catch (err){
-            console.log(err)
+        async function fetchData(){
+            try{
+                let data = await API.graphql(graphqlOperation(queries.listReagents));
+                console.log(data);
+            }catch (err){
+                console.log(err)
+            }
         }
+        fetchData();
     }, [])
 
     const handleSubmit = async(e) => {
