@@ -24,8 +24,8 @@ const AddReagentForm = () => {
         async function fetchData(){
             try{
                 let data = await API.graphql(graphqlOperation(queries.listReagents));
-                console.log(data);
                 setListReagents(data.data.listReagents.items);
+                console.log(data.data.listReagents.items);
             }catch (err){
                 console.log(err)
             }
@@ -47,6 +47,24 @@ const AddReagentForm = () => {
             await API.graphql(graphqlOperation(mutations.createReagent, reagentParams));
         }catch (err){
             console.log(err)
+        }
+    }
+
+    const editReagent = () => {
+
+    }
+
+    const deleteReagent = async (reagentID) => {
+        //delete from listReagent state
+
+        //API call to delete with id
+        try{
+              const deletedTodo = await API.graphql({ 
+                query: mutations.deleteReagent, 
+                variables: { input: {id: reagentID} }
+              });
+        }catch (err){
+            console.log(err);
         }
     }
 
@@ -77,10 +95,12 @@ const AddReagentForm = () => {
             </form>
             <table>
                 <tbody>
-                    {listReagents.map((item) =>{
+                    {listReagents.map((item, index) =>{
                         return (
                             <tr key={item.id}>
-                                <td >{item.id}</td>
+                                <td>{item.id}</td>
+                                <td><button onClick={()=> editReagent()}>Edit</button></td>
+                                <td><button onClick={()=> deleteReagent(item.id)}>Delete</button></td>
                             </tr>
                         )
                     })}
