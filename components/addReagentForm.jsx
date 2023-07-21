@@ -58,20 +58,14 @@ const AddReagentForm = () => {
     const editReagent = (id) => {
         //change the isEditing property to true
         setListReagents(prevListReagents => {
-            return prevListReagents.map(reagent => {
-                if (reagent.id === id){
-                    return {...reagent, isEditing: true}
-                }else{
-                    return reagent
-                }
-            })
+            return prevListReagents.map(reagent => reagent.id === id ? {...reagent, isEditing: true} : reagent)
         })
     }
-    const saveReagent = (index) => {
-        //edit listReagent state object
-
+    const saveReagent = (id) => {
         //change object isEditing to false
-        setListReagents([...listReagents, listReagents[index].isEditing = false])
+        setListReagents(prevListReagents => {
+            return prevListReagents.map(reagent => reagent.id === id ? {...reagent, isEditing: false} : reagent)
+        })
         //API call to update paramaters
     }
 
