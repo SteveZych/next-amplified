@@ -51,7 +51,9 @@ const AddReagentForm = () => {
     }
 
     const editReagent = () => {
+        //edit listReagent state object
 
+        //API call to update paramaters
     }
 
     const deleteReagent = async (reagentID) => {
@@ -99,6 +101,7 @@ const AddReagentForm = () => {
                         return (
                             <tr key={item.id}>
                                 <td>{item.id}</td>
+                                <td><input></input></td>
                                 <td><button onClick={()=> editReagent()}>Edit</button></td>
                                 <td><button onClick={()=> deleteReagent(item.id)}>Delete</button></td>
                             </tr>
