@@ -55,8 +55,14 @@ const AddReagentForm = () => {
         }
     }
 
-    const editReagent = () => {
+    const editReagent = (index) => {
+        //change the isEditing property to true
+        setListReagents([...listReagents, listReagents[index].isEditing = true])
+    }
+    const saveReagent = () => {
         //edit listReagent state object
+
+        //change object isEditing to false
 
         //API call to update paramaters
     }
@@ -107,7 +113,8 @@ const AddReagentForm = () => {
                             <tr key={item.id}>
                                 <td>{item.id}</td>
                                 <td><input></input></td>
-                                <td><button onClick={()=> editReagent()}>Edit</button></td>
+                                <td><input></input></td>
+                                <td>{!item.isEditing ? <button onClick={()=> editReagent(index)}>Edit</button> : <button onClick={()=> saveReagent()}>Save</button>}</td>
                                 <td><button onClick={()=> deleteReagent(item.id)}>Delete</button></td>
                             </tr>
                         )
