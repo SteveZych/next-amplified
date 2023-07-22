@@ -110,12 +110,26 @@ const AddReagentForm = () => {
             </form>
             <table>
                 <tbody>
-                    {listReagents.map((reagent, index) =>{
+                    {listReagents.map((thisReagent, index) =>{
                         return (
-                            <tr key={reagent.id}>
-                                <td>{reagent.id}</td>
-                                <td><input></input></td>
-                                <td><input></input></td>
+                            <tr key={thisReagent.id}>
+                                <td>{thisReagent.id}</td>
+                                <td><input
+                                name="reagentName"
+                                type="text"
+                                value={thisReagent.name}
+                                onChange={(e) => setListReagents(prevListReagents => {
+                                    return prevListReagents.map(reag => thisReagent.id === reag.id ? {...reag, name: e.target.value} : reag)
+                                })}
+                                disabled={!thisReagent.isEditing ? "disabled" : ''}
+                                ></input></td>
+                                <td><input
+                                name="reagentName"
+                                type="text"
+                                value={reagent.name}
+                                placeholder="Reagent Names"
+                                onChange={(e) => setReagent({ ...reagent, name: e.target.value })}
+                                required></input></td>
                                 <td>{!reagent.isEditing ? <button onClick={()=> editReagent(reagent.id)}>Edit</button> : <button onClick={()=> saveReagent(reagent.id)}>Save</button>}</td>
                                 <td><button onClick={()=> deleteReagent(item.id)}>Delete</button></td>
                             </tr>
