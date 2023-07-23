@@ -66,6 +66,7 @@ const AddReagentForm = () => {
         setListReagents(prevListReagents => {
             return prevListReagents.map(reagent => reagent.id === id ? {...reagent, isEditing: false} : reagent)
         })
+        console.log(listReagents);
         //API call to update paramaters
     }
 
@@ -124,14 +125,17 @@ const AddReagentForm = () => {
                                 disabled={!thisReagent.isEditing ? "disabled" : ''}
                                 ></input></td>
                                 <td><input
-                                name="reagentName"
+                                name="qualityControlInterval"
                                 type="text"
-                                value={reagent.name}
-                                placeholder="Reagent Names"
-                                onChange={(e) => setReagent({ ...reagent, name: e.target.value })}
-                                required></input></td>
-                                <td>{!reagent.isEditing ? <button onClick={()=> editReagent(reagent.id)}>Edit</button> : <button onClick={()=> saveReagent(reagent.id)}>Save</button>}</td>
-                                <td><button onClick={()=> deleteReagent(item.id)}>Delete</button></td>
+                                value={thisReagent.qualityControlInterval}
+                                onChange={(e) => setListReagents(prevListReagents => {
+                                    return prevListReagents.map(reag => thisReagent.id === reag.id ? {...reag, qualityControlInterval: e.target.value} : reag)
+                                })}
+                                disabled={!thisReagent.isEditing ? "disabled" : ''}
+                                ></input></td>
+                                
+                                <td>{!thisReagent.isEditing ? <button onClick={()=> editReagent(thisReagent.id)}>Edit</button> : <button onClick={()=> saveReagent(thisReagent.id)}>Save</button>}</td>
+                                <td><button onClick={()=> deleteReagent(thisReagent.id)}>Delete</button></td>
                             </tr>
                         )
                     })}
