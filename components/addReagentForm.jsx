@@ -16,7 +16,7 @@ const AddReagentForm = () => {
 
     const [listReagents, setListReagents] = useState([]);
 
-    const qualityControlIntervalOptions = ["Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
+    const qualityControlIntervalOptions = ["None", "Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
 
     //Query for existing reagents and put them in a table
     useEffect(() =>{
@@ -43,8 +43,10 @@ const AddReagentForm = () => {
 
         //create a unique id
         let uniqueID = uuidv4();
-        setReagent({...reagent, id: uniqueID})
-
+        console.log(uniqueID);
+        setReagent(prevReagent => {
+            return {...prevReagent, id: uniqueID}});
+        console.log(reagent);
         const reagentParams = {
             input: reagent
         };
@@ -99,7 +101,7 @@ const AddReagentForm = () => {
                     /></p>
                 </div>
                 <div>
-                    <select onChange={(e) => setReagent({ ...reagent, qualityControlInterval: e.target.value })}>
+                    <select value={reagent.qualityControlInterval} onChange={(e) => setReagent({ ...reagent, qualityControlInterval: e.target.value })}>
                         {qualityControlIntervalOptions.map((option, index) =>{
                             return <option key={index}>{option}</option>
                         })}
