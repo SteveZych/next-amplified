@@ -9,9 +9,8 @@ const AddReagentForm = () => {
 
     //State to keep track of the form
     const [reagent, setReagent] = useState({
-        id: "",
         name: "",
-        qualityControlInterval: ""
+        qualityControlInterval: "None"
     });
 
     const [listReagents, setListReagents] = useState([]);
@@ -43,15 +42,27 @@ const AddReagentForm = () => {
 
         //create a unique id
         let uniqueID = uuidv4();
-        console.log(uniqueID);
-        setReagent(prevReagent => {
-            return {...prevReagent, id: uniqueID}});
-        console.log(reagent);
+
+        let newReagent = {
+            id: uniqueID,
+            name: reagent.name,
+            qualityControlInterval: reagent.qualityControlInterval
+        }
+        
         const reagentParams = {
-            input: reagent
+            input: newReagent
         };
+       
+
         try{
             await API.graphql(graphqlOperation(mutations.createReagent, reagentParams));
+            setListReagents(prevListReagents =>{
+                return [...prevListReagents, {newReagent}]})
+            setReagent({
+                name: "",
+                qualityControlInterval: "None"
+            });
+            
         }catch (err){
             console.log(err)
         }
@@ -63,13 +74,23 @@ const AddReagentForm = () => {
             return prevListReagents.map(reagent => reagent.id === id ? {...reagent, isEditing: true} : reagent)
         })
     }
-    const saveReagent = (id) => {
+    const saveReagent = async (reagentID, index) => {
         //change object isEditing to false
         setListReagents(prevListReagents => {
-            return prevListReagents.map(reagent => reagent.id === id ? {...reagent, isEditing: false} : reagent)
+            return prevListReagents.map(reagent => reagent.id === reagentID ? {...reagent, isEditing: false} : reagent)
         })
-        console.log(listReagents);
+        const {id, name, qualityControlInterval} = listReagents[index]
+        
         //API call to update paramaters
+        try{
+            const updateCurrentReagent = await API.graphql({ 
+                query: mutations.updateReagent, 
+                variables: { input: {id, name, qualityControlInterval} }
+              });
+              console.log("Successfully updated reagent.")
+      }catch (err){
+          console.log(err);
+      }
     }
 
     const deleteReagent = async (reagentID) => {
@@ -77,10 +98,11 @@ const AddReagentForm = () => {
 
         //API call to delete with id
         try{
-              const deletedTodo = await API.graphql({ 
+              const deleteCurrentReagent = await API.graphql({ 
                 query: mutations.deleteReagent, 
                 variables: { input: {id: reagentID} }
               });
+              console.log("Successfully deleted reagent.")
         }catch (err){
             console.log(err);
         }
@@ -136,7 +158,7 @@ const AddReagentForm = () => {
                                 disabled={!thisReagent.isEditing ? "disabled" : ''}
                                 ></input></td>
                                 
-                                <td>{!thisReagent.isEditing ? <button onClick={()=> editReagent(thisReagent.id)}>Edit</button> : <button onClick={()=> saveReagent(thisReagent.id)}>Save</button>}</td>
+                                <td>{!thisReagent.isEditing ? <button onClick={()=> editReagent(thisReagent.id)}>Edit</button> : <button onClick={()=> saveReagent(thisReagent.id, index)}>Save</button>}</td>
                                 <td><button onClick={()=> deleteReagent(thisReagent.id)}>Delete</button></td>
                             </tr>
                         )
