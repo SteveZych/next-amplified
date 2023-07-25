@@ -4,6 +4,7 @@ import awsconfig from '../src/aws-exports';
 import * as mutations from '../src/graphql/mutations';
 import * as queries from '../src/graphql/queries';
 import {v4 as uuidv4} from 'uuid';
+import {reagentTemplateData} from './reagentTemplateData';
 
 const AddReagentForm = () => {
 
@@ -17,23 +18,9 @@ const AddReagentForm = () => {
 
     const qualityControlIntervalOptions = ["None", "Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
 
-    //Query for existing reagents and put them in a table
+    //Query for existing reagents and put them in a table on page load
     useEffect(() =>{
-        //make an API call 
-        async function fetchData(){
-            try{
-                let data = await API.graphql(graphqlOperation(queries.listReagents));
-                let existingReagents = data.data.listReagents.items;
-                existingReagents.map(obj =>{
-                    obj.isEditing = false;
-                })
-                setListReagents(existingReagents);
-                console.log(existingReagents);
-            }catch (err){
-                console.log(err)
-            }
-        }
-        fetchData();
+        reagentTemplateData().then(data => setListReagents(data));
     }, [])
 
     //Handles form submit to create a new reagent
@@ -53,32 +40,29 @@ const AddReagentForm = () => {
             input: newReagent
         };
        
-
         try{
             await API.graphql(graphqlOperation(mutations.createReagent, reagentParams));
-            setListReagents(prevListReagents =>{
-                return [...prevListReagents, {newReagent}]})
+            
             setReagent({
                 name: "",
                 qualityControlInterval: "None"
             });
-            
+            //Recall the newly submitted data from API
+            reagentTemplateData().then(data => setListReagents(data));
+            console.log('Successfully added new reagent.')
         }catch (err){
             console.log(err)
         }
     }
 
     const editReagent = (id) => {
-        //change the isEditing property to true
+        //change the isEditing property to true to enable editing of input
         setListReagents(prevListReagents => {
             return prevListReagents.map(reagent => reagent.id === id ? {...reagent, isEditing: true} : reagent)
         })
     }
-    const saveReagent = async (reagentID, index) => {
-        //change object isEditing to false
-        setListReagents(prevListReagents => {
-            return prevListReagents.map(reagent => reagent.id === reagentID ? {...reagent, isEditing: false} : reagent)
-        })
+    const saveReagent = async (index) => {
+        
         const {id, name, qualityControlInterval} = listReagents[index]
         
         //API call to update paramaters
@@ -88,13 +72,15 @@ const AddReagentForm = () => {
                 variables: { input: {id, name, qualityControlInterval} }
               });
               console.log("Successfully updated reagent.")
+
+              //Recall the newly submitted data from API
+              reagentTemplateData().then(data => setListReagents(data));
       }catch (err){
           console.log(err);
       }
     }
 
     const deleteReagent = async (reagentID) => {
-        //delete from listReagent state
 
         //API call to delete with id
         try{
@@ -103,6 +89,9 @@ const AddReagentForm = () => {
                 variables: { input: {id: reagentID} }
               });
               console.log("Successfully deleted reagent.")
+
+              //Recall the newly submitted data from API
+              reagentTemplateData().then(data => setListReagents(data));
         }catch (err){
             console.log(err);
         }
@@ -158,7 +147,7 @@ const AddReagentForm = () => {
                                 disabled={!thisReagent.isEditing ? "disabled" : ''}
                                 ></input></td>
                                 
-                                <td>{!thisReagent.isEditing ? <button onClick={()=> editReagent(thisReagent.id)}>Edit</button> : <button onClick={()=> saveReagent(thisReagent.id, index)}>Save</button>}</td>
+                                <td>{!thisReagent.isEditing ? <button onClick={()=> editReagent(thisReagent.id)}>Edit</button> : <button onClick={()=> saveReagent(index)}>Save</button>}</td>
                                 <td><button onClick={()=> deleteReagent(thisReagent.id)}>Delete</button></td>
                             </tr>
                         )
