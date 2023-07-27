@@ -67,9 +67,10 @@ const AddItemForm = () => {
         <div>
              <form className="" onSubmit={handleSubmit}>
                 <div>
-                    <select value={item.reagent} onChange={(e) => setItem({ ...item, reagent: e.target.value })}>
-                        {listReagents.map((option, index) =>{
-                            return <option key={index}>{option}</option>
+                    <select value={item.reagent} onChange={(e) => {
+                        listReagents.filter((reag) => e.target.value === reag.name).map(selectedReagent => setItem({ ...item, id: selectedReagent.id, reagent: selectedReagent.name }))}}>
+                        {listReagents.map((option) =>{
+                            return <option key={option.id}>{option.name}</option>
                         })}
                     </select>
                 </div>
