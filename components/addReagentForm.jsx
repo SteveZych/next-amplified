@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { API, graphqlOperation, Auth } from 'aws-amplify';
-import awsconfig from '../src/aws-exports';
 import * as mutations from '../src/graphql/mutations';
-import * as queries from '../src/graphql/queries';
 import {v4 as uuidv4} from 'uuid';
 import {reagentTemplateData} from './reagentTemplateData';
 
