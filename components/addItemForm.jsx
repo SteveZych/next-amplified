@@ -95,4 +95,4 @@ const AddItemForm = () => {
 
 }
 
-export default UpdateItemForm;
+export default AddItemForm;
