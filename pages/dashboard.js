@@ -7,9 +7,7 @@ import AddReagentForm from "../components/addReagentForm";
 function Dashboard() {
     return (
       <div style={{ padding: 50 }}>
-        <h1>is this the dashboard?
-        </h1>
-        <AddReagentForm/>
+       <h1>Dashboard</h1>
       </div>
     )
   }

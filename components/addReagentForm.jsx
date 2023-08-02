@@ -12,6 +12,8 @@ const AddReagentForm = () => {
         qualityControlInterval: "None"
     });
 
+    const qualityControlIntervalOptions = ["None", "Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
+
     //Handles form submit to create a new reagent
     const handleSubmit = async(e) => {
         e.preventDefault();
