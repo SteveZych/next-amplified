@@ -55,8 +55,7 @@ const AddItemForm = () => {
                 receivedDate: "",
                 quantity: ""
             });
-            //Recall the newly submitted data from API
-            reagentTemplateData().then(data => setListReagents(data));
+           
             console.log('Successfully added new item.')
         }catch (err){
             console.log(err)
