@@ -5,6 +5,7 @@ import { API, graphqlOperation, Auth } from 'aws-amplify';
 import * as mutations from '../src/graphql/mutations';
 import {v4 as uuidv4} from 'uuid';
 import {reagentTemplateData} from '../components/reagentTemplateData';
+import Link from 'next/link';
 
 // TODO: Figure out how to recall the new data when user submits form now 
 // that the form is abstracted to a component File.
@@ -102,6 +103,7 @@ const AddReagent = () => {
 
     return(
         <div>
+            <Link href="/dashboard">Back to Dashboard</Link>
             <AddReagentForm/>
             <table>
                 <tbody>
@@ -110,7 +112,7 @@ const AddReagent = () => {
                             <tr key={thisReagent.id}>
 
                                 <td>{thisReagent.id}</td>
-                                
+
                                 <td><input
                                 name="reagentName"
                                 type="text"
