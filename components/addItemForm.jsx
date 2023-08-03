@@ -11,7 +11,7 @@ const AddItemForm = () => {
     //State to keep track of the form
     const [item, setItem] = useState({
         reagentID: "",
-        reagent: "",
+        reagentName: "",
         expirationDate: "",
         receivedDate: "",
         quantity: ""
@@ -34,7 +34,7 @@ const AddItemForm = () => {
         let newItem = {
             id: uniqueID,
             reagentID: item.reagentID,
-            reagentName: item.reagent,
+            reagentName: item.reagentName,
             expirationDate: item.expirationDate,
             receivedDate: item.receivedDate,
             quantity: item.quantity
@@ -66,21 +66,44 @@ const AddItemForm = () => {
         <div>
              <form className="" onSubmit={handleSubmit}>
                 <div>
+                    <p><label htmlFor="">Choose Reagent</label></p>
                     <select value={item.reagent} onChange={(e) => {
-                        listReagents.filter((reag) => e.target.value === reag.name).map(selectedReagent => setItem({ ...item, id: selectedReagent.id, reagent: selectedReagent.name }))}}>
+                        listReagents.filter((reag) => e.target.value === reag.name).map(selectedReagent => setItem({ ...item, reagentID: selectedReagent.id, reagentName: selectedReagent.name }))}}>
                         {listReagents.map((option) =>{
                             return <option key={option.id}>{option.name}</option>
                         })}
                     </select>
                 </div>
-                <div className="reagentName-form">
-                    <p><label htmlFor="reagentName">Reagent Name</label></p>
+                <div>
+                    <p><label htmlFor="expirationDate">Expiration Date</label></p>
+                    <input
+                        name="expirationDate"
+                        type="date"
+                        value={item.expirationDate}
+                        placeholder="Exiration Date"
+                        onChange={(e) => setItem({ ...item, expirationDate: e.target.value })}
+                        required
+                    />
+                </div>
+                <div>
+                    <p><label htmlFor="receivedDate">Received Date</label></p>
+                    <input
+                        name="receivedDate"
+                        type="date"
+                        value={item.receivedDate}
+                        placeholder="Received Date"
+                        onChange={(e) => setItem({ ...item, receivedDate: e.target.value })}
+                        required
+                    />
+                </div>
+                <div>
+                    <p><label htmlFor="itemQuantity">Quantity</label></p>
                     <p><input
-                        name="reagentName"
-                        type="text"
-                        value={reagent.name}
-                        placeholder="Reagent Names"
-                        onChange={(e) => setReagent({ ...reagent, name: e.target.value })}
+                        name="itemQuantity"
+                        type="number"
+                        value={item.quantity}
+                        placeholder="Quantity"
+                        onChange={(e) => setItem({ ...item, quantity: e.target.value })}
                         required
                     /></p>
                 </div>
