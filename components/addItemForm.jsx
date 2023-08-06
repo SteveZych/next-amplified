@@ -34,7 +34,6 @@ const AddItemForm = () => {
         let newItem = {
             id: uniqueID,
             reagentID: item.reagentID,
-            reagentName: item.reagentName,
             expirationDate: item.expirationDate,
             receivedDate: item.receivedDate,
             quantity: item.quantity
