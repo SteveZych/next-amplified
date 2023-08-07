@@ -6,6 +6,7 @@ export async function listItemsFunction(){
     try{
         let data = await API.graphql(graphqlOperation(queries.listItems));
         let existingItems = data.data.listItems.items;
+        console.log(existingItems);
         return existingItems;
         
     }catch (err){
