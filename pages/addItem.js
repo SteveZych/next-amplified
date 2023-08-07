@@ -4,9 +4,9 @@ import {listItemsFunction} from "../Functions/listItemsFunction";
 import React, {useState, useEffect} from 'react';
 
 
-function AddItem() {
+function AddItem({existingItems}) {
 
-  const [listItems, setListItems] = useState();
+  const [listItems, setListItems] = useState([]);
 
   //Query for existing items and put them in a table on page load
   useEffect(() =>{
@@ -20,6 +20,15 @@ function AddItem() {
         <AddItemForm/>
 
         <table>
+                <thead>
+                  <tr>
+                    <td>Reagent Name</td>
+                    <td>QC Interval</td>
+                    <td>Expiration Date</td>
+                    <td>Received Date</td>
+                    <td>QC Performed</td>
+                  </tr>
+                </thead>
                 <tbody>
                     {listItems.map((thisItem, index) =>{
                         return (
@@ -33,9 +42,9 @@ function AddItem() {
 
                                 <td>{thisItem.receivedDate}</td>
 
-                                {/* <td>{thisItem.qualityControl = null ? 
+                                <td>{thisItem.qualityControl.nextToken === null ? 
                                    <button>Add QC</button>
-                                    : thisItem.qualityControl.datePerformed }</td> */}
+                                    : thisItem.qualityControl.datePerformed }</td>
                                 
                             </tr>
                         )
