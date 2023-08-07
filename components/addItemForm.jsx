@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import { API, graphqlOperation, Auth } from 'aws-amplify';
 import * as mutations from '../src/graphql/mutations';
 import {v4 as uuidv4} from 'uuid';
-import {reagentTemplateData} from './reagentTemplateData';
+import {reagentTemplateData} from '../functions/reagentTemplateData';
+import * as queries from '../src/graphql/queries';
 
 //ITEMS ARE INSTANCES OF A REAGENT//
 
@@ -22,6 +23,17 @@ const AddItemForm = () => {
     //Query for existing reagents and put them in state on page load
     useEffect(() =>{
         reagentTemplateData().then(data => setListReagents(data));
+        async function listItems(){
+            try{
+                let data = await API.graphql(graphqlOperation(queries.listItems));
+                // let existingReagents = data.data.listReagents.items;
+                console.log(data);
+                
+            }catch (err){
+                console.log(err)
+            }
+    }
+        listItems();
     }, [])
 
     //Handles form submit to create a new item
