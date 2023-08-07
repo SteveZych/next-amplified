@@ -59,17 +59,17 @@ const AddReagent = () => {
         }
     }
 
+    //Allows user to edit the reagent inputs
     const editReagent = (id) => {
-        //change the isEditing property to true to enable editing of input
         setListReagents(prevListReagents => {
             return prevListReagents.map(reagent => reagent.id === id ? {...reagent, isEditing: true} : reagent)
         })
     }
+
+    //Allows user to save edited reagent input and pushes changes to server
     const saveReagent = async (index) => {
-        
         const {id, name, qualityControlInterval} = listReagents[index]
         
-        //API call to update paramaters
         try{
             const updateCurrentReagent = await API.graphql({ 
                 query: mutations.updateReagent, 
@@ -84,9 +84,9 @@ const AddReagent = () => {
       }
     }
 
+    //Allows user to delete reagent 
     const deleteReagent = async (reagentID) => {
 
-        //API call to delete with id
         try{
               const deleteCurrentReagent = await API.graphql({ 
                 query: mutations.deleteReagent, 
