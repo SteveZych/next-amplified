@@ -43,9 +43,9 @@ function AddItem({existingItems}) {
                                 <td>{thisItem.receivedDate}</td>
 
                                 <td>{thisItem.qualityControl.nextToken === null ? 
-                                   <button>Add QC</button>
+                                    "None"
                                     : thisItem.qualityControl.datePerformed }</td>
-                                
+                                <td><button>Add QC</button></td>
                             </tr>
                         )
                     })}
