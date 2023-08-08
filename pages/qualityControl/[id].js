@@ -7,7 +7,8 @@ export default function AddQualityControl(){
 
     return(
         <div>
-            <h1>ITEM {router.query.id}</h1>
+            <AddQualityControlForm id={router.query.id}/>
+            
         </div>
     )
 }
