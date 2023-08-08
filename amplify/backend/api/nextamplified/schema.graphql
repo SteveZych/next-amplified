@@ -13,6 +13,7 @@ type Item @model {
   id: ID!
   reagentID: ID! @index(name: "byReagent")
   reagent: Reagent @belongsTo (fields: ["reagentID"])
+  lot: Float!
   expirationDate: AWSDate
   receivedDate: AWSDate
   quantity: Float!
