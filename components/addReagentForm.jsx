@@ -1,51 +1,48 @@
 import React, {useState, useEffect} from 'react';
 import { API, graphqlOperation, Auth } from 'aws-amplify';
-import awsconfig from '../src/aws-exports';
-// import {createReagent} from '../src/graphql/mutations';
 import * as mutations from '../src/graphql/mutations';
-//comment
+import {v4 as uuidv4} from 'uuid';
+
 
 const AddReagentForm = () => {
 
     //State to keep track of the form
     const [reagent, setReagent] = useState({
-        id: "789",
         name: "",
-        qualityControlInterval: ""
+        qualityControlInterval: "None"
     });
 
-    const qualityControlIntervalOptions = ["Test","Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
+    const qualityControlIntervalOptions = ["None", "Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
 
-
+    //Handles form submit to create a new reagent
     const handleSubmit = async(e) => {
         e.preventDefault();
+
+        //create a unique id
+        let uniqueID = uuidv4();
+
+        let newReagent = {
+            id: uniqueID,
+            name: reagent.name,
+            qualityControlInterval: reagent.qualityControlInterval
+        }
+        
         const reagentParams = {
-            input: reagent
+            input: newReagent
         };
+       
         try{
-            console.log(reagent);
             await API.graphql(graphqlOperation(mutations.createReagent, reagentParams));
+            
+            setReagent({
+                name: "",
+                qualityControlInterval: "None"
+            });
+            console.log('Successfully added new reagent.')
         }catch (err){
             console.log(err)
         }
-        
-        
     }
-    // const handleSubmit = async(e) => {
-    //     e.preventDefault();
-        
-    //     try{
-    //         console.log(reagent);
-    //         await API.graphql({ 
-    //             query: mutations.createReagent, 
-    //             variables: { input: reagent }
-    //           });
-    //     }catch (err){
-    //         console.log(err)
-    //     }
-        
-        
-    // }
 
     return(
         <div>
@@ -62,7 +59,7 @@ const AddReagentForm = () => {
                     /></p>
                 </div>
                 <div>
-                    <select onChange={(e) => setReagent({ ...reagent, qualityControlInterval: e.target.value })}>
+                    <select value={reagent.qualityControlInterval} onChange={(e) => setReagent({ ...reagent, qualityControlInterval: e.target.value })}>
                         {qualityControlIntervalOptions.map((option, index) =>{
                             return <option key={index}>{option}</option>
                         })}

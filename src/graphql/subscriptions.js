@@ -11,6 +11,7 @@ export const onCreateReagent = /* GraphQL */ `
         items {
           id
           reagentID
+          lot
           expirationDate
           receivedDate
           quantity
@@ -34,6 +35,7 @@ export const onUpdateReagent = /* GraphQL */ `
         items {
           id
           reagentID
+          lot
           expirationDate
           receivedDate
           quantity
@@ -57,6 +59,7 @@ export const onDeleteReagent = /* GraphQL */ `
         items {
           id
           reagentID
+          lot
           expirationDate
           receivedDate
           quantity
@@ -85,6 +88,7 @@ export const onCreateItem = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      lot
       expirationDate
       receivedDate
       quantity
@@ -133,6 +137,7 @@ export const onUpdateItem = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      lot
       expirationDate
       receivedDate
       quantity
@@ -181,6 +186,7 @@ export const onDeleteItem = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      lot
       expirationDate
       receivedDate
       quantity
