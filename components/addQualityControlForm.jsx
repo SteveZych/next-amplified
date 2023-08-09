@@ -1,9 +1,15 @@
 
 
-export default function AddQualityControlForm({id}){
+const AddQualityControlForm = ({id}) =>{
+
+    
+
     return(
         <div>
-            {id}
+            <h1>{id}</h1>
         </div>
     )
 }
+
+export default AddQualityControlForm;
+    
