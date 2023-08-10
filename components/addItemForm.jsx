@@ -2,9 +2,9 @@ import React, {useState, useEffect} from 'react';
 import { API, graphqlOperation, Auth } from 'aws-amplify';
 import * as mutations from '../src/graphql/mutations';
 import {v4 as uuidv4} from 'uuid';
-import {reagentTemplateData} from '../functions/reagentTemplateData';
-
-//ITEMS ARE INSTANCES OF A REAGENT//
+import {reagentTemplateData} from '../Functions/reagentTemplateData';
+import Input from '/components/input';
+import Select from '/components/select';
 
 const AddItemForm = () => {
 
@@ -12,6 +12,7 @@ const AddItemForm = () => {
     const [item, setItem] = useState({
         reagentID: "",
         reagentName: "",
+        lot: "",
         expirationDate: "",
         receivedDate: "",
         quantity: ""
@@ -35,6 +36,7 @@ const AddItemForm = () => {
         let newItem = {
             id: uniqueID,
             reagentID: item.reagentID,
+            lot: item.lot,
             expirationDate: item.expirationDate,
             receivedDate: item.receivedDate,
             quantity: item.quantity
@@ -51,6 +53,7 @@ const AddItemForm = () => {
                 id: "",
                 reagentID: "",
                 reagent: "",
+                lot: "",
                 expirationDate: "",
                 receivedDate: "",
                 quantity: ""
@@ -65,48 +68,57 @@ const AddItemForm = () => {
     return(
         <div>
              <form className="" onSubmit={handleSubmit}>
-                <div>
-                    <p><label htmlFor="">Choose Reagent</label></p>
-                    <select value={item.reagent} onChange={(e) => {
-                        listReagents.filter((reag) => e.target.value === reag.name).map(selectedReagent => setItem({ ...item, reagentID: selectedReagent.id, reagentName: selectedReagent.name }))}}>
-                        {listReagents.map((option) =>{
+                
+                <Select
+                    label={"Choose Reagent"}
+                    value={item.reagent}
+                    onChange={(e) => {
+                        listReagents.filter((reag) => e.target.value === reag.name).map(selectedReagent => setItem({ ...item, reagentID: selectedReagent.id, reagentName: selectedReagent.name }))}}
+                >
+                    {listReagents.map((option) =>{
                             return <option key={option.id}>{option.name}</option>
                         })}
-                    </select>
-                </div>
-                <div>
-                    <p><label htmlFor="expirationDate">Expiration Date</label></p>
-                    <input
-                        name="expirationDate"
-                        type="date"
-                        value={item.expirationDate}
-                        placeholder="Exiration Date"
-                        onChange={(e) => setItem({ ...item, expirationDate: e.target.value })}
-                        required
+                </Select>
+
+                <Input 
+                    htmlFor={"lot"}
+                    label={"Lot"}
+                    name={"lot"}
+                    type={"text"}
+                    value={item.lot}
+                    placeHolder={"Lot"}
+                    onChange={(e) => setItem({ ...item, lot: e.target.value })}
                     />
-                </div>
-                <div>
-                    <p><label htmlFor="receivedDate">Received Date</label></p>
-                    <input
-                        name="receivedDate"
-                        type="date"
-                        value={item.receivedDate}
-                        placeholder="Received Date"
-                        onChange={(e) => setItem({ ...item, receivedDate: e.target.value })}
-                        required
+                
+                <Input 
+                    htmlFor={"expirationDate"}
+                    label={"Expiration Date"}
+                    name={"expirationDate"}
+                    type={"date"}
+                    value={item.expirationDate}
+                    placeHolder={"Date Performed"}
+                    onChange={(e) => setItem({ ...item, expirationDate: e.target.value })}
                     />
-                </div>
-                <div>
-                    <p><label htmlFor="itemQuantity">Quantity</label></p>
-                    <p><input
-                        name="itemQuantity"
-                        type="number"
-                        value={item.quantity}
-                        placeholder="Quantity"
-                        onChange={(e) => setItem({ ...item, quantity: e.target.value })}
-                        required
-                    /></p>
-                </div>
+                
+                <Input 
+                    htmlFor={"receivedDate"}
+                    label={"Received Date"}
+                    name={"receivedDate"}
+                    type={"date"}
+                    value={item.receivedDate}
+                    placeHolder={"Received Date"}
+                    onChange={(e) => setItem({ ...item, receivedDate: e.target.value })}
+                    />
+                
+                <Input 
+                    htmlFor={"itemQuantity"}
+                    label={"Quantity"}
+                    name={"itemQuantity"}
+                    type={"number"}
+                    value={item.quantity}
+                    placeHolder={"Quantity"}
+                    onChange={(e) => setItem({ ...item, quantity: e.target.value })}
+                    />
                 
                 <div className="submit-form">
                     <button className="btn" type="submit">Submit</button>

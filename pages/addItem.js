@@ -23,6 +23,7 @@ function AddItem({existingItems}) {
                 <thead>
                   <tr>
                     <td>Reagent Name</td>
+                    <td>Lot</td>
                     <td>QC Interval</td>
                     <td>Expiration Date</td>
                     <td>Received Date</td>
@@ -35,6 +36,8 @@ function AddItem({existingItems}) {
                             <tr key={thisItem.id}>
 
                                 <td>{thisItem.reagent.name}</td>
+
+                                <td>{thisItem.lot}</td>
 
                                 <td>{thisItem.reagent.qualityControlInterval}</td>
 
