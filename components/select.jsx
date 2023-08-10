@@ -1,4 +1,4 @@
-export default function Select({label,value, onChange}){
+export default function Select({label,value, onChange, children}){
     return (
         <div>
             <p><label>{label}</label></p>

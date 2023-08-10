@@ -75,7 +75,7 @@ const UpdateItemForm = ({id}) =>{
                     htmlFor={"quantity"}
                     label={"Quantity"}
                     name={"quantity"}
-                    type={"text"}
+                    type={"number"}
                     value={update.quantity}
                     placeHolder={"Quantity"}
                     onChange={(e) => setUpdate({ ...update, quantity: e.target.value })} 
