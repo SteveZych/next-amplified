@@ -49,6 +49,7 @@ function AddItem({existingItems}) {
                                     "None"
                                     : thisItem.qualityControl.datePerformed }</td>
                                 <td><button><Link href={`/qualityControl/${thisItem.id}`}>Add QC</Link></button></td>
+                                <td><button><Link href={`/updateItem/${thisItem.id}`}>Update Item</Link></button></td>
                             </tr>
                         )
                     })}
