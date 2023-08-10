@@ -23,6 +23,7 @@ function AddItem({existingItems}) {
                 <thead>
                   <tr>
                     <td>Reagent Name</td>
+                    <td>Lot</td>
                     <td>QC Interval</td>
                     <td>Expiration Date</td>
                     <td>Received Date</td>
@@ -36,6 +37,8 @@ function AddItem({existingItems}) {
 
                                 <td>{thisItem.reagent.name}</td>
 
+                                <td>{thisItem.lot}</td>
+
                                 <td>{thisItem.reagent.qualityControlInterval}</td>
 
                                 <td>{thisItem.expirationDate}</td>
@@ -46,6 +49,7 @@ function AddItem({existingItems}) {
                                     "None"
                                     : thisItem.qualityControl.datePerformed }</td>
                                 <td><button><Link href={`/qualityControl/${thisItem.id}`}>Add QC</Link></button></td>
+                                <td><button><Link href={`/updateItem/${thisItem.id}`}>Update Item</Link></button></td>
                             </tr>
                         )
                     })}

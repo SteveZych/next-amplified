@@ -3,6 +3,7 @@ import { API, graphqlOperation, Auth } from 'aws-amplify';
 import * as mutations from '../src/graphql/mutations';
 import {v4 as uuidv4} from 'uuid';
 import Input from '/components/input';
+import Select from '/components/select';
 
 const UpdateItemForm = ({id}) =>{
 
@@ -53,7 +54,14 @@ const UpdateItemForm = ({id}) =>{
     return(
         <div>
             <form className="" onSubmit={handleSubmit}>
-
+                <Select
+                    label={"Add or Remove"}
+                    value={update.addedOrRemoved}
+                    onChange={(e) => setUpdate({...update, addedOrRemoved: e.target.value})}
+                >
+                    <option>Add</option>
+                    <option>Remove</option>
+                </Select>
                 <Input 
                     htmlFor={"dateUpdated"}
                     label={"Date Updated"}
@@ -67,7 +75,7 @@ const UpdateItemForm = ({id}) =>{
                     htmlFor={"quantity"}
                     label={"Quantity"}
                     name={"quantity"}
-                    type={"text"}
+                    type={"number"}
                     value={update.quantity}
                     placeHolder={"Quantity"}
                     onChange={(e) => setUpdate({ ...update, quantity: e.target.value })} 

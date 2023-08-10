@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import { API, graphqlOperation, Auth } from 'aws-amplify';
 import * as mutations from '../src/graphql/mutations';
 import {v4 as uuidv4} from 'uuid';
-
+import Input from '/components/input';
+import Select from '/components/select';
 
 const AddReagentForm = () => {
 
@@ -47,24 +48,24 @@ const AddReagentForm = () => {
     return(
         <div>
             <form className="" onSubmit={handleSubmit}>
-                <div className="reagentName-form">
-                    <p><label htmlFor="reagentName">Reagent Name</label></p>
-                    <p><input
-                        name="reagentName"
-                        type="text"
-                        value={reagent.name}
-                        placeholder="Reagent Names"
-                        onChange={(e) => setReagent({ ...reagent, name: e.target.value })}
-                        required
-                    /></p>
-                </div>
-                <div>
-                    <select value={reagent.qualityControlInterval} onChange={(e) => setReagent({ ...reagent, qualityControlInterval: e.target.value })}>
-                        {qualityControlIntervalOptions.map((option, index) =>{
+                <Input 
+                    htmlFor={"reagentName"}
+                    label={"Reagent Name"}
+                    name={"reagentName"}
+                    type={"text"}
+                    value={reagent.name}
+                    placeHolder={"Reagent Name"}
+                    onChange={(e) => setReagent({ ...reagent, name: e.target.value })}
+                    />
+                <Select
+                    label={"Quality Control Interval"}
+                    value={reagent.qualityControlInterval}
+                    onChange={(e) => setReagent({ ...reagent, qualityControlInterval: e.target.value })}
+                >
+                    {qualityControlIntervalOptions.map((option, index) =>{
                             return <option key={index}>{option}</option>
                         })}
-                    </select>
-                </div>
+                </Select>
                 <div className="submit-form">
                     <button className="btn" type="submit">Submit</button>
                 </div>
