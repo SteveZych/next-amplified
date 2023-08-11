@@ -39,7 +39,8 @@ const AddItemForm = () => {
             lot: item.lot,
             expirationDate: item.expirationDate,
             receivedDate: item.receivedDate,
-            quantity: item.quantity
+            iniaialQuantity: item.quantity,
+            currentQuantity: item.quantity
         }
         
         const itemParams = {

@@ -16,7 +16,8 @@ type Item @model {
   lot: String!
   expirationDate: AWSDate
   receivedDate: AWSDate
-  quantity: Float!
+  initialQuantity: Float!
+  currentQuantity: Float!
   updates: [UpdatedItem] @hasMany (indexName: "byItem", fields: ["id"])
   qualityControl: [QualityControl] @hasMany (indexName: "byItem", fields: ["id"])
 }

@@ -14,7 +14,8 @@ export const getReagent = /* GraphQL */ `
           lot
           expirationDate
           receivedDate
-          quantity
+          initialQuantity
+          currentQuantity
           createdAt
           updatedAt
         }
@@ -64,7 +65,8 @@ export const getItem = /* GraphQL */ `
       lot
       expirationDate
       receivedDate
-      quantity
+      initialQuantity
+      currentQuantity
       updates {
         items {
           id
@@ -115,7 +117,8 @@ export const listItems = /* GraphQL */ `
         lot
         expirationDate
         receivedDate
-        quantity
+        initialQuantity
+        currentQuantity
         updates {
           nextToken
         }
