@@ -10,8 +10,12 @@ function Dashboard() {
   //Query for existing items and put them in a table on page load
   useEffect(() =>{
     listItemsFunction().then(data => {
-      data.filter(item => item.currentValue > 0)
-      setItemsInUse(data)
+      if (data == null){
+        setItemsInUse([])
+      }else{
+        data.filter(item => item.currentValue > 0)
+        setItemsInUse(data)
+      }
     })
   }, [])
 
