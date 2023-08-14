@@ -12,12 +12,6 @@ import Link from 'next/link';
 
 const AddReagent = () => {
 
-    //State to keep track of the form
-    const [reagent, setReagent] = useState({
-        name: "",
-        qualityControlInterval: "None"
-    });
-
     const [listReagents, setListReagents] = useState([]);
 
     const qualityControlIntervalOptions = ["None", "Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
@@ -27,37 +21,6 @@ const AddReagent = () => {
         reagentTemplateData().then(data => setListReagents(data));
     }, [])
 
-    //Handles form submit to create a new reagent
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-
-        //create a unique id
-        let uniqueID = uuidv4();
-
-        let newReagent = {
-            id: uniqueID,
-            name: reagent.name,
-            qualityControlInterval: reagent.qualityControlInterval
-        }
-        
-        const reagentParams = {
-            input: newReagent
-        };
-       
-        try{
-            await API.graphql(graphqlOperation(mutations.createReagent, reagentParams));
-            
-            setReagent({
-                name: "",
-                qualityControlInterval: "None"
-            });
-            //Recall the newly submitted data from API
-            reagentTemplateData().then(data => setListReagents(data));
-            console.log('Successfully added new reagent.')
-        }catch (err){
-            console.log(err)
-        }
-    }
 
     //Allows user to edit the reagent inputs
     const editReagent = (id) => {
