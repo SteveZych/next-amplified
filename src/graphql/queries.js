@@ -7,6 +7,8 @@ export const getReagent = /* GraphQL */ `
       id
       name
       qualityControlInterval
+      upperLimitQuantity
+      lowerLimitQuantity
       item {
         items {
           id
@@ -37,6 +39,8 @@ export const listReagents = /* GraphQL */ `
         id
         name
         qualityControlInterval
+        upperLimitQuantity
+        lowerLimitQuantity
         item {
           nextToken
         }
@@ -56,6 +60,8 @@ export const getItem = /* GraphQL */ `
         id
         name
         qualityControlInterval
+        upperLimitQuantity
+        lowerLimitQuantity
         item {
           nextToken
         }
@@ -111,6 +117,8 @@ export const listItems = /* GraphQL */ `
           id
           name
           qualityControlInterval
+          upperLimitQuantity
+          lowerLimitQuantity
           createdAt
           updatedAt
         }

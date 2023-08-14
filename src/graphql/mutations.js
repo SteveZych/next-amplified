@@ -10,6 +10,8 @@ export const createReagent = /* GraphQL */ `
       id
       name
       qualityControlInterval
+      upperLimitQuantity
+      lowerLimitQuantity
       item {
         items {
           id
@@ -38,6 +40,8 @@ export const updateReagent = /* GraphQL */ `
       id
       name
       qualityControlInterval
+      upperLimitQuantity
+      lowerLimitQuantity
       item {
         items {
           id
@@ -66,6 +70,8 @@ export const deleteReagent = /* GraphQL */ `
       id
       name
       qualityControlInterval
+      upperLimitQuantity
+      lowerLimitQuantity
       item {
         items {
           id
@@ -97,6 +103,8 @@ export const createItem = /* GraphQL */ `
         id
         name
         qualityControlInterval
+        upperLimitQuantity
+        lowerLimitQuantity
         item {
           nextToken
         }
@@ -150,6 +158,8 @@ export const updateItem = /* GraphQL */ `
         id
         name
         qualityControlInterval
+        upperLimitQuantity
+        lowerLimitQuantity
         item {
           nextToken
         }
@@ -203,6 +213,8 @@ export const deleteItem = /* GraphQL */ `
         id
         name
         qualityControlInterval
+        upperLimitQuantity
+        lowerLimitQuantity
         item {
           nextToken
         }

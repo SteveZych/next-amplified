@@ -6,6 +6,8 @@ type Reagent @model{
   id: ID!
   name: String!
   qualityControlInterval: String!
+  upperLimitQuantity: Float!
+  lowerLimitQuantity: Float!
   item: [Item] @hasMany (indexName: "byReagent", fields: ["id"])
 }
 
