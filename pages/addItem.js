@@ -25,7 +25,7 @@ function AddItem({existingItems}) {
         <h1>Add Reagents</h1>
         <AddItemForm/>
 
-        {listItems === [] ? "No items available." : 
+        {listItems == [] ? "No items available." : 
           <table>
                 <thead>
                   <tr>

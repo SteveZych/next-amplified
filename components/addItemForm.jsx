@@ -5,6 +5,8 @@ import {v4 as uuidv4} from 'uuid';
 import {reagentTemplateData} from '../Functions/reagentTemplateData';
 import Input from '/components/input';
 import Select from '/components/select';
+import Link from 'next/link';
+
 
 const AddItemForm = () => {
 
@@ -22,8 +24,13 @@ const AddItemForm = () => {
 
     //Query for existing reagents and put them in state on page load
     useEffect(() =>{
-        reagentTemplateData().then(data => setListReagents(data));
-    
+        reagentTemplateData().then(data => {
+            if (data == null){
+                setListReagents([])
+            }else{
+                setListReagents(data);
+            }
+        })
     }, [])
 
     //Handles form submit to create a new item
@@ -68,63 +75,69 @@ const AddItemForm = () => {
 
     return(
         <div>
-             <form className="" onSubmit={handleSubmit}>
-                
-                <Select
-                    label={"Choose Reagent"}
-                    value={item.reagent}
-                    onChange={(e) => {
-                        listReagents.filter((reag) => e.target.value === reag.name).map(selectedReagent => setItem({ ...item, reagentID: selectedReagent.id, reagentName: selectedReagent.name }))}}
-                >
-                    {listReagents.map((option) =>{
-                            return <option key={option.id}>{option.name}</option>
-                        })}
-                </Select>
+            {listReagents === [] ? <Link href="/addReagent"><button>Add reagent template</button></Link>
+            :
+            <div>
+                <Link href="/addReagent"><button>Add reagent template</button></Link>
+                <form className="" onSubmit={handleSubmit}>
+                    
+                    <Select
+                        label={"Choose Reagent"}
+                        value={item.reagent}
+                        onChange={(e) => {
+                            listReagents.filter((reag) => e.target.value === reag.name).map(selectedReagent => setItem({ ...item, reagentID: selectedReagent.id, reagentName: selectedReagent.name }))}}
+                    >
+                        {listReagents.map((option) =>{
+                                return <option key={option.id}>{option.name}</option>
+                            })}
+                    </Select>
 
-                <Input 
-                    htmlFor={"lot"}
-                    label={"Lot"}
-                    name={"lot"}
-                    type={"text"}
-                    value={item.lot}
-                    placeHolder={"Lot"}
-                    onChange={(e) => setItem({ ...item, lot: e.target.value })}
-                    />
-                
-                <Input 
-                    htmlFor={"expirationDate"}
-                    label={"Expiration Date"}
-                    name={"expirationDate"}
-                    type={"date"}
-                    value={item.expirationDate}
-                    placeHolder={"Date Performed"}
-                    onChange={(e) => setItem({ ...item, expirationDate: e.target.value })}
-                    />
-                
-                <Input 
-                    htmlFor={"receivedDate"}
-                    label={"Received Date"}
-                    name={"receivedDate"}
-                    type={"date"}
-                    value={item.receivedDate}
-                    placeHolder={"Received Date"}
-                    onChange={(e) => setItem({ ...item, receivedDate: e.target.value })}
-                    />
-                
-                <Input 
-                    htmlFor={"itemQuantity"}
-                    label={"Quantity"}
-                    name={"itemQuantity"}
-                    type={"number"}
-                    value={item.quantity}
-                    placeHolder={"Quantity"}
-                    onChange={(e) => setItem({ ...item, quantity: e.target.value })}
-                    />
-                
-                <div className="submit-form">
-                    <button className="btn" type="submit">Submit</button>
-                </div>
-            </form>
+                    <Input 
+                        htmlFor={"lot"}
+                        label={"Lot"}
+                        name={"lot"}
+                        type={"text"}
+                        value={item.lot}
+                        placeHolder={"Lot"}
+                        onChange={(e) => setItem({ ...item, lot: e.target.value })}
+                        />
+                    
+                    <Input 
+                        htmlFor={"expirationDate"}
+                        label={"Expiration Date"}
+                        name={"expirationDate"}
+                        type={"date"}
+                        value={item.expirationDate}
+                        placeHolder={"Date Performed"}
+                        onChange={(e) => setItem({ ...item, expirationDate: e.target.value })}
+                        />
+                    
+                    <Input 
+                        htmlFor={"receivedDate"}
+                        label={"Received Date"}
+                        name={"receivedDate"}
+                        type={"date"}
+                        value={item.receivedDate}
+                        placeHolder={"Received Date"}
+                        onChange={(e) => setItem({ ...item, receivedDate: e.target.value })}
+                        />
+                    
+                    <Input 
+                        htmlFor={"itemQuantity"}
+                        label={"Quantity"}
+                        name={"itemQuantity"}
+                        type={"number"}
+                        value={item.quantity}
+                        placeHolder={"Quantity"}
+                        onChange={(e) => setItem({ ...item, quantity: e.target.value })}
+                        />
+                    
+                    <div className="submit-form">
+                        <button className="btn" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div> 
+        }
         </div>
     )
 
