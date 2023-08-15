@@ -1,4 +1,4 @@
-export default function Input({htmlFor, label, name, type, value, placeHolder, onChange}){
+export default function Input({htmlFor, label, name, type, value, placeHolder, onChange, disabled}){
     return(
         <div>
             <p><label htmlFor={htmlFor}>{label}</label></p>
@@ -9,6 +9,7 @@ export default function Input({htmlFor, label, name, type, value, placeHolder, o
                 placeholder={placeHolder}
                 onChange={onChange}
                 required
+                disabled={disabled}
             />
         </div>
     )

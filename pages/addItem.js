@@ -11,7 +11,7 @@ function AddItem({existingItems}) {
   //Query for existing items and put them in a table on page load
   useEffect(() =>{
     listItemsFunction().then(data => {
-      if (data === false){
+      if (data === false || data.length === 0){
         setListItems(false)
       }else{
         setListItems(data);

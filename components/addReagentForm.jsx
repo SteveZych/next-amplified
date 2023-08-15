@@ -5,7 +5,7 @@ import {v4 as uuidv4} from 'uuid';
 import Input from '/components/input';
 import Select from '/components/select';
 
-const AddReagentForm = () => {
+const AddReagentForm = ({formSubmit}) => {
 
     //State to keep track of the form
     const [reagent, setReagent] = useState({
@@ -15,7 +15,7 @@ const AddReagentForm = () => {
         lowerLimitQuantity: ""
     });
 
-    const qualityControlIntervalOptions = ["None", "Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
+    const qualityControlIntervalOptions = ["None", "Once", "Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
 
     //Handles form submit to create a new reagent
     const handleSubmit = async(e) => {
@@ -46,6 +46,7 @@ const AddReagentForm = () => {
                 lowerLimitQuantity: ""
             });
             console.log('Successfully added new reagent.')
+            formSubmit;
         }catch (err){
             console.log(err)
         }
