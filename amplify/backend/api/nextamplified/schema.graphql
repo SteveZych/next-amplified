@@ -6,6 +6,8 @@ type Reagent @model{
   id: ID!
   name: String!
   qualityControlInterval: String!
+  upperLimitQuantity: Float!
+  lowerLimitQuantity: Float!
   item: [Item] @hasMany (indexName: "byReagent", fields: ["id"])
 }
 
@@ -16,7 +18,8 @@ type Item @model {
   lot: String!
   expirationDate: AWSDate
   receivedDate: AWSDate
-  quantity: Float!
+  initialQuantity: Float!
+  currentQuantity: Float!
   updates: [UpdatedItem] @hasMany (indexName: "byItem", fields: ["id"])
   qualityControl: [QualityControl] @hasMany (indexName: "byItem", fields: ["id"])
 }

@@ -12,52 +12,21 @@ import Link from 'next/link';
 
 const AddReagent = () => {
 
-    //State to keep track of the form
-    const [reagent, setReagent] = useState({
-        name: "",
-        qualityControlInterval: "None"
-    });
-
     const [listReagents, setListReagents] = useState([]);
 
     const qualityControlIntervalOptions = ["None", "Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
 
     //Query for existing reagents and put them in a table on page load
     useEffect(() =>{
-        reagentTemplateData().then(data => setListReagents(data));
+        reagentTemplateData().then(data => {
+            if (data === false || data.length === 0){
+                setListReagents(false);
+            }else{
+                setListReagents(data);
+            }
+        })
     }, [])
 
-    //Handles form submit to create a new reagent
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-
-        //create a unique id
-        let uniqueID = uuidv4();
-
-        let newReagent = {
-            id: uniqueID,
-            name: reagent.name,
-            qualityControlInterval: reagent.qualityControlInterval
-        }
-        
-        const reagentParams = {
-            input: newReagent
-        };
-       
-        try{
-            await API.graphql(graphqlOperation(mutations.createReagent, reagentParams));
-            
-            setReagent({
-                name: "",
-                qualityControlInterval: "None"
-            });
-            //Recall the newly submitted data from API
-            reagentTemplateData().then(data => setListReagents(data));
-            console.log('Successfully added new reagent.')
-        }catch (err){
-            console.log(err)
-        }
-    }
 
     //Allows user to edit the reagent inputs
     const editReagent = (id) => {
@@ -105,44 +74,48 @@ const AddReagent = () => {
         <div>
             <Link href="/dashboard">Back to Dashboard</Link>
             <AddReagentForm/>
-            <table>
-                <tbody>
-                    {listReagents.map((thisReagent, index) =>{
-                        return (
-                            <tr key={thisReagent.id}>
 
-                                <td>{thisReagent.id}</td>
+            {listReagents ? 
+                <table>
+                    <tbody>
+                        {listReagents.map((thisReagent, index) =>{
+                            return (
+                                <tr key={thisReagent.id}>
 
-                                <td><input
-                                name="reagentName"
-                                type="text"
-                                value={thisReagent.name}
-                                onChange={(e) => setListReagents(prevListReagents => {
-                                    return prevListReagents.map(reag => thisReagent.id === reag.id ? {...reag, name: e.target.value} : reag)
-                                })}
-                                disabled={!thisReagent.isEditing ? "disabled" : ''}
-                                ></input></td>
-                            
-                                <td><select 
-                                    value={thisReagent.qualityControlInterval} 
-                                     onChange={(e) => setListReagents(prevListReagents => {
-                                        return prevListReagents.map(reag => thisReagent.id === reag.id ? {...reag, qualityControlInterval: e.target.value} : reag)
+                                    <td>{thisReagent.id}</td>
+
+                                    <td><input
+                                    name="reagentName"
+                                    type="text"
+                                    value={thisReagent.name}
+                                    onChange={(e) => setListReagents(prevListReagents => {
+                                        return prevListReagents.map(reag => thisReagent.id === reag.id ? {...reag, name: e.target.value} : reag)
                                     })}
                                     disabled={!thisReagent.isEditing ? "disabled" : ''}
-                                    >
-                                    {qualityControlIntervalOptions.map((option, index) =>{
-                                        return <option key={index}>{option}</option>
-                                    })}
-                                     </select></td>
+                                    ></input></td>
+                                
+                                    <td><select 
+                                        value={thisReagent.qualityControlInterval} 
+                                        onChange={(e) => setListReagents(prevListReagents => {
+                                            return prevListReagents.map(reag => thisReagent.id === reag.id ? {...reag, qualityControlInterval: e.target.value} : reag)
+                                        })}
+                                        disabled={!thisReagent.isEditing ? "disabled" : ''}
+                                        >
+                                        {qualityControlIntervalOptions.map((option, index) =>{
+                                            return <option key={index}>{option}</option>
+                                        })}
+                                        </select></td>
 
-                                <td>{!thisReagent.isEditing ? <button onClick={()=> editReagent(thisReagent.id)}>Edit</button> : <button onClick={()=> saveReagent(index)}>Save</button>}</td>
+                                    <td>{!thisReagent.isEditing ? <button onClick={()=> editReagent(thisReagent.id)}>Edit</button> : <button onClick={()=> saveReagent(index)}>Save</button>}</td>
 
-                                <td><button onClick={()=> deleteReagent(thisReagent.id)}>Delete</button></td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
+                                    <td><button onClick={()=> deleteReagent(thisReagent.id)}>Delete</button></td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
+            :
+            <h1>No reagents available.</h1>}
         </div>
     )
 

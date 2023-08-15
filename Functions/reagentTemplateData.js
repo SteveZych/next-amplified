@@ -11,11 +11,12 @@ export async function reagentTemplateData(){
             existingReagents.map(obj =>{
                 obj.isEditing = false;
             })
-            
+            console.log(existingReagents)
             return existingReagents;
             
         }catch (err){
             console.log(err)
+            return false;
         }
     
     

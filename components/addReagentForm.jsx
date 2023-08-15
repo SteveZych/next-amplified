@@ -10,7 +10,9 @@ const AddReagentForm = () => {
     //State to keep track of the form
     const [reagent, setReagent] = useState({
         name: "",
-        qualityControlInterval: "None"
+        qualityControlInterval: "None",
+        upperLimitQuantity: "",
+        lowerLimitQuantity: ""
     });
 
     const qualityControlIntervalOptions = ["None", "Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
@@ -25,7 +27,9 @@ const AddReagentForm = () => {
         let newReagent = {
             id: uniqueID,
             name: reagent.name,
-            qualityControlInterval: reagent.qualityControlInterval
+            qualityControlInterval: reagent.qualityControlInterval,
+            upperLimitQuantity: reagent.upperLimitQuantity,
+            lowerLimitQuantity: reagent.lowerLimitQuantity
         }
         
         const reagentParams = {
@@ -37,7 +41,9 @@ const AddReagentForm = () => {
             
             setReagent({
                 name: "",
-                qualityControlInterval: "None"
+                qualityControlInterval: "None",
+                upperLimitQuantity: "",
+                lowerLimitQuantity: ""
             });
             console.log('Successfully added new reagent.')
         }catch (err){
@@ -56,6 +62,24 @@ const AddReagentForm = () => {
                     value={reagent.name}
                     placeHolder={"Reagent Name"}
                     onChange={(e) => setReagent({ ...reagent, name: e.target.value })}
+                    />
+                <Input 
+                    htmlFor={"upperLimitQuantity"}
+                    label={"Upper Limit Quantity"}
+                    name={"upperLimitQuantity"}
+                    type={"number"}
+                    value={reagent.upperLimitQuantity}
+                    placeHolder={"Upper Limit Quantity"}
+                    onChange={(e) => setReagent({ ...reagent, upperLimitQuantity: e.target.value })}
+                    />
+                <Input 
+                    htmlFor={"lowerLimitQuantity"}
+                    label={"Lower Limit Quantity"}
+                    name={"lowerLimityQuantity"}
+                    type={"number"}
+                    value={reagent.lowerLimitQuantity}
+                    placeHolder={"Lower Limit Quantity"}
+                    onChange={(e) => setReagent({ ...reagent, lowerLimitQuantity: e.target.value })}
                     />
                 <Select
                     label={"Quality Control Interval"}
