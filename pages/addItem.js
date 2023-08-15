@@ -2,9 +2,10 @@ import AddItemForm from "../components/addItemForm";
 import Link from 'next/link';
 import {listItemsFunction} from "../Functions/listItemsFunction";
 import React, {useState, useEffect} from 'react';
+import { listUpdatedItems } from "@/graphql/queries";
 
 
-function AddItem({existingItems}) {
+function AddItem() {
 
   const [listItems, setListItems] = useState([]);
 
@@ -19,11 +20,15 @@ function AddItem({existingItems}) {
     })
   }, [])
 
+  const formSubmit = () => {
+    listItemsFunction().then(data => setListItems(data))
+  }
+
     return (
       <div style={{ padding: 50 }}>
         <Link href="/dashboard">Back to Dashboard</Link>
         <h1>Add Reagents</h1>
-        <AddItemForm/>
+        <AddItemForm formSubmit={() => formSubmit()}/>
 
         {listItems ?  
           <table>

@@ -8,7 +8,7 @@ import Select from '/components/select';
 import Link from 'next/link';
 
 
-const AddItemForm = () => {
+const AddItemForm = ({formSubmit}) => {
 
     //State to keep track of the form
     const [item, setItem] = useState({
@@ -46,7 +46,7 @@ const AddItemForm = () => {
             lot: item.lot,
             expirationDate: item.expirationDate,
             receivedDate: item.receivedDate,
-            iniaialQuantity: item.quantity,
+            initialQuantity: item.quantity,
             currentQuantity: item.quantity
         }
         
@@ -66,7 +66,8 @@ const AddItemForm = () => {
                 receivedDate: "",
                 quantity: ""
             });
-           
+
+            formSubmit();
             console.log('Successfully added new item.')
         }catch (err){
             console.log(err)
@@ -79,15 +80,15 @@ const AddItemForm = () => {
             <div>
                 <Link href="/addReagent"><button>Add reagent template</button></Link>
                 <form className="" onSubmit={handleSubmit}>
-                    
+                
                     <Select
                         label={"Choose Reagent"}
-                        value={item.reagent}
-                        onChange={(e) => {
-                            listReagents.filter((reag) => e.target.value === reag.name).map(selectedReagent => setItem({ ...item, reagentID: selectedReagent.id, reagentName: selectedReagent.name }))}}
+                        value={item.reagentName}
+                        onChange={(e) => setItem({...item, reagentName: e.target.value})}
                     >
+                        <option value="" disabled>Select an option</option>
                         {listReagents.map((option) =>{
-                                return <option key={option.id}>{option.name}</option>
+                                return <option key={option.id} value={option.name}>{option.name}</option>
                             })}
                     </Select>
 

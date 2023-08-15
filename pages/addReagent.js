@@ -16,7 +16,7 @@ const AddReagent = () => {
 
     const [listReagents, setListReagents] = useState([]);
 
-    const qualityControlIntervalOptions = ["None", "Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
+    const qualityControlIntervalOptions = ["None", "Once","Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
 
     //Query for existing reagents and put them in a table on page load
     useEffect(() =>{

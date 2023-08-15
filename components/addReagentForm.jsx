@@ -10,7 +10,7 @@ const AddReagentForm = ({formSubmit}) => {
     //State to keep track of the form
     const [reagent, setReagent] = useState({
         name: "",
-        qualityControlInterval: "None",
+        qualityControlInterval: "",
         upperLimitQuantity: "",
         lowerLimitQuantity: ""
     });
@@ -46,7 +46,7 @@ const AddReagentForm = ({formSubmit}) => {
                 lowerLimitQuantity: ""
             });
             console.log('Successfully added new reagent.')
-            formSubmit;
+            formSubmit();
         }catch (err){
             console.log(err)
         }
@@ -87,8 +87,9 @@ const AddReagentForm = ({formSubmit}) => {
                     value={reagent.qualityControlInterval}
                     onChange={(e) => setReagent({ ...reagent, qualityControlInterval: e.target.value })}
                 >
+                    <option value="" disabled>Select an option</option>
                     {qualityControlIntervalOptions.map((option, index) =>{
-                            return <option key={index}>{option}</option>
+                            return <option key={index} value ={option}>{option}</option>
                         })}
                 </Select>
                 <div className="submit-form">
