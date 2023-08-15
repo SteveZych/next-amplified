@@ -16,7 +16,7 @@ export async function reagentTemplateData(){
             
         }catch (err){
             console.log(err)
-            return true;
+            return false;
         }
     
     

@@ -11,8 +11,8 @@ function AddItem({existingItems}) {
   //Query for existing items and put them in a table on page load
   useEffect(() =>{
     listItemsFunction().then(data => {
-      if (data == null){
-        setListItems([])
+      if (data === false){
+        setListItems(false)
       }else{
         setListItems(data);
       }
@@ -25,7 +25,7 @@ function AddItem({existingItems}) {
         <h1>Add Reagents</h1>
         <AddItemForm/>
 
-        {listItems == [] ? "No items available." : 
+        {listItems ?  
           <table>
                 <thead>
                   <tr>
@@ -62,7 +62,8 @@ function AddItem({existingItems}) {
                     })}
                 </tbody>
             </table>
-          }
+          :
+          <h1>No items available.</h1>}
       </div>
     )
   }

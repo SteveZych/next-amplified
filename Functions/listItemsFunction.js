@@ -9,5 +9,6 @@ export async function listItemsFunction(){
         return existingItems;
     }catch (err){
         console.log(err)
+        return false;
     }
 }

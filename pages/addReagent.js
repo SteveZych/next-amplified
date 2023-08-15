@@ -19,12 +19,11 @@ const AddReagent = () => {
     //Query for existing reagents and put them in a table on page load
     useEffect(() =>{
         reagentTemplateData().then(data => {
-            // if (data === []){
-            //     setListReagents(data);
-            // }else{
-            //     setListReagents(data);
-            // }
-            console.log(data)
+            if (data === false){
+                setListReagents(false);
+            }else{
+                setListReagents(data);
+            }
         })
     }, [])
 
@@ -76,7 +75,7 @@ const AddReagent = () => {
             <Link href="/dashboard">Back to Dashboard</Link>
             <AddReagentForm/>
 
-            {listReagents ? <h1>No reagents available.</h1> :
+            {listReagents ? 
                 <table>
                     <tbody>
                         {listReagents.map((thisReagent, index) =>{
@@ -115,7 +114,8 @@ const AddReagent = () => {
                         })}
                     </tbody>
                 </table>
-            }
+            :
+            <h1>No reagents available.</h1>}
         </div>
     )
 

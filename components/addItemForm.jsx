@@ -25,8 +25,8 @@ const AddItemForm = () => {
     //Query for existing reagents and put them in state on page load
     useEffect(() =>{
         reagentTemplateData().then(data => {
-            if (data == null){
-                setListReagents([])
+            if (data === false){
+                setListReagents(false)
             }else{
                 setListReagents(data);
             }
@@ -75,8 +75,7 @@ const AddItemForm = () => {
 
     return(
         <div>
-            {listReagents === [] ? <Link href="/addReagent"><button>Add reagent template</button></Link>
-            :
+            {listReagents ? 
             <div>
                 <Link href="/addReagent"><button>Add reagent template</button></Link>
                 <form className="" onSubmit={handleSubmit}>
@@ -137,7 +136,8 @@ const AddItemForm = () => {
                     </div>
                 </form>
             </div> 
-        }
+        :
+        <Link href="/addReagent"><button>Add reagent template</button></Link>}
         </div>
     )
 
