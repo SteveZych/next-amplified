@@ -83,12 +83,12 @@ const AddItemForm = ({formSubmit}) => {
                 
                     <Select
                         label={"Choose Reagent"}
-                        value={item.reagentName}
-                        onChange={(e) => setItem({...item, reagentName: e.target.value})}
+                        value={item.reagentID}
+                        onChange={(e) => setItem({...item, reagentID: e.target.value})}
                     >
                         <option value="" disabled>Select an option</option>
                         {listReagents.map((option) =>{
-                                return <option key={option.id} value={option.name}>{option.name}</option>
+                                return <option key={option.id} value={option.id}>{option.name}</option>
                             })}
                     </Select>
 

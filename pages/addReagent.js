@@ -80,7 +80,7 @@ const AddReagent = () => {
     return(
         <div>
             <Link href="/dashboard">Back to Dashboard</Link>
-            <AddReagentForm formsubmit={formSubmit}/>
+            <AddReagentForm formSubmit={formSubmit}/>
 
             {listReagents ? 
                 <table>
