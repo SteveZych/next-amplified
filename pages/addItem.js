@@ -39,6 +39,8 @@ function AddItem() {
                     <td>QC Interval</td>
                     <td>Expiration Date</td>
                     <td>Received Date</td>
+                    <td>Current Quantity</td>
+                    <td>Initial Quantity</td>
                     <td>QC Performed</td>
                   </tr>
                 </thead>
@@ -56,6 +58,10 @@ function AddItem() {
                                 <td>{thisItem.expirationDate}</td>
 
                                 <td>{thisItem.receivedDate}</td>
+
+                                <td>{thisItem.currentQuantity}</td>
+
+                                <td>{thisItem.initialQuantity}</td>
 
                                 <td>{thisItem.qualityControl.nextToken === null ? 
                                     "None"
