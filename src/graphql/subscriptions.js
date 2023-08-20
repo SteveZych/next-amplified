@@ -243,6 +243,32 @@ export const onCreateUpdatedItem = /* GraphQL */ `
     onCreateUpdatedItem {
       id
       itemID
+      item {
+        id
+        reagentID
+        reagent {
+          id
+          name
+          qualityControlInterval
+          upperLimitQuantity
+          lowerLimitQuantity
+          createdAt
+          updatedAt
+        }
+        lot
+        expirationDate
+        receivedDate
+        initialQuantity
+        currentQuantity
+        updates {
+          nextToken
+        }
+        qualityControl {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       addedOrRemoved
       dateUpdated
       quantity
@@ -257,6 +283,32 @@ export const onUpdateUpdatedItem = /* GraphQL */ `
     onUpdateUpdatedItem {
       id
       itemID
+      item {
+        id
+        reagentID
+        reagent {
+          id
+          name
+          qualityControlInterval
+          upperLimitQuantity
+          lowerLimitQuantity
+          createdAt
+          updatedAt
+        }
+        lot
+        expirationDate
+        receivedDate
+        initialQuantity
+        currentQuantity
+        updates {
+          nextToken
+        }
+        qualityControl {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       addedOrRemoved
       dateUpdated
       quantity
@@ -271,6 +323,32 @@ export const onDeleteUpdatedItem = /* GraphQL */ `
     onDeleteUpdatedItem {
       id
       itemID
+      item {
+        id
+        reagentID
+        reagent {
+          id
+          name
+          qualityControlInterval
+          upperLimitQuantity
+          lowerLimitQuantity
+          createdAt
+          updatedAt
+        }
+        lot
+        expirationDate
+        receivedDate
+        initialQuantity
+        currentQuantity
+        updates {
+          nextToken
+        }
+        qualityControl {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       addedOrRemoved
       dateUpdated
       quantity
@@ -285,6 +363,32 @@ export const onCreateQualityControl = /* GraphQL */ `
     onCreateQualityControl {
       id
       itemID
+      item {
+        id
+        reagentID
+        reagent {
+          id
+          name
+          qualityControlInterval
+          upperLimitQuantity
+          lowerLimitQuantity
+          createdAt
+          updatedAt
+        }
+        lot
+        expirationDate
+        receivedDate
+        initialQuantity
+        currentQuantity
+        updates {
+          nextToken
+        }
+        qualityControl {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       datePerformed
       performedBy
       comment
@@ -298,6 +402,32 @@ export const onUpdateQualityControl = /* GraphQL */ `
     onUpdateQualityControl {
       id
       itemID
+      item {
+        id
+        reagentID
+        reagent {
+          id
+          name
+          qualityControlInterval
+          upperLimitQuantity
+          lowerLimitQuantity
+          createdAt
+          updatedAt
+        }
+        lot
+        expirationDate
+        receivedDate
+        initialQuantity
+        currentQuantity
+        updates {
+          nextToken
+        }
+        qualityControl {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       datePerformed
       performedBy
       comment
@@ -311,6 +441,32 @@ export const onDeleteQualityControl = /* GraphQL */ `
     onDeleteQualityControl {
       id
       itemID
+      item {
+        id
+        reagentID
+        reagent {
+          id
+          name
+          qualityControlInterval
+          upperLimitQuantity
+          lowerLimitQuantity
+          createdAt
+          updatedAt
+        }
+        lot
+        expirationDate
+        receivedDate
+        initialQuantity
+        currentQuantity
+        updates {
+          nextToken
+        }
+        qualityControl {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       datePerformed
       performedBy
       comment

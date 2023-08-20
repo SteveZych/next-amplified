@@ -145,6 +145,32 @@ export const getUpdatedItem = /* GraphQL */ `
     getUpdatedItem(id: $id) {
       id
       itemID
+      item {
+        id
+        reagentID
+        reagent {
+          id
+          name
+          qualityControlInterval
+          upperLimitQuantity
+          lowerLimitQuantity
+          createdAt
+          updatedAt
+        }
+        lot
+        expirationDate
+        receivedDate
+        initialQuantity
+        currentQuantity
+        updates {
+          nextToken
+        }
+        qualityControl {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       addedOrRemoved
       dateUpdated
       quantity
@@ -164,6 +190,17 @@ export const listUpdatedItems = /* GraphQL */ `
       items {
         id
         itemID
+        item {
+          id
+          reagentID
+          lot
+          expirationDate
+          receivedDate
+          initialQuantity
+          currentQuantity
+          createdAt
+          updatedAt
+        }
         addedOrRemoved
         dateUpdated
         quantity
@@ -180,6 +217,32 @@ export const getQualityControl = /* GraphQL */ `
     getQualityControl(id: $id) {
       id
       itemID
+      item {
+        id
+        reagentID
+        reagent {
+          id
+          name
+          qualityControlInterval
+          upperLimitQuantity
+          lowerLimitQuantity
+          createdAt
+          updatedAt
+        }
+        lot
+        expirationDate
+        receivedDate
+        initialQuantity
+        currentQuantity
+        updates {
+          nextToken
+        }
+        qualityControl {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       datePerformed
       performedBy
       comment
@@ -198,6 +261,17 @@ export const listQualityControls = /* GraphQL */ `
       items {
         id
         itemID
+        item {
+          id
+          reagentID
+          lot
+          expirationDate
+          receivedDate
+          initialQuantity
+          currentQuantity
+          createdAt
+          updatedAt
+        }
         datePerformed
         performedBy
         comment

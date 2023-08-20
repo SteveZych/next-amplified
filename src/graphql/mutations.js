@@ -264,6 +264,32 @@ export const createUpdatedItem = /* GraphQL */ `
     createUpdatedItem(input: $input, condition: $condition) {
       id
       itemID
+      item {
+        id
+        reagentID
+        reagent {
+          id
+          name
+          qualityControlInterval
+          upperLimitQuantity
+          lowerLimitQuantity
+          createdAt
+          updatedAt
+        }
+        lot
+        expirationDate
+        receivedDate
+        initialQuantity
+        currentQuantity
+        updates {
+          nextToken
+        }
+        qualityControl {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       addedOrRemoved
       dateUpdated
       quantity
@@ -281,6 +307,32 @@ export const updateUpdatedItem = /* GraphQL */ `
     updateUpdatedItem(input: $input, condition: $condition) {
       id
       itemID
+      item {
+        id
+        reagentID
+        reagent {
+          id
+          name
+          qualityControlInterval
+          upperLimitQuantity
+          lowerLimitQuantity
+          createdAt
+          updatedAt
+        }
+        lot
+        expirationDate
+        receivedDate
+        initialQuantity
+        currentQuantity
+        updates {
+          nextToken
+        }
+        qualityControl {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       addedOrRemoved
       dateUpdated
       quantity
@@ -298,6 +350,32 @@ export const deleteUpdatedItem = /* GraphQL */ `
     deleteUpdatedItem(input: $input, condition: $condition) {
       id
       itemID
+      item {
+        id
+        reagentID
+        reagent {
+          id
+          name
+          qualityControlInterval
+          upperLimitQuantity
+          lowerLimitQuantity
+          createdAt
+          updatedAt
+        }
+        lot
+        expirationDate
+        receivedDate
+        initialQuantity
+        currentQuantity
+        updates {
+          nextToken
+        }
+        qualityControl {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       addedOrRemoved
       dateUpdated
       quantity
@@ -315,6 +393,32 @@ export const createQualityControl = /* GraphQL */ `
     createQualityControl(input: $input, condition: $condition) {
       id
       itemID
+      item {
+        id
+        reagentID
+        reagent {
+          id
+          name
+          qualityControlInterval
+          upperLimitQuantity
+          lowerLimitQuantity
+          createdAt
+          updatedAt
+        }
+        lot
+        expirationDate
+        receivedDate
+        initialQuantity
+        currentQuantity
+        updates {
+          nextToken
+        }
+        qualityControl {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       datePerformed
       performedBy
       comment
@@ -331,6 +435,32 @@ export const updateQualityControl = /* GraphQL */ `
     updateQualityControl(input: $input, condition: $condition) {
       id
       itemID
+      item {
+        id
+        reagentID
+        reagent {
+          id
+          name
+          qualityControlInterval
+          upperLimitQuantity
+          lowerLimitQuantity
+          createdAt
+          updatedAt
+        }
+        lot
+        expirationDate
+        receivedDate
+        initialQuantity
+        currentQuantity
+        updates {
+          nextToken
+        }
+        qualityControl {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       datePerformed
       performedBy
       comment
@@ -347,6 +477,32 @@ export const deleteQualityControl = /* GraphQL */ `
     deleteQualityControl(input: $input, condition: $condition) {
       id
       itemID
+      item {
+        id
+        reagentID
+        reagent {
+          id
+          name
+          qualityControlInterval
+          upperLimitQuantity
+          lowerLimitQuantity
+          createdAt
+          updatedAt
+        }
+        lot
+        expirationDate
+        receivedDate
+        initialQuantity
+        currentQuantity
+        updates {
+          nextToken
+        }
+        qualityControl {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       datePerformed
       performedBy
       comment
