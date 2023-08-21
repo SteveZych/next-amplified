@@ -2,7 +2,7 @@ import AddReagentForm from "../components/addReagentForm";
 
 import React, {useState, useEffect} from 'react';
 import { API, graphqlOperation, Auth } from 'aws-amplify';
-import * as mutations from '../src/graphql/mutations';
+import * as mutations from '../src/graphqlcopy/mutations';
 import {v4 as uuidv4} from 'uuid';
 import {reagentTemplateData} from '../Functions/reagentTemplateData';
 import Link from 'next/link';

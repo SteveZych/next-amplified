@@ -2,7 +2,7 @@ import AddItemForm from "../components/addItemForm";
 import Link from 'next/link';
 import {listItemsFunction} from "../Functions/listItemsFunction";
 import React, {useState, useEffect} from 'react';
-import { listUpdatedItems } from "@/graphql/queries";
+
 
 
 function AddItem() {

@@ -1,4 +1,4 @@
-import * as queries from '../src/graphql/queries';
+import * as queries from '../src/graphqlcopy/queries';
 import { API, graphqlOperation} from 'aws-amplify';
 
 
