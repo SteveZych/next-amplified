@@ -37,7 +37,7 @@ function Dashboard() {
                     <td>Expiration Date</td>
                     <td>Received Date</td>
                     <td>Current Quantity</td>
-                    <td>QC Performed</td>
+                    <td>Last QC Performed</td>
                   </tr>
                 </thead>
                 <tbody>
@@ -57,9 +57,9 @@ function Dashboard() {
 
                                 <td>{thisItem.currentQuantity}</td>
 
-                                <td>{thisItem.qualityControl.nextToken === null ? 
+                                <td>{thisItem.qualityControl.items.length === 0 ? 
                                     "None"
-                                    : thisItem.qualityControl.datePerformed }</td>
+                                    : thisItem.qualityControl.items[thisItem.qualityControl.items.length - 1].datePerformed }</td>
                                 <td><button><Link href={`/qualityControl/${thisItem.id}`}>Add QC</Link></button></td>
                                 <td><button><Link href={`/updateItem/${thisItem.id}`}>Update Item</Link></button></td>
                             </tr>
