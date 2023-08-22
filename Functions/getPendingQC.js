@@ -1,5 +1,5 @@
 import next from "next";
-import {listItemsFunction} from "/Functions/listItemsFunction"
+import {listItemsFunction} from "./listItemsFunction"
 
 function checkPreviousQC(lastQc){
     const lastQcDate = new Date(lastQc);
