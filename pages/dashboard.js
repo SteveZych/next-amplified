@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import Link from 'next/link';
 import {listItemsFunction} from "../Functions/listItemsFunction";
+import {pendingQC} from "../Functions/getPendingQC";
 
 
 function Dashboard() {
 
   const [itemsInUse, setItemsInUse] = useState([]);
+  const [QC, setQC] = useState([]);
 
   //Query for existing items and put them in a table on page load
   useEffect(() =>{
@@ -19,10 +21,14 @@ function Dashboard() {
     })
   }, [])
 
+  useEffect(() =>{
+    pendingQC().then(data => setQC(data))
+  }, [])
+
     return (
       <div style={{ padding: 50 }}>
        <h1>Dashboard</h1>
-       <Link href=""><button>Pending QC</button></Link>
+       <Link href=""><button>Pending QC{QC.length}</button></Link>
        <Link href=""><button>Low Inventory</button></Link>
        <Link href="/addReagent"><button>Add Reagent</button></Link>
        <Link href="/addItem"><button>Add Item</button></Link>

@@ -19,24 +19,33 @@ function checkPreviousQC(lastQc){
 }
 
 export async function pendingQC(){
-    const currentItems = listItemsFunction();
+    try{
+        const currentItems = await listItemsFunction();
 
-    const needQC = [];
+        const needQC = [];
 
-    if (currentItems === false){
-        return [];
-    }else{
-        for (let i = 0; i < currentItems.length; i++){
-            let lastDateQcPerformed = currentItems[i].qualityControl.items[currentItems[i].qualityControl.items.length - 1].datePerformed;
-            if (currentItems[i].currentQuantity > 0 && currentItems[i].qualityControl.items.length === 0 ){
-                needQC.push(currentItems[i]);
-            } 
-            if (currentItems[i].currentQuantity > 0 && currentItems[i].qualityControl.items.length > 0 && checkPreviousQC(lastDateQcPerformed)){
-                needQC.push(currentItems[i]);
+        if (currentItems === false){
+            return [];
+        }else{
+            for (let i = 0; i < currentItems.length; i++){
+                if(currentItems[i].currentQuantity > 0){
+                    
+                    if (currentItems[i].qualityControl.items.length === 0 ){
+                        needQC.push(currentItems[i]);
+                    } 
+                    if (currentItems[i].qualityControl.items.length > 0){
+                        let lastDateQcPerformed = currentItems[i].qualityControl.items[currentItems[i].qualityControl.items.length - 1].datePerformed;
+                        if(checkPreviousQC(lastDateQcPerformed)){
+                            needQC.push(currentItems[i]);
+                        }
+                        
+                    }
+                }
             }
-            
-        return needQC;
+            return needQC;
         }
+    }catch(err){
+        console.log(err)
     }
     
 }
