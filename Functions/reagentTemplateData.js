@@ -1,6 +1,6 @@
 import { API, graphqlOperation} from 'aws-amplify';
 
-import * as queries from '../src/graphql/queries';
+import * as queries from '../src/graphqlcopy/queries';
 
 
 export async function reagentTemplateData(){

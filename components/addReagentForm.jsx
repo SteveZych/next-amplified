@@ -1,21 +1,21 @@
 import React, {useState, useEffect} from 'react';
 import { API, graphqlOperation, Auth } from 'aws-amplify';
-import * as mutations from '../src/graphql/mutations';
+import * as mutations from '../src/graphqlcopy/mutations';
 import {v4 as uuidv4} from 'uuid';
 import Input from '/components/input';
 import Select from '/components/select';
 
-const AddReagentForm = () => {
+const AddReagentForm = ({formSubmit}) => {
 
     //State to keep track of the form
     const [reagent, setReagent] = useState({
         name: "",
-        qualityControlInterval: "None",
+        qualityControlInterval: "",
         upperLimitQuantity: "",
         lowerLimitQuantity: ""
     });
 
-    const qualityControlIntervalOptions = ["None", "Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
+    const qualityControlIntervalOptions = ["None", "Once", "Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
 
     //Handles form submit to create a new reagent
     const handleSubmit = async(e) => {
@@ -46,6 +46,7 @@ const AddReagentForm = () => {
                 lowerLimitQuantity: ""
             });
             console.log('Successfully added new reagent.')
+            formSubmit();
         }catch (err){
             console.log(err)
         }
@@ -86,8 +87,9 @@ const AddReagentForm = () => {
                     value={reagent.qualityControlInterval}
                     onChange={(e) => setReagent({ ...reagent, qualityControlInterval: e.target.value })}
                 >
+                    <option value="" disabled>Select an option</option>
                     {qualityControlIntervalOptions.map((option, index) =>{
-                            return <option key={index}>{option}</option>
+                            return <option key={index} value ={option}>{option}</option>
                         })}
                 </Select>
                 <div className="submit-form">

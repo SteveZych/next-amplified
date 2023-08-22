@@ -42,7 +42,17 @@ export const listReagents = /* GraphQL */ `
         upperLimitQuantity
         lowerLimitQuantity
         item {
-          nextToken
+          items {
+            id
+            reagentID
+            lot
+            expirationDate
+            receivedDate
+            initialQuantity
+            currentQuantity
+            createdAt
+            updatedAt
+          }
         }
         createdAt
         updatedAt
@@ -128,10 +138,27 @@ export const listItems = /* GraphQL */ `
         initialQuantity
         currentQuantity
         updates {
-          nextToken
+          items {
+            id
+            itemID
+            addedOrRemoved
+            dateUpdated
+            quantity
+            comment
+            createdAt
+            updatedAt
+          }
         }
         qualityControl {
-          nextToken
+          items {
+            id
+            itemID
+            datePerformed
+            performedBy
+            comment
+            createdAt
+            updatedAt
+          }
         }
         createdAt
         updatedAt

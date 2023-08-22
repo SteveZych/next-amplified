@@ -27,6 +27,7 @@ type Item @model {
 type UpdatedItem @model {
   id: ID!
   itemID: ID! @index (name: "byItem")
+  item: Item @belongsTo (fields: ["itemID"])
   addedOrRemoved: String!
   dateUpdated: AWSDate
   quantity: Float!
@@ -36,6 +37,7 @@ type UpdatedItem @model {
 type QualityControl @model {
   id: ID!
   itemID: ID! @index (name: "byItem")
+  item: Item @belongsTo (fields: ["itemID"])
   datePerformed: AWSDate
   performedBy: String!
   comment: String
