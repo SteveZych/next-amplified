@@ -5,11 +5,13 @@ import {pendingQC} from "../Functions/getPendingQC";
 import {lowInventory} from "../Functions/getLowInventory";
 
 
+
 function Dashboard() {
 
   const [itemsInUse, setItemsInUse] = useState([]);
   const [QC, setQC] = useState([]);
   const [inventory, setInventory] = useState([]);
+
 
   //Query for existing items and put them in a table on page load
   useEffect(() =>{
@@ -52,7 +54,8 @@ function Dashboard() {
                 <tbody>
                     {itemsInUse.map((thisItem, index) =>{
                         return (
-                            <tr key={thisItem.id}>
+                          
+                            <tr key={thisItem.id} >
 
                                 <td>{thisItem.reagent.name}</td>
 
@@ -69,9 +72,10 @@ function Dashboard() {
                                 <td>{thisItem.qualityControl.items.length === 0 ? 
                                     "None"
                                     : thisItem.qualityControl.items[thisItem.qualityControl.items.length - 1].datePerformed }</td>
-                                <td><button><Link href={`/qualityControl/${thisItem.id}`}>Add QC</Link></button></td>
-                                <td><button><Link href={`/updateItem/${thisItem.id}`}>Update Item</Link></button></td>
+                                
+                                <td><button><Link href={`/items/${thisItem.id}`}>Update Item</Link></button></td>
                             </tr>
+                         
                         )
                     })}
                 </tbody>
