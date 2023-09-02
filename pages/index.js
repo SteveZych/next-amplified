@@ -4,6 +4,10 @@
 // sign in to view the dashboard
 
 import Link from 'next/link';
+import { Amplify } from "aws-amplify";
+import awsExports from "../src/aws-exports";
+
+
 
 function Home() {
   
