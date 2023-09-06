@@ -3,17 +3,20 @@ import {graphqlQuery} from '../../Functions/getGraphqlQuery';
 import Icon from '../../components/icon'
 import { Amplify, withSSRContext } from "aws-amplify";
 import * as queries from '../../src/graphqlcopy/queries';
+import awsExports from "../../src/aws-exports";
+
+Amplify.configure({ ...awsExports, ssr: true });
 
 
 export async function getServerSideProps({ req, params }) {
   const IdParams = {
     id: params.id
 }
-  const data = graphqlQuery(req, queries.getItem, IdParams);
+  const data = await graphqlQuery(req, queries.getItem, IdParams);
 
   return {
     props: {
-      data: data.data
+      data: data.getItem
     }
   }
 }

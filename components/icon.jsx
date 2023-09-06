@@ -1,7 +1,7 @@
 
 
 export default function Icon({number, statement}){
-    console.log(number,statement)
+
     return(
         <div>
             <h1>{number}</h1>

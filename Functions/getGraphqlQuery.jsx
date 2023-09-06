@@ -6,7 +6,7 @@ export async function graphqlQuery(req, query, variable){
         const SSR = withSSRContext({ req })
 
         const { data } = await SSR.API.graphql({query: query, variables: variable});
-        console.log(data)
+    
         return data;
     }catch (err){
         console.log(err)
