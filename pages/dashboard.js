@@ -4,8 +4,6 @@ import {listItemsFunction} from "../Functions/listItemsFunction";
 import {pendingQC} from "../Functions/getPendingQC";
 import {lowInventory} from "../Functions/getLowInventory";
 
-
-
 function Dashboard() {
 
   const [itemsInUse, setItemsInUse] = useState([]);
