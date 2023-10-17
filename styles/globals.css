@@ -1,3 +1,22 @@
+:root{
+    --primary: #FF6F61;
+    --secondary:  #4A90E2;
+    --accent:  #71C187;
+    --neutral:  #bebdbd;
+    --text: #333333;
+}
+
 body{
-    background-color: grey;
+    background-color: var(--neutral);
+    margin: 0;
+}
+
+
+.sidebarAndPage{
+    display: flex;
+}
+
+.sideBar{
+    display: flex;
+    flex-direction: column;
 }
