@@ -21,3 +21,28 @@ body{
     flex-direction: column;
     margin: 1rem;
 }
+
+.page{
+    width: 100%;
+    margin-left: 5rem;
+    margin-right: 5rem;
+}
+
+.pageHead{
+    width: 100%;
+}
+
+.infoTiles{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1rem;
+}
+
+.infoTile{
+    width: 10rem;
+    height: 5rem;
+}
+
+.pageTable{
+    width: 100%;
+}
