@@ -4,8 +4,9 @@ import {listItemsFunction} from "../Functions/listItemsFunction";
 import {pendingQC} from "../Functions/getPendingQC";
 import {lowInventory} from "../Functions/getLowInventory";
 import SideBar from "../components/sideBar";
+import Header from "../components/header";
 
-function Dashboard() {
+function MainDashboard() {
 
   const [itemsInUse, setItemsInUse] = useState([]);
   const [QC, setQC] = useState([]);
@@ -33,7 +34,7 @@ function Dashboard() {
       <div className="sidebarAndPage">
         <SideBar/>
         <div className="dashboard">
-          <h1>Dashboard</h1>
+          <Header name={"Dashboard"}/>
           <Link href=""><button>Pending QC {QC.length}</button></Link>
           <Link href=""><button>Low Inventory {inventory.length} </button></Link>
           <Link href="/addReagent"><button>Add Reagent</button></Link>
@@ -89,5 +90,5 @@ function Dashboard() {
     )
   }
   
-  export default Dashboard;
+  export default MainDashboard;
   
