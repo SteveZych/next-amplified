@@ -8,6 +8,7 @@ import {reagentTemplateData} from '../Functions/reagentTemplateData';
 import Link from 'next/link';
 import Input from '../components/input';
 import Select from '../components/select';
+import SideBar from "../components/sideBar";
 
 // TODO: Figure out how to recall the new data when user submits form now 
 // that the form is abstracted to a component File.
@@ -78,7 +79,10 @@ const AddReagent = () => {
     }
 
     return(
-        <div>
+        <div className="sidebarAndPage">
+            <SideBar/>
+
+            <div className="page">
             <Link href="/dashboard">Back to Dashboard</Link>
             <AddReagentForm formSubmit={formSubmit}/>
 
@@ -172,6 +176,7 @@ const AddReagent = () => {
                 </table>
             :
             <h1>No reagents available.</h1>}
+            </div>
         </div>
     )
 
