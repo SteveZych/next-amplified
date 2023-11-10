@@ -20,7 +20,7 @@ function AddItem() {
     })
   }, [])
 
-  const formSubmit = () => {
+  const recallLisOfItems = () => {
     listItemsFunction().then(data => setListItems(data))
   }
 
@@ -28,7 +28,7 @@ function AddItem() {
       <div style={{ padding: 50 }}>
         <Link href="/dashboard">Back to Dashboard</Link>
         <h1>Add Reagents</h1>
-        <AddItemForm formSubmit={formSubmit}/>
+        <AddItemForm recallLisOfItems={recallLisOfItems}/>
 
         {listItems ?  
           <table>

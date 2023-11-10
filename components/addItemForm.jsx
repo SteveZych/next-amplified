@@ -8,7 +8,7 @@ import Select from '/components/select';
 import Link from 'next/link';
 
 
-const AddItemForm = ({formSubmit}) => {
+const AddItemForm = ({recallLisOfItems}) => {
 
     //State to keep track of the form
     const [item, setItem] = useState({
@@ -19,6 +19,8 @@ const AddItemForm = ({formSubmit}) => {
         receivedDate: "",
         quantity: ""
     })
+
+    const [formState, setFormState] = useState(false)
 
     const [listReagents, setListReagents] = useState([]);
 
@@ -67,18 +69,27 @@ const AddItemForm = ({formSubmit}) => {
                 quantity: ""
             });
 
-            formSubmit();
+            setFormState(false);
+            recall();
             console.log('Successfully added new item.')
         }catch (err){
             console.log(err)
         }
     }
 
-    return(
-        <div>
-            {listReagents ? 
-            <div>
-                <Link href="/addReagent"><button>Add reagent template</button></Link>
+    const handleFormChange = (e) =>{
+        e.preventDefault();
+        if (!formState){
+            setFormState(true);
+        }else{
+            setFormState(false)
+        }
+        renderIfReagentsExist();
+    }
+
+    const renderIfReagentsExist = () =>{
+        if (listReagents && formState){
+            return(
                 <form className="" onSubmit={handleSubmit}>
                 
                     <Select
@@ -135,10 +146,21 @@ const AddItemForm = ({formSubmit}) => {
                     <div className="submit-form">
                         <button className="btn" type="submit">Submit</button>
                     </div>
+                    <div>
+                        <button onClick={handleFormChange}>Cancel</button>
+                    </div>
                 </form>
-            </div> 
-        :
-        <Link href="/addReagent"><button>Add reagent template</button></Link>}
+            )
+        }else if (listReagents && !formState){
+            return <button onClick={handleFormChange}>Add Reagent</button>
+        }else{
+            return <Link href="/addReagent"><button>Add reagent template</button></Link>
+        }
+    }
+
+    return(
+        <div>
+            {renderIfReagentsExist()}
         </div>
     )
 
