@@ -84,6 +84,7 @@ const AddReagent = () => {
 
             <div className="page">
             <Link href="/dashboard">Back to Dashboard</Link>
+            <h1>Reagent Templates</h1>
             <AddReagentForm recallReagentTemplateData={recallReagentTemplateData}/>
 
             {listReagents ? 

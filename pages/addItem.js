@@ -66,9 +66,9 @@ function AddItem() {
 
                                   <td>{thisItem.initialQuantity}</td>
 
-                                  <td>{thisItem.qualityControl.nextToken === null ? 
-                                      "None"
-                                      : thisItem.qualityControl.datePerformed }</td>
+                                  <td>{thisItem.qualityControl.items.length === 0 ? 
+                                        "None"
+                                        : thisItem.qualityControl.items[thisItem.qualityControl.items.length - 1].datePerformed }</td>
                                   <td><button><Link href={`/qualityControl/${thisItem.id}`}>Add QC</Link></button></td>
                                   <td><button><Link href={`/updateItem/${thisItem.id}`}>Update Item</Link></button></td>
                               </tr>
