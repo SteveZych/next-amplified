@@ -12,7 +12,6 @@ import awsExports from "../src/aws-exports";
 function Home() {
   
   return (
-    //
     <div>
       <p>This is the home screen</p>
       <Link href="/dashboard">Dashboard</Link>
