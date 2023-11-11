@@ -40,6 +40,8 @@ export async function pendingQC(){
                         }
                         
                     }
+                }else{
+                    continue;
                 }
             }
             return needQC;

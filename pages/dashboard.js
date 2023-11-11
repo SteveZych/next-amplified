@@ -39,7 +39,7 @@ function MainDashboard() {
           <Header name={"Dashboard"}/>
 
           <div className="infoTiles">
-            <InfoTile href={""} info={"Pending QC"} additionalInfo={QC.length}/>
+            <InfoTile href={"/pendingQC"} info={"Pending QC"} additionalInfo={QC.length}/>
             <InfoTile href={""} info={"Low Inventory"} additionalInfo={inventory.length}/>
             <InfoTile href={"/addReagent"} info={"Add Reagent"}/>
             <InfoTile href={"/addItem"} info={"Add Item"}/>
