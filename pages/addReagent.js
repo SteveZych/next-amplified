@@ -73,7 +73,7 @@ const AddReagent = () => {
         }
     }
 
-    const formSubmit = () =>{
+    const recallReagentTemplateData = () =>{
         //Recall the newly submitted data from API
         reagentTemplateData().then(data => setListReagents(data));
     }
@@ -84,7 +84,7 @@ const AddReagent = () => {
 
             <div className="page">
             <Link href="/dashboard">Back to Dashboard</Link>
-            <AddReagentForm formSubmit={formSubmit}/>
+            <AddReagentForm recallReagentTemplateData={recallReagentTemplateData}/>
 
             {listReagents ? 
                 <table>

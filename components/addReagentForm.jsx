@@ -5,7 +5,7 @@ import {v4 as uuidv4} from 'uuid';
 import Input from '/components/input';
 import Select from '/components/select';
 
-const AddReagentForm = ({formSubmit}) => {
+const AddReagentForm = ({recallReagentTemplateData}) => {
 
     //State to keep track of the form
     const [reagent, setReagent] = useState({
@@ -14,6 +14,8 @@ const AddReagentForm = ({formSubmit}) => {
         upperLimitQuantity: "",
         lowerLimitQuantity: ""
     });
+
+    const [formState, setFormState] = useState(false);
 
     const qualityControlIntervalOptions = ["None", "Once", "Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
 
@@ -46,15 +48,21 @@ const AddReagentForm = ({formSubmit}) => {
                 lowerLimitQuantity: ""
             });
             console.log('Successfully added new reagent.')
-            formSubmit();
+            recallReagentTemplateData();
         }catch (err){
             console.log(err)
         }
     }
 
+    const handleToggle = (e) =>{
+        e.preventDefault()
+        setFormState(!formState)
+    }
+
     return(
         <div>
-            <form className="" onSubmit={handleSubmit}>
+            {formState ?
+            <form className="" >
                 <Input 
                     htmlFor={"reagentName"}
                     label={"Reagent Name"}
@@ -92,10 +100,11 @@ const AddReagentForm = ({formSubmit}) => {
                             return <option key={index} value ={option}>{option}</option>
                         })}
                 </Select>
-                <div className="submit-form">
-                    <button className="btn" type="submit">Submit</button>
-                </div>
+                <button onClick={handleSubmit}>Submit</button>
+                <button onClick={handleToggle}>Cancel</button>
+                
             </form>
+            : <button onClick={handleToggle}>Add Reagent Template</button>}
         </div>
     )
 

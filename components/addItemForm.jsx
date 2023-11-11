@@ -79,11 +79,7 @@ const AddItemForm = ({recallLisOfItems}) => {
 
     const handleFormChange = (e) =>{
         e.preventDefault();
-        if (!formState){
-            setFormState(true);
-        }else{
-            setFormState(false)
-        }
+        setFormState(!formState)
         renderIfReagentsExist();
     }
 

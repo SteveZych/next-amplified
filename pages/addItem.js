@@ -2,7 +2,7 @@ import AddItemForm from "../components/addItemForm";
 import Link from 'next/link';
 import {listItemsFunction} from "../Functions/listItemsFunction";
 import React, {useState, useEffect} from 'react';
-
+import SideBar from "../components/sideBar";
 
 
 function AddItem() {
@@ -25,56 +25,60 @@ function AddItem() {
   }
 
     return (
-      <div style={{ padding: 50 }}>
-        <Link href="/dashboard">Back to Dashboard</Link>
-        <h1>Add Reagents</h1>
-        <AddItemForm recallLisOfItems={recallLisOfItems}/>
+      <div className="sidebarAndPage">
+        <SideBar/>
 
-        {listItems ?  
-          <table>
-                <thead>
-                  <tr>
-                    <td>Reagent Name</td>
-                    <td>Lot</td>
-                    <td>QC Interval</td>
-                    <td>Expiration Date</td>
-                    <td>Received Date</td>
-                    <td>Current Quantity</td>
-                    <td>Initial Quantity</td>
-                    <td>QC Performed</td>
-                  </tr>
-                </thead>
-                <tbody>
-                    {listItems.map((thisItem, index) =>{
-                        return (
-                            <tr key={thisItem.id}>
+        <div className="page">
+          <Link href="/dashboard">Back to Dashboard</Link>
+          <h1>Add Reagents</h1>
+          <AddItemForm recallLisOfItems={recallLisOfItems}/>
 
-                                <td>{thisItem.reagent.name}</td>
+          {listItems ?  
+            <table>
+                  <thead>
+                    <tr>
+                      <td>Reagent Name</td>
+                      <td>Lot</td>
+                      <td>QC Interval</td>
+                      <td>Expiration Date</td>
+                      <td>Received Date</td>
+                      <td>Current Quantity</td>
+                      <td>Initial Quantity</td>
+                      <td>QC Performed</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      {listItems.map((thisItem, index) =>{
+                          return (
+                              <tr key={thisItem.id}>
 
-                                <td>{thisItem.lot}</td>
+                                  <td>{thisItem.reagent.name}</td>
 
-                                <td>{thisItem.reagent.qualityControlInterval}</td>
+                                  <td>{thisItem.lot}</td>
 
-                                <td>{thisItem.expirationDate}</td>
+                                  <td>{thisItem.reagent.qualityControlInterval}</td>
 
-                                <td>{thisItem.receivedDate}</td>
+                                  <td>{thisItem.expirationDate}</td>
 
-                                <td>{thisItem.currentQuantity}</td>
+                                  <td>{thisItem.receivedDate}</td>
 
-                                <td>{thisItem.initialQuantity}</td>
+                                  <td>{thisItem.currentQuantity}</td>
 
-                                <td>{thisItem.qualityControl.nextToken === null ? 
-                                    "None"
-                                    : thisItem.qualityControl.datePerformed }</td>
-                                <td><button><Link href={`/qualityControl/${thisItem.id}`}>Add QC</Link></button></td>
-                                <td><button><Link href={`/updateItem/${thisItem.id}`}>Update Item</Link></button></td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
-          :
-          <h1>No items available.</h1>}
+                                  <td>{thisItem.initialQuantity}</td>
+
+                                  <td>{thisItem.qualityControl.nextToken === null ? 
+                                      "None"
+                                      : thisItem.qualityControl.datePerformed }</td>
+                                  <td><button><Link href={`/qualityControl/${thisItem.id}`}>Add QC</Link></button></td>
+                                  <td><button><Link href={`/updateItem/${thisItem.id}`}>Update Item</Link></button></td>
+                              </tr>
+                          )
+                      })}
+                  </tbody>
+              </table>
+            :
+            <h1>No items available.</h1>}
+        </div>
       </div>
     )
   }
