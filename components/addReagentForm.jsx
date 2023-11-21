@@ -2,8 +2,9 @@ import React, {useState, useEffect} from 'react';
 import { API, graphqlOperation, Auth } from 'aws-amplify';
 import * as mutations from '../src/graphqlcopy/mutations';
 import {v4 as uuidv4} from 'uuid';
-import Input from '/components/input';
-import Select from '/components/select';
+import InPut from '/components/input';
+import Selection from '/components/select';
+import Option from '@mui/joy/Option';
 
 const AddReagentForm = ({recallReagentTemplateData}) => {
 
@@ -63,7 +64,7 @@ const AddReagentForm = ({recallReagentTemplateData}) => {
         <div>
             {formState ?
             <form className="" >
-                <Input 
+                <InPut 
                     htmlFor={"reagentName"}
                     label={"Reagent Name"}
                     name={"reagentName"}
@@ -72,7 +73,7 @@ const AddReagentForm = ({recallReagentTemplateData}) => {
                     placeHolder={"Reagent Name"}
                     onChange={(e) => setReagent({ ...reagent, name: e.target.value })}
                     />
-                <Input 
+                <InPut 
                     htmlFor={"upperLimitQuantity"}
                     label={"Upper Limit Quantity"}
                     name={"upperLimitQuantity"}
@@ -81,7 +82,7 @@ const AddReagentForm = ({recallReagentTemplateData}) => {
                     placeHolder={"Upper Limit Quantity"}
                     onChange={(e) => setReagent({ ...reagent, upperLimitQuantity: e.target.value })}
                     />
-                <Input 
+                <InPut 
                     htmlFor={"lowerLimitQuantity"}
                     label={"Lower Limit Quantity"}
                     name={"lowerLimityQuantity"}
@@ -90,16 +91,16 @@ const AddReagentForm = ({recallReagentTemplateData}) => {
                     placeHolder={"Lower Limit Quantity"}
                     onChange={(e) => setReagent({ ...reagent, lowerLimitQuantity: e.target.value })}
                     />
-                <Select
+                <Selection
                     label={"Quality Control Interval"}
                     value={reagent.qualityControlInterval}
-                    onChange={(e) => setReagent({ ...reagent, qualityControlInterval: e.target.value })}
+                    onChange={(e, newValue) => setReagent({ ...reagent, qualityControlInterval: newValue })}
                 >
-                    <option value="" disabled>Select an option</option>
+                    <Option value="" disabled>Select an option</Option>
                     {qualityControlIntervalOptions.map((option, index) =>{
-                            return <option key={index} value ={option}>{option}</option>
+                            return <Option key={index} value ={option}>{option}</Option>
                         })}
-                </Select>
+                </Selection>
                 <button onClick={handleSubmit}>Submit</button>
                 <button onClick={handleToggle}>Cancel</button>
                 

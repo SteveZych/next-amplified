@@ -6,9 +6,10 @@ import * as mutations from '../src/graphqlcopy/mutations';
 import {v4 as uuidv4} from 'uuid';
 import {reagentTemplateData} from '../Functions/reagentTemplateData';
 import Link from 'next/link';
-import Input from '../components/input';
-import Select from '../components/select';
+import InPut from '../components/input';
+import Selection from '../components/select';
 import SideBar from "../components/sideBar";
+import Option from '@mui/joy/Option';
 
 // TODO: Figure out how to recall the new data when user submits form now 
 // that the form is abstracted to a component File.
@@ -108,7 +109,7 @@ const AddReagent = () => {
                                     <td>{thisReagent.id}</td>
 
                                     <td>
-                                    <Input 
+                                    <InPut 
                                         htmlFor={"reagentName"}
                                         label={""}
                                         name={"reagentName"}
@@ -118,27 +119,28 @@ const AddReagent = () => {
                                         onChange={(e) => setListReagents(prevListReagents => {
                                             return prevListReagents.map(reag => thisReagent.id === reag.id ? {...reag, name: e.target.value} : reag)
                                         })}
-                                        disabled={!thisReagent.isEditing ? "disabled" : ''}
+                                        disabled={!thisReagent.isEditing ? true : false}
                                     />
                                     </td>
                                     
                                     <td>
-                                    <Select
+                                    <Selection
                                         label={""}
                                         value={thisReagent.qualityControlInterval}
-                                        onChange={(e) => setListReagents(prevListReagents => {
-                                            return prevListReagents.map(reag => thisReagent.id === reag.id ? {...reag, qualityControlInterval: e.target.value} : reag)
+                                        placeholder={thisReagent.qualityControlInterval}
+                                        onChange={(e, newValue) => setListReagents(prevListReagents => {
+                                            return prevListReagents.map(reag => thisReagent.id === reag.id ? {...reag, qualityControlInterval: newValue} : reag)
                                         })}
-                                        disabled={!thisReagent.isEditing ? "disabled" : ''}
+                                        disabled={!thisReagent.isEditing ? true : false}
                                     >
                                         {qualityControlIntervalOptions.map((option, index) =>{
-                                            return <option key={index}>{option}</option>
+                                            return <Option key={index} value={option}>{option}</Option>
                                         })}
-                                    </Select>
+                                    </Selection>
                                     </td>
 
                                     <td>
-                                    <Input 
+                                    <InPut 
                                         htmlFor={"upperLimitQuantity"}
                                         label={""}
                                         name={"upperLimitQuantity"}
@@ -148,12 +150,12 @@ const AddReagent = () => {
                                         onChange={(e) => setListReagents(prevListReagents => {
                                             return prevListReagents.map(reag => thisReagent.id === reag.id ? {...reag, upperLimitQuantity: e.target.value} : reag)
                                         })}
-                                        disabled={!thisReagent.isEditing ? "disabled" : ''}
+                                        disabled={!thisReagent.isEditing ? true : false}
                                     />
                                     </td>
 
                                     <td>
-                                    <Input 
+                                    <InPut 
                                         htmlFor={"lowerLimitQuantity"}
                                         label={""}
                                         name={"lowerLimitQuantity"}
@@ -163,7 +165,7 @@ const AddReagent = () => {
                                         onChange={(e) => setListReagents(prevListReagents => {
                                             return prevListReagents.map(reag => thisReagent.id === reag.id ? {...reag, lowerLimitQuantity: e.target.value} : reag)
                                         })}
-                                        disabled={!thisReagent.isEditing ? "disabled" : ''}
+                                        disabled={!thisReagent.isEditing ? true : false}
                                     />
                                     </td>
 
