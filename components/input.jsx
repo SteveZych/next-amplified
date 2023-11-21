@@ -1,8 +1,11 @@
-export default function Input({htmlFor, label, name, type, value, placeHolder, onChange, disabled}){
+import Input from '@mui/joy/Input';
+
+
+export default function InPut({htmlFor, label, name, type, value, placeHolder, onChange, disabled}){
     return(
         <div>
             <p><label htmlFor={htmlFor}>{label}</label></p>
-            <input
+            <Input
                 name={name}
                 type={type}
                 value={value}
