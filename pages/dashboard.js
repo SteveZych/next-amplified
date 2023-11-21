@@ -7,6 +7,8 @@ import SideBar from "../components/sideBar";
 import Header from "../components/header";
 import InfoTile from "../components/infoTile";
 import Button from '@mui/joy/Button';
+import Table from '@mui/joy/Table';
+
 
 function MainDashboard() {
 
@@ -48,7 +50,7 @@ function MainDashboard() {
           
 
           {itemsInUse ?  
-              <table className="pageTable">
+              <Table variant="outlined" color="neutral" className="pageTable">
                     <thead>
                       <tr>
                         <td>Reagent Name</td>
@@ -58,6 +60,7 @@ function MainDashboard() {
                         <td>Received Date</td>
                         <td>Current Quantity</td>
                         <td>Last QC Performed</td>
+                        <td>Update</td>
                       </tr>
                     </thead>
                     <tbody>
@@ -88,7 +91,7 @@ function MainDashboard() {
                             )
                         })}
                     </tbody>
-                </table>
+                </Table>
               :
               <h1>No items available.</h1>}
         </div>
