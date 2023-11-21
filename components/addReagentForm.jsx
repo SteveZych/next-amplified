@@ -5,6 +5,8 @@ import {v4 as uuidv4} from 'uuid';
 import InPut from '/components/input';
 import Selection from '/components/select';
 import Option from '@mui/joy/Option';
+import Button from '@mui/joy/Button';
+
 
 const AddReagentForm = ({recallReagentTemplateData}) => {
 
@@ -101,11 +103,11 @@ const AddReagentForm = ({recallReagentTemplateData}) => {
                             return <Option key={index} value ={option}>{option}</Option>
                         })}
                 </Selection>
-                <button onClick={handleSubmit}>Submit</button>
-                <button onClick={handleToggle}>Cancel</button>
+                <Button color="neutral" variant="soft" onClick={handleSubmit}>Submit</Button>
+                <Button color="neutral" variant="soft" onClick={handleToggle}>Cancel</Button>
                 
             </form>
-            : <button onClick={handleToggle}>Add Reagent Template</button>}
+            : <Button color="neutral" variant="soft" onClick={handleToggle}>Add Reagent Template</Button>}
         </div>
     )
 

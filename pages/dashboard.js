@@ -6,6 +6,7 @@ import {lowInventory} from "../Functions/getLowInventory";
 import SideBar from "../components/sideBar";
 import Header from "../components/header";
 import InfoTile from "../components/infoTile";
+import Button from '@mui/joy/Button';
 
 function MainDashboard() {
 
@@ -81,7 +82,7 @@ function MainDashboard() {
                                         "None"
                                         : thisItem.qualityControl.items[thisItem.qualityControl.items.length - 1].datePerformed }</td>
                                     
-                                    <td><button><Link href={`/items/${thisItem.id}`}>Update Item</Link></button></td>
+                                    <td><Button color="neutral" variant="soft"><Link href={`/items/${thisItem.id}`}>Update Item</Link></Button></td>
                                 </tr>
                             
                             )

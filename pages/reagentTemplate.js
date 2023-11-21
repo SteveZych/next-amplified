@@ -10,6 +10,7 @@ import InPut from '../components/input';
 import Selection from '../components/select';
 import SideBar from "../components/sideBar";
 import Option from '@mui/joy/Option';
+import Button from '@mui/joy/Button';
 
 // TODO: Figure out how to recall the new data when user submits form now 
 // that the form is abstracted to a component File.
@@ -169,9 +170,9 @@ const AddReagent = () => {
                                     />
                                     </td>
 
-                                    <td>{!thisReagent.isEditing ? <button onClick={()=> editReagent(thisReagent.id)}>Edit</button> : <button onClick={()=> saveReagent(index)}>Save</button>}</td>
+                                    <td>{!thisReagent.isEditing ? <Button color="neutral" variant="soft" onClick={()=> editReagent(thisReagent.id)}>Edit</Button> : <Button color="neutral" variant="soft" onClick={()=> saveReagent(index)}>Save</Button>}</td>
 
-                                    <td><button onClick={()=> deleteReagent(thisReagent.id)}>Delete</button></td>
+                                    <td><Button color="neutral" variant="soft" onClick={()=> deleteReagent(thisReagent.id)}>Delete</Button></td>
                                 </tr>
                             )
                         })}
