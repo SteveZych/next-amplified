@@ -71,7 +71,7 @@ const AddItemForm = ({recallLisOfItems}) => {
             });
 
             setFormState(false);
-            recall();
+            recallLisOfItems();
             console.log('Successfully added new item.')
         }catch (err){
             console.log(err)
