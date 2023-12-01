@@ -1,15 +1,33 @@
 :root{
-    --primary: #FF6F61;
-    --secondary:  #4A90E2;
-    --accent:  #71C187;
-    --neutral:  #bebdbd;
+    --primary: #EDEDF1;
+    --secondary:  #D8EFF5;
+    --accent:  #81C9F3;
+    --neutral:  #35C5CF;
     --text: #333333;
 }
 
 body{
-    background-color: var(--neutral);
+    background-color: var(--primary);
     margin: 0;
 }
+
+.btn {
+    background-color: var(--secondary);
+    color: white;
+    border: 1px solid transparent;
+    padding: 0.5em 2em;
+    border-radius: 5px;
+    margin: 1em;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+  }
+  
+  .btn:hover,
+  .btn:focus{
+    background-color: var(--neutral);
+    color: var(--deepNavy);
+    cursor: pointer;
+  }
 
 
 .sidebarAndPage{
