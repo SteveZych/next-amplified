@@ -3,12 +3,13 @@ import { API, graphqlOperation, Auth } from 'aws-amplify';
 import * as mutations from '../src/graphqlcopy/mutations';
 import {v4 as uuidv4} from 'uuid';
 import {reagentTemplateData} from '../Functions/reagentTemplateData';
-import Input from '/components/input';
-import Select from '/components/select';
+import InPut from '/components/input';
+import Selection from '/components/select';
 import Link from 'next/link';
+import Option from '@mui/joy/Option';
 
 
-const AddItemForm = ({formSubmit}) => {
+const AddItemForm = ({recallLisOfItems}) => {
 
     //State to keep track of the form
     const [item, setItem] = useState({
@@ -19,6 +20,8 @@ const AddItemForm = ({formSubmit}) => {
         receivedDate: "",
         quantity: ""
     })
+
+    const [formState, setFormState] = useState(false)
 
     const [listReagents, setListReagents] = useState([]);
 
@@ -67,32 +70,37 @@ const AddItemForm = ({formSubmit}) => {
                 quantity: ""
             });
 
-            formSubmit();
+            setFormState(false);
+            recallLisOfItems();
             console.log('Successfully added new item.')
         }catch (err){
             console.log(err)
         }
     }
 
-    return(
-        <div>
-            {listReagents ? 
-            <div>
-                <Link href="/addReagent"><button>Add reagent template</button></Link>
+    const handleFormChange = (e) =>{
+        e.preventDefault();
+        setFormState(!formState)
+        renderIfReagentsExist();
+    }
+
+    const renderIfReagentsExist = () =>{
+        if (listReagents && formState){
+            return(
                 <form className="" onSubmit={handleSubmit}>
                 
-                    <Select
+                    <Selection
                         label={"Choose Reagent"}
                         value={item.reagentID}
-                        onChange={(e) => setItem({...item, reagentID: e.target.value})}
+                        onChange={(e, newValue) => setItem({...item, reagentID: newValue})}
                     >
-                        <option value="" disabled>Select an option</option>
+                        <Option value="" disabled>Select an option</Option>
                         {listReagents.map((option) =>{
-                                return <option key={option.id} value={option.id}>{option.name}</option>
+                                return <Option key={option.id} value={option.id}>{option.name}</Option>
                             })}
-                    </Select>
+                    </Selection>
 
-                    <Input 
+                    <InPut 
                         htmlFor={"lot"}
                         label={"Lot"}
                         name={"lot"}
@@ -102,7 +110,7 @@ const AddItemForm = ({formSubmit}) => {
                         onChange={(e) => setItem({ ...item, lot: e.target.value })}
                         />
                     
-                    <Input 
+                    <InPut 
                         htmlFor={"expirationDate"}
                         label={"Expiration Date"}
                         name={"expirationDate"}
@@ -112,7 +120,7 @@ const AddItemForm = ({formSubmit}) => {
                         onChange={(e) => setItem({ ...item, expirationDate: e.target.value })}
                         />
                     
-                    <Input 
+                    <InPut 
                         htmlFor={"receivedDate"}
                         label={"Received Date"}
                         name={"receivedDate"}
@@ -122,7 +130,7 @@ const AddItemForm = ({formSubmit}) => {
                         onChange={(e) => setItem({ ...item, receivedDate: e.target.value })}
                         />
                     
-                    <Input 
+                    <InPut 
                         htmlFor={"itemQuantity"}
                         label={"Quantity"}
                         name={"itemQuantity"}
@@ -135,10 +143,21 @@ const AddItemForm = ({formSubmit}) => {
                     <div className="submit-form">
                         <button className="btn" type="submit">Submit</button>
                     </div>
+                    <div>
+                        <button onClick={handleFormChange}>Cancel</button>
+                    </div>
                 </form>
-            </div> 
-        :
-        <Link href="/addReagent"><button>Add reagent template</button></Link>}
+            )
+        }else if (listReagents && !formState){
+            return <button onClick={handleFormChange}>Add Reagent</button>
+        }else{
+            return <Link href="/addReagent"><button>Add reagent template</button></Link>
+        }
+    }
+
+    return(
+        <div>
+            {renderIfReagentsExist()}
         </div>
     )
 

@@ -2,10 +2,13 @@ import React, {useState, useEffect} from 'react';
 import { API, graphqlOperation, Auth } from 'aws-amplify';
 import * as mutations from '../src/graphqlcopy/mutations';
 import {v4 as uuidv4} from 'uuid';
-import Input from '/components/input';
-import Select from '/components/select';
+import InPut from '/components/input';
+import Selection from '/components/select';
+import Option from '@mui/joy/Option';
+import Button from '@mui/joy/Button';
 
-const AddReagentForm = ({formSubmit}) => {
+
+const AddReagentForm = ({recallReagentTemplateData}) => {
 
     //State to keep track of the form
     const [reagent, setReagent] = useState({
@@ -14,6 +17,8 @@ const AddReagentForm = ({formSubmit}) => {
         upperLimitQuantity: "",
         lowerLimitQuantity: ""
     });
+
+    const [formState, setFormState] = useState(false);
 
     const qualityControlIntervalOptions = ["None", "Once", "Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]
 
@@ -46,16 +51,22 @@ const AddReagentForm = ({formSubmit}) => {
                 lowerLimitQuantity: ""
             });
             console.log('Successfully added new reagent.')
-            formSubmit();
+            recallReagentTemplateData();
         }catch (err){
             console.log(err)
         }
     }
 
+    const handleToggle = (e) =>{
+        e.preventDefault()
+        setFormState(!formState)
+    }
+
     return(
         <div>
-            <form className="" onSubmit={handleSubmit}>
-                <Input 
+            {formState ?
+            <form className="" >
+                <InPut 
                     htmlFor={"reagentName"}
                     label={"Reagent Name"}
                     name={"reagentName"}
@@ -64,7 +75,7 @@ const AddReagentForm = ({formSubmit}) => {
                     placeHolder={"Reagent Name"}
                     onChange={(e) => setReagent({ ...reagent, name: e.target.value })}
                     />
-                <Input 
+                <InPut 
                     htmlFor={"upperLimitQuantity"}
                     label={"Upper Limit Quantity"}
                     name={"upperLimitQuantity"}
@@ -73,7 +84,7 @@ const AddReagentForm = ({formSubmit}) => {
                     placeHolder={"Upper Limit Quantity"}
                     onChange={(e) => setReagent({ ...reagent, upperLimitQuantity: e.target.value })}
                     />
-                <Input 
+                <InPut 
                     htmlFor={"lowerLimitQuantity"}
                     label={"Lower Limit Quantity"}
                     name={"lowerLimityQuantity"}
@@ -82,20 +93,21 @@ const AddReagentForm = ({formSubmit}) => {
                     placeHolder={"Lower Limit Quantity"}
                     onChange={(e) => setReagent({ ...reagent, lowerLimitQuantity: e.target.value })}
                     />
-                <Select
+                <Selection
                     label={"Quality Control Interval"}
                     value={reagent.qualityControlInterval}
-                    onChange={(e) => setReagent({ ...reagent, qualityControlInterval: e.target.value })}
+                    onChange={(e, newValue) => setReagent({ ...reagent, qualityControlInterval: newValue })}
                 >
-                    <option value="" disabled>Select an option</option>
+                    <Option value="" disabled>Select an option</Option>
                     {qualityControlIntervalOptions.map((option, index) =>{
-                            return <option key={index} value ={option}>{option}</option>
+                            return <Option key={index} value ={option}>{option}</Option>
                         })}
-                </Select>
-                <div className="submit-form">
-                    <button className="btn" type="submit">Submit</button>
-                </div>
+                </Selection>
+                <Button color="neutral" variant="soft" onClick={handleSubmit}>Submit</Button>
+                <Button color="neutral" variant="soft" onClick={handleToggle}>Cancel</Button>
+                
             </form>
+            : <Button color="neutral" variant="soft" onClick={handleToggle}>Add Reagent Template</Button>}
         </div>
     )
 

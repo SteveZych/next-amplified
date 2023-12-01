@@ -3,13 +3,19 @@ import Link from 'next/link';
 import {listItemsFunction} from "../Functions/listItemsFunction";
 import {pendingQC} from "../Functions/getPendingQC";
 import {lowInventory} from "../Functions/getLowInventory";
+import SideBar from "../components/sideBar";
+import Header from "../components/header";
+import InfoTile from "../components/infoTile";
+import Button from '@mui/joy/Button';
+import Table from '@mui/joy/Table';
 
 
-function Dashboard() {
+function MainDashboard() {
 
   const [itemsInUse, setItemsInUse] = useState([]);
   const [QC, setQC] = useState([]);
   const [inventory, setInventory] = useState([]);
+
 
   //Query for existing items and put them in a table on page load
   useEffect(() =>{
@@ -29,58 +35,70 @@ function Dashboard() {
   }, [])
 
     return (
-      <div style={{ padding: 50 }}>
-       <h1>Dashboard</h1>
-       <Link href=""><button>Pending QC {QC.length}</button></Link>
-       <Link href=""><button>Low Inventory {inventory.length} </button></Link>
-       <Link href="/addReagent"><button>Add Reagent</button></Link>
-       <Link href="/addItem"><button>Add Item</button></Link>
+      <div className="sidebarAndPage">
+        <SideBar/>
 
-       {itemsInUse ?  
-          <table>
-                <thead>
-                  <tr>
-                    <td>Reagent Name</td>
-                    <td>Lot</td>
-                    <td>QC Interval</td>
-                    <td>Expiration Date</td>
-                    <td>Received Date</td>
-                    <td>Current Quantity</td>
-                    <td>Last QC Performed</td>
-                  </tr>
-                </thead>
-                <tbody>
-                    {itemsInUse.map((thisItem, index) =>{
-                        return (
-                            <tr key={thisItem.id}>
+        <div className="page">
+          <Header name={"Dashboard"}/>
 
-                                <td>{thisItem.reagent.name}</td>
+          <div className="infoTiles">
+            <InfoTile href={"/pendingQC"} info={"Pending QC"} additionalInfo={QC.length}/>
+            <InfoTile href={""} info={"Low Inventory"} additionalInfo={inventory.length}/>
+            <InfoTile href={"/reagentTemplate"} info={"Add Reagent Template"}/>
+            <InfoTile href={"/addItem"} info={"Add Item"}/>
+          </div>
+          
 
-                                <td>{thisItem.lot}</td>
+          {itemsInUse ?  
+              <Table variant="outlined" color="neutral" className="pageTable">
+                    <thead>
+                      <tr>
+                        <td>Reagent Name</td>
+                        <td>Lot</td>
+                        <td>QC Interval</td>
+                        <td>Expiration Date</td>
+                        <td>Received Date</td>
+                        <td>Current Quantity</td>
+                        <td>Last QC Performed</td>
+                        <td>Update</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {itemsInUse.map((thisItem, index) =>{
+                            return (
+                              
+                                <tr key={thisItem.id} >
 
-                                <td>{thisItem.reagent.qualityControlInterval}</td>
+                                    <td>{thisItem.reagent.name}</td>
 
-                                <td>{thisItem.expirationDate}</td>
+                                    <td>{thisItem.lot}</td>
 
-                                <td>{thisItem.receivedDate}</td>
+                                    <td>{thisItem.reagent.qualityControlInterval}</td>
 
-                                <td>{thisItem.currentQuantity}</td>
+                                    <td>{thisItem.expirationDate}</td>
 
-                                <td>{thisItem.qualityControl.items.length === 0 ? 
-                                    "None"
-                                    : thisItem.qualityControl.items[thisItem.qualityControl.items.length - 1].datePerformed }</td>
-                                <td><button><Link href={`/qualityControl/${thisItem.id}`}>Add QC</Link></button></td>
-                                <td><button><Link href={`/updateItem/${thisItem.id}`}>Update Item</Link></button></td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
-          :
-          <h1>No items available.</h1>}
+                                    <td>{thisItem.receivedDate}</td>
+
+                                    <td>{thisItem.currentQuantity}</td>
+
+                                    <td>{thisItem.qualityControl.items.length === 0 ? 
+                                        "None"
+                                        : thisItem.qualityControl.items[thisItem.qualityControl.items.length - 1].datePerformed }</td>
+                                    
+                                    <td><Button color="neutral" variant="soft"><Link href={`/items/${thisItem.id}`}>Update Item</Link></Button></td>
+                                </tr>
+                            
+                            )
+                        })}
+                    </tbody>
+                </Table>
+              :
+              <h1>No items available.</h1>}
+        </div>
+       
       </div>
     )
   }
   
-  export default Dashboard;
+  export default MainDashboard;
   
