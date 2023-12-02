@@ -3,9 +3,10 @@ import { API, graphqlOperation, Auth } from 'aws-amplify';
 import * as mutations from '../src/graphqlcopy/mutations';
 import {v4 as uuidv4} from 'uuid';
 import {reagentTemplateData} from '../Functions/reagentTemplateData';
-import Input from '/components/input';
-import Select from '/components/select';
+import InPut from '/components/input';
+import Selection from '/components/select';
 import Link from 'next/link';
+import Option from '@mui/joy/Option';
 
 
 const AddItemForm = ({recallLisOfItems}) => {
@@ -70,7 +71,7 @@ const AddItemForm = ({recallLisOfItems}) => {
             });
 
             setFormState(false);
-            recall();
+            recallLisOfItems();
             console.log('Successfully added new item.')
         }catch (err){
             console.log(err)
@@ -88,18 +89,18 @@ const AddItemForm = ({recallLisOfItems}) => {
             return(
                 <form className="" onSubmit={handleSubmit}>
                 
-                    <Select
+                    <Selection
                         label={"Choose Reagent"}
                         value={item.reagentID}
-                        onChange={(e) => setItem({...item, reagentID: e.target.value})}
+                        onChange={(e, newValue) => setItem({...item, reagentID: newValue})}
                     >
-                        <option value="" disabled>Select an option</option>
+                        <Option value="" disabled>Select an option</Option>
                         {listReagents.map((option) =>{
-                                return <option key={option.id} value={option.id}>{option.name}</option>
+                                return <Option key={option.id} value={option.id}>{option.name}</Option>
                             })}
-                    </Select>
+                    </Selection>
 
-                    <Input 
+                    <InPut 
                         htmlFor={"lot"}
                         label={"Lot"}
                         name={"lot"}
@@ -109,7 +110,7 @@ const AddItemForm = ({recallLisOfItems}) => {
                         onChange={(e) => setItem({ ...item, lot: e.target.value })}
                         />
                     
-                    <Input 
+                    <InPut 
                         htmlFor={"expirationDate"}
                         label={"Expiration Date"}
                         name={"expirationDate"}
@@ -119,7 +120,7 @@ const AddItemForm = ({recallLisOfItems}) => {
                         onChange={(e) => setItem({ ...item, expirationDate: e.target.value })}
                         />
                     
-                    <Input 
+                    <InPut 
                         htmlFor={"receivedDate"}
                         label={"Received Date"}
                         name={"receivedDate"}
@@ -129,7 +130,7 @@ const AddItemForm = ({recallLisOfItems}) => {
                         onChange={(e) => setItem({ ...item, receivedDate: e.target.value })}
                         />
                     
-                    <Input 
+                    <InPut 
                         htmlFor={"itemQuantity"}
                         label={"Quantity"}
                         name={"itemQuantity"}

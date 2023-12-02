@@ -8,6 +8,7 @@ import Header from "../components/header";
 import InfoTile from "../components/infoTile";
 import Button from "../components/button";
 
+
 function MainDashboard() {
 
   const [itemsInUse, setItemsInUse] = useState([]);
@@ -48,7 +49,7 @@ function MainDashboard() {
           
 
           {itemsInUse ?  
-              <table className="pageTable">
+              <Table variant="outlined" color="neutral" className="pageTable">
                     <thead>
                       <tr>
                         <td>Reagent Name</td>
@@ -58,6 +59,7 @@ function MainDashboard() {
                         <td>Received Date</td>
                         <td>Current Quantity</td>
                         <td>Last QC Performed</td>
+                        <td>Update</td>
                       </tr>
                     </thead>
                     <tbody>
@@ -83,12 +85,13 @@ function MainDashboard() {
                                         : thisItem.qualityControl.items[thisItem.qualityControl.items.length - 1].datePerformed }</td>
                                     
                                     <td><Button><Link href={`/items/${thisItem.id}`}>Update Item</Link></Button></td>
+
                                 </tr>
                             
                             )
                         })}
                     </tbody>
-                </table>
+                </Table>
               :
               <h1>No items available.</h1>}
         </div>

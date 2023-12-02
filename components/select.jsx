@@ -1,14 +1,18 @@
-export default function Select({label,value, onChange, children, disabled}){
+import Select from '@mui/joy/Select';
+
+
+export default function Selection({label,value, onChange, children, disabled, placeholder = "Select an option"}){
     return (
         <div>
             <p><label>{label}</label></p>
-            <select 
+            <Select 
                 value={value} 
+                placeholder={placeholder}
                 onChange={onChange}
                 disabled={disabled}
             >
-                {   children}
-            </select>
+                {children}
+            </Select>
         </div>
     )
 }
