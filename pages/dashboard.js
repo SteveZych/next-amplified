@@ -7,6 +7,7 @@ import SideBar from "../components/sideBar";
 import Header from "../components/header";
 import InfoTile from "../components/infoTile";
 import Button from "../components/button";
+import Table from "../components/table";
 
 function MainDashboard() {
 
@@ -48,7 +49,7 @@ function MainDashboard() {
           
 
           {itemsInUse ?  
-              <table className="pageTable">
+              <Table>
                     <thead>
                       <tr>
                         <td>Reagent Name</td>
@@ -88,7 +89,7 @@ function MainDashboard() {
                             )
                         })}
                     </tbody>
-                </table>
+                </Table>
               :
               <h1>No items available.</h1>}
         </div>
