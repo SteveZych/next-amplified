@@ -29,6 +29,10 @@ body{
     cursor: pointer;
   }
 
+  .tables{
+      
+  }
+
 
 .sidebarAndPage{
     display: flex;
