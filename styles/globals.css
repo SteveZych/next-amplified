@@ -1,9 +1,12 @@
 :root{
-    --primary: #EDEDF1;
-    --secondary:  #D8EFF5;
-    --accent:  #81C9F3;
-    --neutral:  #35C5CF;
-    --text: #333333;
+    --seafoamTeal: #83c6b8;
+    --denimTwilight:  #142046;
+    --bloodOrange:  #df5f36;
+    --medallionMustard:  #eda441;
+    --salmon: #ea9d6d;
+    --sand: #f6c586;
+    --lightGrey: #e7e8ea;
+    --white: #ffffff;
 }
 
 body{
