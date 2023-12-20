@@ -10,7 +10,7 @@
 }
 
 body{
-    background-color: var(--primary);
+    background-color: var(--white);
     margin: 0;
 }
 
@@ -35,7 +35,14 @@ body{
 
   .tables{
     text-align: center;
+    border-collapse: collapse;
   }
+
+  th, td {
+    border-bottom: 1px solid var(--denimTwilight);
+  }
+
+  tr:hover {background-color: var(--sand);}
 
 
 .sidebarAndPage{

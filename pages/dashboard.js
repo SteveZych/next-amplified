@@ -59,6 +59,7 @@ function MainDashboard() {
                         <td>Received Date</td>
                         <td>Current Quantity</td>
                         <td>Last QC Performed</td>
+                        <td>Update</td>
                       </tr>
                     </thead>
                     <tbody>
