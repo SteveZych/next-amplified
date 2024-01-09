@@ -52,14 +52,14 @@ function MainDashboard() {
               <Table>
                     <thead>
                       <tr>
-                        <td>Reagent Name</td>
-                        <td>Lot</td>
-                        <td>QC Interval</td>
-                        <td>Expiration Date</td>
-                        <td>Received Date</td>
-                        <td>Current Quantity</td>
-                        <td>Last QC Performed</td>
-                        <td>Update</td>
+                        <th>Reagent Name</th>
+                        <th>Lot</th>
+                        <th>QC Interval</th>
+                        <th>Expiration Date</th>
+                        <th>Received Date</th>
+                        <th>Current Quantity</th>
+                        <th>Last QC Performed</th>
+                        <th>Update</th>
                       </tr>
                     </thead>
                     <tbody>

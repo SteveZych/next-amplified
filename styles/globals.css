@@ -2,7 +2,7 @@
     --seafoamTeal: #83c6b8;
     --denimTwilight:  #142046;
     --bloodOrange:  #df5f36;
-    --medallionMustard:  #eda441;
+    --medallionMustard:  #eda541;
     --salmon: #ea9d6d;
     --sand: #f6c586;
     --lightGrey: #e7e8ea;
@@ -33,17 +33,41 @@ body{
     cursor: pointer;
   }
 
-  .tables{
+  /* .tables{
     text-align: center;
     border-collapse: collapse;
+    overflow-x: auto;
+    width: 90%;
+  }
+
+  th{
+      background-color: var(--salmon);
+      color: var(--white);
   }
 
   th, td {
     border-bottom: 1px solid var(--denimTwilight);
+    padding: 0.25rem;
+  } */
+  table{ 
+    border: 2px solid var(--salmon);
+    border-radius: 13px; 
+    border-spacing: 0;
+    text-align: center;
+    overflow-x: auto;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    }
+   td, th { 
+    border-bottom: 2px solid var(--salmon);
+    padding: 1rem; 
+    }
+  tr:last-child > td {
+    border-bottom: none;
   }
-
-  tr:hover {background-color: var(--sand);}
-
 
 .sidebarAndPage{
     display: flex;
@@ -52,13 +76,13 @@ body{
 .sideBar{
     display: flex;
     flex-direction: column;
-    margin: 1rem;
+    background-color: var(--sand);
+    color: var(--white);
 }
 
 .page{
     width: 100%;
-    margin-left: 5rem;
-    margin-right: 5rem;
+    margin-left: 1rem;
 }
 
 .pageHead{
