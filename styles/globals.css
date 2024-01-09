@@ -98,7 +98,7 @@ body{
     justify-content: center;
     border-radius: 0.25rem;
     border: 2px solid var(--denimTwilight);
-    background-color: var(--white);
+    background-color: var(--lightGrey);
 }
 /*////////////////////*/
   /*        BUTTONS      */
