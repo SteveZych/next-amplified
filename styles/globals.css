@@ -17,6 +17,11 @@ body{
     background-color: var(--white);
     margin: 0;
 }
+
+a {
+    text-decoration: none;
+    color: var(--denimTwilight);
+}
 /*////////////////////*/
   /*        PAGE      */
   /*////////////////////*/
@@ -125,9 +130,6 @@ body{
   /*        LINKS      */
   /*////////////////////*/
 
-  a {
-      text-decoration: none;
-      color: var(--denimTwilight);
-  }
+  
 
 
