@@ -74,7 +74,8 @@ a {
     display: flex;
     flex-direction: column;
     background-color: var(--sand);
-    color: var(--white);
+    padding: 2rem;
+    margin: 0;
 }
 
 .sideBarLink{
@@ -92,8 +93,9 @@ a {
     padding-top: 2rem;
     padding-bottom: 2rem;
     border-radius: 0.25rem;
-    background-color: var(--seafoamTeal);
-    margin: auto;
+    border: 2px solid var(--seafoamTeal);
+    margin-left: auto;
+    margin-right: auto;
     width: 90%;
 }
 
