@@ -9,7 +9,8 @@
     --medallionMustard:  #eda541;
     --salmon: #ea9d6d;
     --sand: #f6c586;
-    --lightGrey: #e7e8ea;
+    --lightGrey: #d3d4d4;
+    --shadow: #b3b3b3;
     --white: #ffffff;
 }
 
@@ -56,6 +57,7 @@ a {
     margin-right: auto;
     margin-top: 2rem;
     margin-bottom: 1rem;
+    box-shadow: 0px 0px 10px var(--salmon);
     }
    td, th { 
     border-bottom: 2px solid var(--salmon);
@@ -88,9 +90,6 @@ a {
     margin-bottom: 3rem;
 }
 
-.sideBarTitle:hover{
-    color: var(--seafoamTeal);
-}
 
 .sideBarLinkWrapper{
     padding-bottom: 2rem;
@@ -120,6 +119,7 @@ a {
     margin-left: auto;
     margin-right: auto;
     width: 90%;
+    box-shadow: 0px 0px 10px var(--seafoamTeal);
 }
 
 .infoTile{
