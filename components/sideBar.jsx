@@ -4,7 +4,7 @@ import SidebarLink from './sidebarLink';
 export default function SideBar(){
     return(
         <div className="sideBar">
-            <SidebarLink linkTo={"/index"} linkName={"Lab Pro"}/>
+            <Link className="sideBarTitle" href="/index">Lab Pro</Link>
             <SidebarLink linkTo={"/dashboard"} linkName={"Dashboard"}/>
             <SidebarLink linkTo={"/addItem"} linkName={"Add Item"}/>
             <SidebarLink linkTo={"/reagentTemplate"} linkName={"Reagent Template"}/>

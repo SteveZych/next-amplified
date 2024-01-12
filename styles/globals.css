@@ -22,6 +22,8 @@ a {
     text-decoration: none;
     color: var(--denimTwilight);
 }
+
+
 /*////////////////////*/
   /*        PAGE      */
   /*////////////////////*/
@@ -78,8 +80,29 @@ a {
     margin: 0;
 }
 
+
+.sideBarTitle{
+    color: var(--denimTwilight);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 3rem;
+}
+
+.sideBarTitle:hover{
+    color: var(--seafoamTeal);
+}
+
+.sideBarLinkWrapper{
+    padding-bottom: 2rem;
+}
+
 .sideBarLink{
-    margin: auto;
+    color: var(--white);
+    font-weight: 500;
+    
+}
+.sideBarLink:hover{
+    color: var(--bloodOrange);
 }
 
 /*////////////////////*/
