@@ -3,7 +3,8 @@ import Link from 'next/link';
 import {listItemsFunction} from "../Functions/listItemsFunction";
 import React, {useState, useEffect} from 'react';
 import SideBar from "../components/sideBar";
-
+import Header from "../components/header";
+import Table from "../components/table";
 
 function AddItem() {
 
@@ -30,21 +31,23 @@ function AddItem() {
 
         <div className="page">
           <Link href="/dashboard">Back to Dashboard</Link>
-          <h1>Add Reagents</h1>
+          <Header name={"Add Item"}/>
           <AddItemForm recallLisOfItems={recallLisOfItems}/>
 
           {listItems ?  
-            <table>
+            <Table>
                   <thead>
                     <tr>
-                      <td>Reagent Name</td>
-                      <td>Lot</td>
-                      <td>QC Interval</td>
-                      <td>Expiration Date</td>
-                      <td>Received Date</td>
-                      <td>Current Quantity</td>
-                      <td>Initial Quantity</td>
-                      <td>QC Performed</td>
+                      <th>Reagent Name</th>
+                      <th>Lot</th>
+                      <th>QC Interval</th>
+                      <th>Expiration Date</th>
+                      <th>Received Date</th>
+                      <th>Current Quantity</th>
+                      <th>Initial Quantity</th>
+                      <th>QC Performed</th>
+                      <th>Add QC</th>
+                      <th>Update Item</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -75,7 +78,7 @@ function AddItem() {
                           )
                       })}
                   </tbody>
-              </table>
+              </Table>
             :
             <h1>No items available.</h1>}
         </div>

@@ -46,12 +46,14 @@ a {
   /*////////////////////*/
   /*        TABLES      */
   /*////////////////////*/
+  .tableWrapper{
+    overflow-x: scroll;
+  }
   table{ 
     border: 2px solid var(--salmon);
     border-radius: 0.25rem; 
     border-spacing: 0;
     text-align: center;
-    overflow-x: auto;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
