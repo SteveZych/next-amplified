@@ -6,6 +6,8 @@ import {reagentTemplateData} from '../Functions/reagentTemplateData';
 import Input from '/components/input';
 import Select from '/components/select';
 import Link from 'next/link';
+import Button from "/components/button";
+
 
 
 const AddItemForm = ({recallLisOfItems}) => {
@@ -142,16 +144,16 @@ const AddItemForm = ({recallLisOfItems}) => {
                             />
                         
                         <div className="submit-form">
-                            <button className="btn" type="submit">Submit</button>
+                            <Button className="btn" type="submit">Submit</Button>
                         </div>
                         <div>
-                            <button onClick={handleFormChange}>Cancel</button>
+                            <Button onClick={handleFormChange}>Cancel</Button>
                         </div>
                     </form>
                 </div>
             )
         }else if (listReagents && !formState){
-            return <button onClick={handleFormChange}>Add Reagent</button>
+            return <Button onClick={handleFormChange}>Add Reagent</Button>
         }else{
             return <Link href="/addReagent"><button>Add reagent template</button></Link>
         }

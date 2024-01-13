@@ -5,6 +5,8 @@ import React, {useState, useEffect} from 'react';
 import SideBar from "../components/sideBar";
 import Header from "../components/header";
 import Table from "../components/table";
+import Button from "../components/button";
+
 
 function AddItem() {
 
@@ -30,10 +32,10 @@ function AddItem() {
         <SideBar/>
 
         <div className="page">
-          <Header name={"Add Item"}/>
-          <div >
-          <AddItemForm recallLisOfItems={recallLisOfItems}/>
-
+          <div className="pageHead">
+            <Header name={"Add Item"}/>
+            <AddItemForm recallLisOfItems={recallLisOfItems}/>
+          </div>
           {listItems ?  
             <Table>
                   <thead>
@@ -72,8 +74,8 @@ function AddItem() {
                                   <td>{thisItem.qualityControl.items.length === 0 ? 
                                         "None"
                                         : thisItem.qualityControl.items[thisItem.qualityControl.items.length - 1].datePerformed }</td>
-                                  <td><button><Link href={`/qualityControl/${thisItem.id}`}>Add QC</Link></button></td>
-                                  <td><button><Link href={`/updateItem/${thisItem.id}`}>Update Item</Link></button></td>
+                                  <td><Button><Link href={`/qualityControl/${thisItem.id}`}>Add QC</Link></Button></td>
+                                  <td><Button><Link href={`/updateItem/${thisItem.id}`}>Update Item</Link></Button></td>
                               </tr>
                           )
                       })}
@@ -81,7 +83,6 @@ function AddItem() {
               </Table>
             :
             <h1>No items available.</h1>}
-          </div>
         </div>
       </div>
     )

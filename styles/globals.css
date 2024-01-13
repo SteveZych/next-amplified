@@ -29,13 +29,18 @@ a {
   /*        PAGE      */
   /*////////////////////*/
   .page{
-    width: 100%;
-    margin-left: 1rem;
+    width: 90%;
+    margin-left: 3rem;
 }
 
 .pageHead{
-    width: 90%;
+    width: 100%;
     margin: auto;
+    display: flex;
+}
+
+.pageName{
+    margin-right: 5rem;
 }
 
 .sidebarAndPage{
