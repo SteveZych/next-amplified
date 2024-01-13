@@ -87,7 +87,7 @@ function MainDashboard() {
                                         "None"
                                         : thisItem.qualityControl.items[thisItem.qualityControl.items.length - 1].datePerformed }</td>
                                     
-                                    <td><Button><Link href={`/items/${thisItem.id}`}>Update Item</Link></Button></td>
+                                    <td><Link href={`/items/${thisItem.id}`}><Button>Update Item</Button></Link></td>
                                 </tr>
                             
                             )
