@@ -3,6 +3,9 @@ import Link from 'next/link';
 import {listItemsFunction} from "../Functions/listItemsFunction";
 import React, {useState, useEffect} from 'react';
 import SideBar from "../components/sideBar";
+import Header from "../components/header";
+import Table from "../components/table";
+import Button from "../components/button";
 
 
 function AddItem() {
@@ -29,22 +32,21 @@ function AddItem() {
         <SideBar/>
 
         <div className="page">
-          <Link href="/dashboard">Back to Dashboard</Link>
-          <h1>Add Reagents</h1>
-          <AddItemForm recallLisOfItems={recallLisOfItems}/>
-
+          <div className="pageHead">
+            <Header name={"Inventory"}/>
+            <AddItemForm recallLisOfItems={recallLisOfItems}/>
+          </div>
           {listItems ?  
-            <table>
+            <Table>
                   <thead>
                     <tr>
-                      <td>Reagent Name</td>
-                      <td>Lot</td>
-                      <td>QC Interval</td>
-                      <td>Expiration Date</td>
-                      <td>Received Date</td>
-                      <td>Current Quantity</td>
-                      <td>Initial Quantity</td>
-                      <td>QC Performed</td>
+                      <th>Reagent Name</th>
+                      <th>Lot</th>
+                      <th>Expiration Date</th>
+                      <th>Received Date</th>
+                      <th>Current Quantity</th>
+                      <th>QC Performed</th>
+                      <th>Update Item</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -56,26 +58,21 @@ function AddItem() {
 
                                   <td>{thisItem.lot}</td>
 
-                                  <td>{thisItem.reagent.qualityControlInterval}</td>
-
                                   <td>{thisItem.expirationDate}</td>
 
                                   <td>{thisItem.receivedDate}</td>
 
                                   <td>{thisItem.currentQuantity}</td>
 
-                                  <td>{thisItem.initialQuantity}</td>
-
                                   <td>{thisItem.qualityControl.items.length === 0 ? 
                                         "None"
                                         : thisItem.qualityControl.items[thisItem.qualityControl.items.length - 1].datePerformed }</td>
-                                  <td><button><Link href={`/qualityControl/${thisItem.id}`}>Add QC</Link></button></td>
-                                  <td><button><Link href={`/updateItem/${thisItem.id}`}>Update Item</Link></button></td>
+                                  <td><Link href={`/items/${thisItem.id}`}><Button>Update Item</Button></Link></td>
                               </tr>
                           )
                       })}
                   </tbody>
-              </table>
+              </Table>
             :
             <h1>No items available.</h1>}
         </div>

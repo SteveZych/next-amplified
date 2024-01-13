@@ -4,6 +4,7 @@ import * as mutations from '../src/graphqlcopy/mutations';
 import {v4 as uuidv4} from 'uuid';
 import Input from '/components/input';
 import Select from '/components/select';
+import Button from "/components/button";
 
 const AddReagentForm = ({recallReagentTemplateData}) => {
 
@@ -62,49 +63,51 @@ const AddReagentForm = ({recallReagentTemplateData}) => {
     return(
         <div>
             {formState ?
-            <form className="" >
-                <Input 
-                    htmlFor={"reagentName"}
-                    label={"Reagent Name"}
-                    name={"reagentName"}
-                    type={"text"}
-                    value={reagent.name}
-                    placeHolder={"Reagent Name"}
-                    onChange={(e) => setReagent({ ...reagent, name: e.target.value })}
-                    />
-                <Input 
-                    htmlFor={"upperLimitQuantity"}
-                    label={"Upper Limit Quantity"}
-                    name={"upperLimitQuantity"}
-                    type={"number"}
-                    value={reagent.upperLimitQuantity}
-                    placeHolder={"Upper Limit Quantity"}
-                    onChange={(e) => setReagent({ ...reagent, upperLimitQuantity: e.target.value })}
-                    />
-                <Input 
-                    htmlFor={"lowerLimitQuantity"}
-                    label={"Lower Limit Quantity"}
-                    name={"lowerLimityQuantity"}
-                    type={"number"}
-                    value={reagent.lowerLimitQuantity}
-                    placeHolder={"Lower Limit Quantity"}
-                    onChange={(e) => setReagent({ ...reagent, lowerLimitQuantity: e.target.value })}
-                    />
-                <Select
-                    label={"Quality Control Interval"}
-                    value={reagent.qualityControlInterval}
-                    onChange={(e) => setReagent({ ...reagent, qualityControlInterval: e.target.value })}
-                >
-                    <option value="" disabled>Select an option</option>
-                    {qualityControlIntervalOptions.map((option, index) =>{
-                            return <option key={index} value ={option}>{option}</option>
-                        })}
-                </Select>
-                <button onClick={handleSubmit}>Submit</button>
-                <button onClick={handleToggle}>Cancel</button>
-                
-            </form>
-            : <button onClick={handleToggle}>Add Reagent Template</button>}
+            <div className="overlayForm">
+                <form className="form" >
+                    <Input 
+                        htmlFor={"reagentName"}
+                        label={"Reagent Name"}
+                        name={"reagentName"}
+                        type={"text"}
+                        value={reagent.name}
+                        placeHolder={"Reagent Name"}
+                        onChange={(e) => setReagent({ ...reagent, name: e.target.value })}
+                        />
+                    <Input 
+                        htmlFor={"upperLimitQuantity"}
+                        label={"Upper Limit Quantity"}
+                        name={"upperLimitQuantity"}
+                        type={"number"}
+                        value={reagent.upperLimitQuantity}
+                        placeHolder={"Upper Limit Quantity"}
+                        onChange={(e) => setReagent({ ...reagent, upperLimitQuantity: e.target.value })}
+                        />
+                    <Input 
+                        htmlFor={"lowerLimitQuantity"}
+                        label={"Lower Limit Quantity"}
+                        name={"lowerLimityQuantity"}
+                        type={"number"}
+                        value={reagent.lowerLimitQuantity}
+                        placeHolder={"Lower Limit Quantity"}
+                        onChange={(e) => setReagent({ ...reagent, lowerLimitQuantity: e.target.value })}
+                        />
+                    <Select
+                        label={"Quality Control Interval"}
+                        value={reagent.qualityControlInterval}
+                        onChange={(e) => setReagent({ ...reagent, qualityControlInterval: e.target.value })}
+                    >
+                        <option value="" disabled>Select an option</option>
+                        {qualityControlIntervalOptions.map((option, index) =>{
+                                return <option key={index} value ={option}>{option}</option>
+                            })}
+                    </Select>
+                    <Button click={handleSubmit}>Submit</Button>
+                    <Button click={handleToggle}>Cancel</Button>
+                    
+                </form>
+            </div> 
+            : <Button click={handleToggle}>Add Reagent Template</Button>}
         </div>
     )
 

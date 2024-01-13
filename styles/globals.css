@@ -9,30 +9,38 @@
     --medallionMustard:  #eda541;
     --salmon: #ea9d6d;
     --sand: #f6c586;
-    --lightGrey: #e7e8ea;
+    --lightGrey: #d3d4d4;
+    --shadow: #b3b3b3;
     --white: #ffffff;
 }
 
 body{
     background-color: var(--white);
     margin: 0;
+    color: var(--denimTwilight);
 }
 
 a {
     text-decoration: none;
     color: var(--denimTwilight);
 }
+
+
 /*////////////////////*/
   /*        PAGE      */
   /*////////////////////*/
   .page{
     width: 100%;
-    margin-left: 1rem;
 }
 
 .pageHead{
     width: 90%;
     margin: auto;
+    display: flex;
+}
+
+.pageName{
+    margin-right: 5rem;
 }
 
 .sidebarAndPage{
@@ -43,17 +51,20 @@ a {
   /*////////////////////*/
   /*        TABLES      */
   /*////////////////////*/
+  .tableWrapper{
+    overflow-x: scroll;
+  }
   table{ 
     border: 2px solid var(--salmon);
     border-radius: 0.25rem; 
     border-spacing: 0;
     text-align: center;
-    overflow-x: auto;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 2rem;
     margin-bottom: 1rem;
+    box-shadow: 0px 0px 10px var(--salmon);
     }
    td, th { 
     border-bottom: 2px solid var(--salmon);
@@ -74,11 +85,30 @@ a {
     display: flex;
     flex-direction: column;
     background-color: var(--sand);
-    color: var(--white);
+    padding: 2rem;
+    margin: 0;
+}
+
+
+.sideBarTitle{
+    color: var(--denimTwilight);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 3rem;
+}
+
+
+.sideBarLinkWrapper{
+    padding-bottom: 2rem;
 }
 
 .sideBarLink{
-    margin: auto;
+    color: var(--white);
+    font-weight: 500;
+    
+}
+.sideBarLink:hover{
+    color: var(--bloodOrange);
 }
 
 /*////////////////////*/
@@ -92,9 +122,11 @@ a {
     padding-top: 2rem;
     padding-bottom: 2rem;
     border-radius: 0.25rem;
-    background-color: var(--seafoamTeal);
-    margin: auto;
+    border: 2px solid var(--seafoamTeal);
+    margin-left: auto;
+    margin-right: auto;
     width: 90%;
+    box-shadow: 0px 0px 10px var(--seafoamTeal);
 }
 
 .infoTile{
@@ -121,14 +153,45 @@ a {
   
   .btn:hover,
   .btn:focus{
-    background-color: var(--neutral);
-    color: var(--deepNavy);
+    background-color: var(--denimTwilight);
+    color: var(--white);
     cursor: pointer;
   }
 
   /*////////////////////*/
   /*        LINKS      */
   /*////////////////////*/
+
+
+  /*////////////////////*/
+  /*        FORMS      */
+  /*////////////////////*/
+
+  .overlayForm{
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+  }
+  
+  .form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: var(--denimTwilight);
+    background-color: var(--white);
+    padding: 3rem;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    border-radius: 0.25rem; 
+  }
 
   
 
