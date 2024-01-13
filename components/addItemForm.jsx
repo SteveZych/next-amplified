@@ -70,7 +70,7 @@ const AddItemForm = ({recallLisOfItems}) => {
             });
 
             setFormState(false);
-            recall();
+            recallLisOfItems();
             console.log('Successfully added new item.')
         }catch (err){
             console.log(err)
@@ -81,71 +81,74 @@ const AddItemForm = ({recallLisOfItems}) => {
         e.preventDefault();
         setFormState(!formState)
         renderIfReagentsExist();
+
     }
 
     const renderIfReagentsExist = () =>{
         if (listReagents && formState){
             return(
-                <form className="" onSubmit={handleSubmit}>
-                
-                    <Select
-                        label={"Choose Reagent"}
-                        value={item.reagentID}
-                        onChange={(e) => setItem({...item, reagentID: e.target.value})}
-                    >
-                        <option value="" disabled>Select an option</option>
-                        {listReagents.map((option) =>{
-                                return <option key={option.id} value={option.id}>{option.name}</option>
-                            })}
-                    </Select>
+                <div className="overlayForm">
+                    <form className="form" onSubmit={handleSubmit}>
+                    
+                        <Select
+                            label={"Choose Reagent"}
+                            value={item.reagentID}
+                            onChange={(e) => setItem({...item, reagentID: e.target.value})}
+                        >
+                            <option value="" disabled>Select an option</option>
+                            {listReagents.map((option) =>{
+                                    return <option key={option.id} value={option.id}>{option.name}</option>
+                                })}
+                        </Select>
 
-                    <Input 
-                        htmlFor={"lot"}
-                        label={"Lot"}
-                        name={"lot"}
-                        type={"text"}
-                        value={item.lot}
-                        placeHolder={"Lot"}
-                        onChange={(e) => setItem({ ...item, lot: e.target.value })}
-                        />
-                    
-                    <Input 
-                        htmlFor={"expirationDate"}
-                        label={"Expiration Date"}
-                        name={"expirationDate"}
-                        type={"date"}
-                        value={item.expirationDate}
-                        placeHolder={"Date Performed"}
-                        onChange={(e) => setItem({ ...item, expirationDate: e.target.value })}
-                        />
-                    
-                    <Input 
-                        htmlFor={"receivedDate"}
-                        label={"Received Date"}
-                        name={"receivedDate"}
-                        type={"date"}
-                        value={item.receivedDate}
-                        placeHolder={"Received Date"}
-                        onChange={(e) => setItem({ ...item, receivedDate: e.target.value })}
-                        />
-                    
-                    <Input 
-                        htmlFor={"itemQuantity"}
-                        label={"Quantity"}
-                        name={"itemQuantity"}
-                        type={"number"}
-                        value={item.quantity}
-                        placeHolder={"Quantity"}
-                        onChange={(e) => setItem({ ...item, quantity: e.target.value })}
-                        />
-                    
-                    <div className="submit-form">
-                        <button className="btn" type="submit">Submit</button>
-                    </div>
-                    <div>
-                        <button onClick={handleFormChange}>Cancel</button>
-                    </div>
-                </form>
+                        <Input 
+                            htmlFor={"lot"}
+                            label={"Lot"}
+                            name={"lot"}
+                            type={"text"}
+                            value={item.lot}
+                            placeHolder={"Lot"}
+                            onChange={(e) => setItem({ ...item, lot: e.target.value })}
+                            />
+                        
+                        <Input 
+                            htmlFor={"expirationDate"}
+                            label={"Expiration Date"}
+                            name={"expirationDate"}
+                            type={"date"}
+                            value={item.expirationDate}
+                            placeHolder={"Date Performed"}
+                            onChange={(e) => setItem({ ...item, expirationDate: e.target.value })}
+                            />
+                        
+                        <Input 
+                            htmlFor={"receivedDate"}
+                            label={"Received Date"}
+                            name={"receivedDate"}
+                            type={"date"}
+                            value={item.receivedDate}
+                            placeHolder={"Received Date"}
+                            onChange={(e) => setItem({ ...item, receivedDate: e.target.value })}
+                            />
+                        
+                        <Input 
+                            htmlFor={"itemQuantity"}
+                            label={"Quantity"}
+                            name={"itemQuantity"}
+                            type={"number"}
+                            value={item.quantity}
+                            placeHolder={"Quantity"}
+                            onChange={(e) => setItem({ ...item, quantity: e.target.value })}
+                            />
+                        
+                        <div className="submit-form">
+                            <button className="btn" type="submit">Submit</button>
+                        </div>
+                        <div>
+                            <button onClick={handleFormChange}>Cancel</button>
+                        </div>
+                    </form>
+                </div>
             )
         }else if (listReagents && !formState){
             return <button onClick={handleFormChange}>Add Reagent</button>

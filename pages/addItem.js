@@ -30,8 +30,8 @@ function AddItem() {
         <SideBar/>
 
         <div className="page">
-          <Link href="/dashboard">Back to Dashboard</Link>
           <Header name={"Add Item"}/>
+          <div >
           <AddItemForm recallLisOfItems={recallLisOfItems}/>
 
           {listItems ?  
@@ -81,6 +81,7 @@ function AddItem() {
               </Table>
             :
             <h1>No items available.</h1>}
+          </div>
         </div>
       </div>
     )
