@@ -52,6 +52,8 @@ function MainDashboard() {
           
 
           {itemsInUse ?  
+            <div>
+              <h3>Current Inventory</h3>
               <Table>
                     <thead>
                       <tr>
@@ -62,7 +64,8 @@ function MainDashboard() {
                         <th>Received Date</th>
                         <th>Current Quantity</th>
                         <th>Last QC Performed</th>
-                        <th>Update</th>
+                        <th>Add QC</th>
+                        <th>Add/Remove</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -86,14 +89,15 @@ function MainDashboard() {
                                     <td>{thisItem.qualityControl.items.length === 0 ? 
                                         "None"
                                         : thisItem.qualityControl.items[thisItem.qualityControl.items.length - 1].datePerformed }</td>
-                                    
-                                    <td><Link href={`/items/${thisItem.id}`}><Button>Update Item</Button></Link></td>
+                                    <td><Link href={`/qualityControl/${thisItem.id}`}><Button>Add QC</Button></Link></td>
+                                    <td><Link href={`/updateItem/${thisItem.id}`}><Button>+/-</Button></Link></td>
                                 </tr>
                             
                             )
                         })}
                     </tbody>
                 </Table>
+              </div>
               :
               <h1>No items available.</h1>}
         </div>

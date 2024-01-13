@@ -152,9 +152,9 @@ const AddItemForm = ({recallLisOfItems}) => {
                 </div>
             )
         }else if (listReagents && !formState){
-            return <Button click={() => handleFormChange()}>Add Reagent</Button>
+            return <Button click={() => handleFormChange()}>+ Reagent</Button>
         }else{
-            return <Link href="/addReagent"><Button>Add reagent template</Button></Link>
+            return <Link href="/addReagent"><Button>+ Reagent Template</Button></Link>
         }
     }
 

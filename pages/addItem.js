@@ -33,7 +33,7 @@ function AddItem() {
 
         <div className="page">
           <div className="pageHead">
-            <Header name={"Add Item"}/>
+            <Header name={"Inventory"}/>
             <AddItemForm recallLisOfItems={recallLisOfItems}/>
           </div>
           {listItems ?  
@@ -46,7 +46,6 @@ function AddItem() {
                       <th>Received Date</th>
                       <th>Current Quantity</th>
                       <th>QC Performed</th>
-                      <th>Add QC</th>
                       <th>Update Item</th>
                     </tr>
                   </thead>
@@ -68,8 +67,7 @@ function AddItem() {
                                   <td>{thisItem.qualityControl.items.length === 0 ? 
                                         "None"
                                         : thisItem.qualityControl.items[thisItem.qualityControl.items.length - 1].datePerformed }</td>
-                                  <td><Link href={`/qualityControl/${thisItem.id}`}><Button>Add QC</Button></Link></td>
-                                  <td><Link href={`/updateItem/${thisItem.id}`}><Button>Update Item</Button></Link></td>
+                                  <td><Link href={`/items/${thisItem.id}`}><Button>Update Item</Button></Link></td>
                               </tr>
                           )
                       })}
