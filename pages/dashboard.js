@@ -38,7 +38,10 @@ function MainDashboard() {
         <SideBar/>
 
         <div className="page">
-          <Header name={"Dashboard"}/>
+          <div className="pageHead">
+            <Header name={"Dashboard"}/>
+          </div>
+          
 
           <div className="infoTiles">
             <InfoTile href={"/pendingQC"} info={"Pending QC"} additionalInfo={QC.length}/>

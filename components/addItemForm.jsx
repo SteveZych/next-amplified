@@ -79,8 +79,7 @@ const AddItemForm = ({recallLisOfItems}) => {
         }
     }
 
-    const handleFormChange = (e) =>{
-        e.preventDefault();
+    const handleFormChange = () =>{
         setFormState(!formState)
         renderIfReagentsExist();
 
@@ -90,7 +89,7 @@ const AddItemForm = ({recallLisOfItems}) => {
         if (listReagents && formState){
             return(
                 <div className="overlayForm">
-                    <form className="form" onSubmit={handleSubmit}>
+                    <form className="form" >
                     
                         <Select
                             label={"Choose Reagent"}
@@ -144,18 +143,18 @@ const AddItemForm = ({recallLisOfItems}) => {
                             />
                         
                         <div className="submit-form">
-                            <Button className="btn" type="submit">Submit</Button>
+                            <Button click={() => handleSubmit()}>Submit</Button>
                         </div>
                         <div>
-                            <Button onClick={handleFormChange}>Cancel</Button>
+                            <Button click={() => handleFormChange()}>Cancel</Button>
                         </div>
                     </form>
                 </div>
             )
         }else if (listReagents && !formState){
-            return <Button onClick={handleFormChange}>Add Reagent</Button>
+            return <Button click={() => handleFormChange()}>Add Reagent</Button>
         }else{
-            return <Link href="/addReagent"><button>Add reagent template</button></Link>
+            return <Link href="/addReagent"><Button>Add reagent template</Button></Link>
         }
     }
 

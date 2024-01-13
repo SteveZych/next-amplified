@@ -17,6 +17,7 @@
 body{
     background-color: var(--white);
     margin: 0;
+    color: var(--denimTwilight);
 }
 
 a {
@@ -29,12 +30,11 @@ a {
   /*        PAGE      */
   /*////////////////////*/
   .page{
-    width: 90%;
-    margin-left: 3rem;
+    width: 100%;
 }
 
 .pageHead{
-    width: 100%;
+    width: 90%;
     margin: auto;
     display: flex;
 }
@@ -153,8 +153,8 @@ a {
   
   .btn:hover,
   .btn:focus{
-    background-color: var(--neutral);
-    color: var(--deepNavy);
+    background-color: var(--denimTwilight);
+    color: var(--white);
     cursor: pointer;
   }
 
@@ -190,6 +190,7 @@ a {
     padding: 3rem;
     transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
+    border-radius: 0.25rem; 
   }
 
   
