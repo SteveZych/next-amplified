@@ -9,6 +9,8 @@ import Link from 'next/link';
 import Input from '../components/input';
 import Select from '../components/select';
 import SideBar from "../components/sideBar";
+import Button from "../components/button";
+import Table from "../components/table";
 
 // TODO: Figure out how to recall the new data when user submits form now 
 // that the form is abstracted to a component File.
@@ -83,100 +85,99 @@ const AddReagent = () => {
             <SideBar/>
 
             <div className="page">
-            <Link href="/dashboard">Back to Dashboard</Link>
-            <h1>Reagent Templates</h1>
-            <AddReagentForm recallReagentTemplateData={recallReagentTemplateData}/>
+                <div className="pageHead">
+                    <h1>Reagent Templates</h1>
+                    <AddReagentForm recallReagentTemplateData={recallReagentTemplateData}/>
+                </div>
+                {listReagents ? 
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th>Reagent Name</th>
+                                <th>QC Interval</th>
+                                <th>Upper Limit Quantity</th>
+                                <th>Lower Limit Quantity</th>
+                                <th>Edit Reagent</th>
+                                <th>Delete Reagent</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {listReagents.map((thisReagent, index) =>{
+                                return (
+                                    <tr key={thisReagent.id}>
 
-            {listReagents ? 
-                <table>
-                    <thead>
-                        <tr>
-                            <td>ID</td>
-                            <td>Reagent Name</td>
-                            <td>QC Interval</td>
-                            <td>Upper Limit Quantity</td>
-                            <td>Lower Limit Quantity</td>
-                            <td>Edit Reagent</td>
-                            <td>Delete Reagent</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {listReagents.map((thisReagent, index) =>{
-                            return (
-                                <tr key={thisReagent.id}>
+                                        <td>
+                                        <Input 
+                                            htmlFor={"reagentName"}
+                                            label={""}
+                                            name={"reagentName"}
+                                            type={"text"}
+                                            value={thisReagent.name}
+                                            placeHolder={"Reagent Name"}
+                                            onChange={(e) => setListReagents(prevListReagents => {
+                                                return prevListReagents.map(reag => thisReagent.id === reag.id ? {...reag, name: e.target.value} : reag)
+                                            })}
+                                            disabled={!thisReagent.isEditing ? "disabled" : ''}
+                                        />
+                                        </td>
+                                        
+                                        <td>
+                                        <Select
+                                            label={""}
+                                            value={thisReagent.qualityControlInterval}
+                                            onChange={(e) => setListReagents(prevListReagents => {
+                                                return prevListReagents.map(reag => thisReagent.id === reag.id ? {...reag, qualityControlInterval: e.target.value} : reag)
+                                            })}
+                                            disabled={!thisReagent.isEditing ? "disabled" : ''}
+                                        >
+                                            {qualityControlIntervalOptions.map((option, index) =>{
+                                                return <option key={index}>{option}</option>
+                                            })}
+                                        </Select>
+                                        </td>
 
-                                    <td>{thisReagent.id}</td>
+                                        <td>
+                                        <Input 
+                                            htmlFor={"upperLimitQuantity"}
+                                            label={""}
+                                            name={"upperLimitQuantity"}
+                                            type={"text"}
+                                            value={thisReagent.upperLimitQuantity}
+                                            placeHolder={"Upper Quantity Limit"}
+                                            onChange={(e) => setListReagents(prevListReagents => {
+                                                return prevListReagents.map(reag => thisReagent.id === reag.id ? {...reag, upperLimitQuantity: e.target.value} : reag)
+                                            })}
+                                            disabled={!thisReagent.isEditing ? "disabled" : ''}
+                                        />
+                                        </td>
 
-                                    <td>
-                                    <Input 
-                                        htmlFor={"reagentName"}
-                                        label={""}
-                                        name={"reagentName"}
-                                        type={"text"}
-                                        value={thisReagent.name}
-                                        placeHolder={"Reagent Name"}
-                                        onChange={(e) => setListReagents(prevListReagents => {
-                                            return prevListReagents.map(reag => thisReagent.id === reag.id ? {...reag, name: e.target.value} : reag)
-                                        })}
-                                        disabled={!thisReagent.isEditing ? "disabled" : ''}
-                                    />
-                                    </td>
-                                    
-                                    <td>
-                                    <Select
-                                        label={""}
-                                        value={thisReagent.qualityControlInterval}
-                                        onChange={(e) => setListReagents(prevListReagents => {
-                                            return prevListReagents.map(reag => thisReagent.id === reag.id ? {...reag, qualityControlInterval: e.target.value} : reag)
-                                        })}
-                                        disabled={!thisReagent.isEditing ? "disabled" : ''}
-                                    >
-                                        {qualityControlIntervalOptions.map((option, index) =>{
-                                            return <option key={index}>{option}</option>
-                                        })}
-                                    </Select>
-                                    </td>
+                                        <td>
+                                        <Input 
+                                            htmlFor={"lowerLimitQuantity"}
+                                            label={""}
+                                            name={"lowerLimitQuantity"}
+                                            type={"text"}
+                                            value={thisReagent.lowerLimitQuantity}
+                                            placeHolder={"Lower Quantity Limit"}
+                                            onChange={(e) => setListReagents(prevListReagents => {
+                                                return prevListReagents.map(reag => thisReagent.id === reag.id ? {...reag, lowerLimitQuantity: e.target.value} : reag)
+                                            })}
+                                            disabled={!thisReagent.isEditing ? "disabled" : ''}
+                                        />
+                                        </td>
 
-                                    <td>
-                                    <Input 
-                                        htmlFor={"upperLimitQuantity"}
-                                        label={""}
-                                        name={"upperLimitQuantity"}
-                                        type={"text"}
-                                        value={thisReagent.upperLimitQuantity}
-                                        placeHolder={"Upper Quantity Limit"}
-                                        onChange={(e) => setListReagents(prevListReagents => {
-                                            return prevListReagents.map(reag => thisReagent.id === reag.id ? {...reag, upperLimitQuantity: e.target.value} : reag)
-                                        })}
-                                        disabled={!thisReagent.isEditing ? "disabled" : ''}
-                                    />
-                                    </td>
+                                        <td>{!thisReagent.isEditing ? <Button click={()=> editReagent(thisReagent.id)}>Edit</Button> : <Button click={()=> saveReagent(index)}>Save</Button>}</td>
 
-                                    <td>
-                                    <Input 
-                                        htmlFor={"lowerLimitQuantity"}
-                                        label={""}
-                                        name={"lowerLimitQuantity"}
-                                        type={"text"}
-                                        value={thisReagent.lowerLimitQuantity}
-                                        placeHolder={"Lower Quantity Limit"}
-                                        onChange={(e) => setListReagents(prevListReagents => {
-                                            return prevListReagents.map(reag => thisReagent.id === reag.id ? {...reag, lowerLimitQuantity: e.target.value} : reag)
-                                        })}
-                                        disabled={!thisReagent.isEditing ? "disabled" : ''}
-                                    />
-                                    </td>
-
-                                    <td>{!thisReagent.isEditing ? <button onClick={()=> editReagent(thisReagent.id)}>Edit</button> : <button onClick={()=> saveReagent(index)}>Save</button>}</td>
-
-                                    <td><button onClick={()=> deleteReagent(thisReagent.id)}>Delete</button></td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
-            :
-            <h1>No reagents available.</h1>}
+                                        <td><Button click={()=> deleteReagent(thisReagent.id)}>Delete</Button></td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </Table>
+                    
+                :
+                <h1>No reagents available.</h1>}
+             
             </div>
         </div>
     )
