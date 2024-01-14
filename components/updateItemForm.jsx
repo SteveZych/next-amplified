@@ -4,8 +4,12 @@ import * as mutations from '../src/graphqlcopy/mutations';
 import {v4 as uuidv4} from 'uuid';
 import Input from '/components/input';
 import Select from '/components/select';
+import Button from "/components/button";
 
-const UpdateItemForm = ({id}) =>{
+const UpdateItemForm = ({id, reagentName, reagentLot}) =>{
+
+     //Form open or close state
+     const [formState, setFormState] = useState(false);
 
      //State to keep track of the form
      const [update, setUpdate] = useState({
@@ -51,49 +55,65 @@ const UpdateItemForm = ({id}) =>{
         }
     }
 
+    const handleFormChange = () =>{
+        setFormState(!formState);
+
+    }
+
     return(
         <div>
-            <form className="" onSubmit={handleSubmit}>
-                <Select
-                    label={"Add or Remove"}
-                    value={update.addedOrRemoved}
-                    onChange={(e) => setUpdate({...update, addedOrRemoved: e.target.value})}
-                >
-                    <option>Add</option>
-                    <option>Remove</option>
-                </Select>
-                <Input 
-                    htmlFor={"dateUpdated"}
-                    label={"Date Updated"}
-                    name={"dateUpdated"}
-                    type={"date"}
-                    value={update.dateUpdated}
-                    placeHolder={"Date Updated"}
-                    onChange={(e) => setUpdate({ ...update, dateUpdated: e.target.value })} 
-                    />
-                <Input 
-                    htmlFor={"quantity"}
-                    label={"Quantity"}
-                    name={"quantity"}
-                    type={"number"}
-                    value={update.quantity}
-                    placeHolder={"Quantity"}
-                    onChange={(e) => setUpdate({ ...update, quantity: e.target.value })} 
-                    />
-                <Input 
-                    htmlFor={"comment"}
-                    label={"Comment"}
-                    name={"comment"}
-                    type={"text"}
-                    value={update.comment}
-                    placeHolder={"Comments"}
-                    onChange={(e) => setUpdate({ ...update, comment: e.target.value })} 
-                    />
-                
-                <div className="submit-form">
-                    <button className="btn" type="submit">Submit</button>
-                </div>
-            </form>
+            {formState ? 
+            <div className="overlayForm">
+                <form className="form" >
+
+                    <p>{reagentName}</p>
+                    <p>{reagentLot}</p>
+                    <Select
+                        label={"Add or Remove"}
+                        value={update.addedOrRemoved}
+                        onChange={(e) => setUpdate({...update, addedOrRemoved: e.target.value})}
+                    >
+                        <option>Add</option>
+                        <option>Remove</option>
+                    </Select>
+                    <Input 
+                        htmlFor={"dateUpdated"}
+                        label={"Date Updated"}
+                        name={"dateUpdated"}
+                        type={"date"}
+                        value={update.dateUpdated}
+                        placeHolder={"Date Updated"}
+                        onChange={(e) => setUpdate({ ...update, dateUpdated: e.target.value })} 
+                        />
+                    <Input 
+                        htmlFor={"quantity"}
+                        label={"Quantity"}
+                        name={"quantity"}
+                        type={"number"}
+                        value={update.quantity}
+                        placeHolder={"Quantity"}
+                        onChange={(e) => setUpdate({ ...update, quantity: e.target.value })} 
+                        />
+                    <Input 
+                        htmlFor={"comment"}
+                        label={"Comment"}
+                        name={"comment"}
+                        type={"text"}
+                        value={update.comment}
+                        placeHolder={"Comments"}
+                        onChange={(e) => setUpdate({ ...update, comment: e.target.value })} 
+                        />
+                    
+                    <div className="submit-form">
+                        <Button click={()=> handleSubmit()}>Submit</Button>
+                    </div>
+                    <div>
+                        <Button click={() => handleFormChange()}>Cancel</Button>
+                    </div>
+                </form>
+            </div>
+            :
+            <div><Button click={() => handleFormChange()}>+/-</Button></div>}
         </div>
     )
 }

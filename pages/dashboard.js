@@ -9,6 +9,7 @@ import InfoTile from "../components/infoTile";
 import Button from "../components/button";
 import Table from "../components/table";
 import AddQualityControlForm from "../components/addQualityControlForm";
+import UpdateItemForm from "../components/updateItemForm"
 
 
 function MainDashboard() {
@@ -92,7 +93,7 @@ function MainDashboard() {
                                         "None"
                                         : thisItem.qualityControl.items[thisItem.qualityControl.items.length - 1].datePerformed }</td>
                                     <td><AddQualityControlForm id={thisItem.id} reagentName={thisItem.reagent.name} reagentLot={thisItem.lot}/></td>
-                                    <td><Link href={`/updateItem/${thisItem.id}`}><Button>+/-</Button></Link></td>
+                                    <td><UpdateItemForm id={thisItem.id} reagentName={thisItem.reagent.name} reagentLot={thisItem.lot}/></td>
                                 </tr>
                             
                             )
