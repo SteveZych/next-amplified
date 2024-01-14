@@ -46,7 +46,7 @@ function AddItem() {
                       <th>Received Date</th>
                       <th>Current Quantity</th>
                       <th>QC Performed</th>
-                      <th>Update Item</th>
+                      <th>Info</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -67,7 +67,7 @@ function AddItem() {
                                   <td>{thisItem.qualityControl.items.length === 0 ? 
                                         "None"
                                         : thisItem.qualityControl.items[thisItem.qualityControl.items.length - 1].datePerformed }</td>
-                                  <td><Link href={`/items/${thisItem.id}`}><Button>Update Item</Button></Link></td>
+                                  <td><Link href={`/items/${thisItem.id}`}><Button>Info</Button></Link></td>
                               </tr>
                           )
                       })}
