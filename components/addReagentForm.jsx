@@ -56,8 +56,13 @@ const AddReagentForm = ({recallReagentTemplateData}) => {
     }
 
     const handleToggle = (e) =>{
-        e.preventDefault()
-        setFormState(!formState)
+        setFormState(!formState);
+        setReagent({
+            name: "",
+            qualityControlInterval: "None",
+            upperLimitQuantity: "",
+            lowerLimitQuantity: ""
+        });
     }
 
     return(

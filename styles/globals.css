@@ -25,6 +25,18 @@ a {
     color: var(--denimTwilight);
 }
 
+input{
+    border-style: hidden;
+  }
+  
+  input:focus{
+    outline: none;
+  }
+
+select{
+    border-style: hidden;
+}
+
 
 /*////////////////////*/
   /*        PAGE      */
@@ -193,6 +205,28 @@ a {
     border-radius: 0.25rem; 
   }
 
+  .formInputWrapper{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--denimTwilight);
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+    padding: 0.25rem;
+  }
+
+.formInputLabel{
+    color: grey;
+    font-size: 10px;
+    text-align: start;
+}
   
+.formSelectWrapper{
+    border: 2px solid var(--denimTwilight);
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+    padding: 0.25rem;
+}
 
-
+.formSelect{
+    width: 100%;
+}
