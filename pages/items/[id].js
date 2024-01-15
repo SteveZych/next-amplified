@@ -9,6 +9,8 @@ import SideBar from '../../components/sideBar';
 import UpdateItemForm from '../../components/updateItemForm';
 import AddQualityControlForm from '../../components/addQualityControlForm'; 
 import Header from '../../components/header';
+import Table from '../../components/table';
+import EmptyTable from '../../components/emptyTable';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -63,43 +65,47 @@ export default function IndividualItem({data}){
                 <Icon number={item.expirationDate} statement={"Expiration Date"}/>
                 <Icon number={item.currentQuantity} statement={"Current Quantity"}/> 
                 <Icon number={item.reagent.upperLimitQuantity} statement={"Target Quantity"}/>
-                <Icon number={getNextQcDate()} statement={"Next QC"}/>
+                <Icon number={getNextQcDate()} statement={"QC Due"}/>
             </div>
                 
             
+            <div className="twoTables">
+                <div className='firstTable'>
+                    {item.updates.items.length === 0 ? <EmptyTable statement={"No updates to this item"}/>:
+                    <table>
+                        <thead>
 
-            {item.updates.items.length === 0 ? "No updates to this item.":
-            <table>
-                <thead>
-
-                </thead>
-            </table>
-            }
-
-            {item.qualityControl.items.length === 0 ? "No quality control.": 
-            <table>
-                <thead>
-                    <tr>
-                        <td>Date Performed</td>
-                        <td>Performed By</td>
-                        <td>Comment</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {item.qualityControl.items.map(qc =>{
-                        return(
-                            <tr key={qc.id}>
-                                <td>{qc.datePerformed}</td>
-                                <td>{qc.performedBy}</td>
-                                <td>{qc.comment}</td>
+                        </thead>
+                    </table>
+                    }
+                </div>
+                <div className='secondTable'>  
+                    {item.qualityControl.items.length === 0 ? <EmptyTable statement={"No quality control"}/>: 
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th>QC Performed</th>
+                                <th>Performed By</th>
+                                <th>Comment</th>
                             </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
-            }
+                        </thead>
+                        <tbody>
+                            {item.qualityControl.items.map(qc =>{
+                                return(
+                                    <tr key={qc.id}>
+                                        <td>{qc.datePerformed}</td>
+                                        <td>{qc.performedBy}</td>
+                                        <td>{qc.comment}</td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </Table>
+                    }
+                </div> 
             </div>
-
         </div>
+
+    </div>
     )
 }

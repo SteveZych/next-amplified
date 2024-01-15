@@ -83,7 +83,6 @@ textarea{
     width: 90%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 2rem;
     margin-bottom: 1rem;
     box-shadow: 0px 0px 10px var(--salmon);
     }
@@ -94,9 +93,28 @@ textarea{
   tr:last-child > td {
     border-bottom: none;
   }
-  /* .pageTable{
-    width: 100%;
-} */
+  
+  .twoTables{
+    display: flex;
+    justify-content: space-evenly;
+  
+  }
+
+  .firstTable, .secondTable{
+    width: 45%;
+  }
+
+  .emptyTable{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+    text-align: center;
+    border: 2px solid var(--salmon);
+    box-shadow: 0px 0px 10px var(--salmon);
+    border-radius: 0.25rem; 
+
+  }
 
 
 /*////////////////////*/
