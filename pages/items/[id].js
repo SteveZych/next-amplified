@@ -5,7 +5,7 @@ import { Amplify, withSSRContext } from "aws-amplify";
 import * as queries from '../../src/graphqlcopy/queries';
 import awsExports from "../../src/aws-exports";
 import Link from 'next/link';
-
+import SideBar from '../../components/sideBar';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -15,7 +15,7 @@ export async function getServerSideProps({ req, params }) {
     id: params.id
 }
   const data = await graphqlQuery(req, queries.getItem, IdParams);
-
+    
   return {
     props: {
       data: data.getItem
@@ -24,7 +24,7 @@ export async function getServerSideProps({ req, params }) {
 }
 
 export default function IndividualItem({data}){
-
+    console.log(data)
     const [item, setItem] = useState(data)
 
     
@@ -42,8 +42,10 @@ export default function IndividualItem({data}){
     }
 
     return(
-        <div>
-            <button><Link href="/dashboard">Dashboard</Link></button>
+        <div className='sidebarAndPage'>
+            <SideBar/>
+            
+        <div className="page">
             <Icon number={item.currentQuantity} statement={"Current Quantity"}/> 
             <Icon number={item.reagent.upperLimitQuantity} statement={"Target Quantity"}/>
             <Icon number={getNextQcDate()} statement={"Next QC"}/>
@@ -78,6 +80,7 @@ export default function IndividualItem({data}){
                 </tbody>
             </table>
             }
+            </div>
 
         </div>
     )
