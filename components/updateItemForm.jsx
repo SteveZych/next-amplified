@@ -5,6 +5,7 @@ import {v4 as uuidv4} from 'uuid';
 import Input from '/components/input';
 import Select from '/components/select';
 import Button from "/components/button";
+import Textarea from "/components/textarea";
 
 const UpdateItemForm = ({id, reagentName, reagentLot}) =>{
 
@@ -57,7 +58,12 @@ const UpdateItemForm = ({id, reagentName, reagentLot}) =>{
 
     const handleFormChange = () =>{
         setFormState(!formState);
-
+        setUpdate({
+            dateUpdated: "",
+            addedOrRemoved: "",
+            quantity: "",
+            comment: "",
+        });
     }
 
     return(
@@ -94,10 +100,10 @@ const UpdateItemForm = ({id, reagentName, reagentLot}) =>{
                         placeHolder={"Quantity"}
                         onChange={(e) => setUpdate({ ...update, quantity: e.target.value })} 
                         />
-                    <Input 
-                        htmlFor={"comment"}
-                        label={"Comment"}
-                        name={"comment"}
+                    <Textarea 
+                        htmlFor={"comments"}
+                        label={"Comments"}
+                        name={"comments"}
                         type={"text"}
                         value={update.comment}
                         placeHolder={"Comments"}

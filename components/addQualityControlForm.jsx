@@ -4,6 +4,8 @@ import * as mutations from '../src/graphqlcopy/mutations';
 import {v4 as uuidv4} from 'uuid';
 import Input from '/components/input';
 import Button from "/components/button";
+import Textarea from "/components/textarea";
+
 
 const AddQualityControlForm = ({id, reagentName, reagentLot}) =>{
 
@@ -81,10 +83,10 @@ const AddQualityControlForm = ({id, reagentName, reagentLot}) =>{
                         placeHolder={"Performed By"}
                         onChange={(e) => setQC({ ...qc, performedBy: e.target.value })} 
                         />
-                    <Input 
-                        htmlFor={"comment"}
-                        label={"Comment"}
-                        name={"comment"}
+                    <Textarea 
+                        htmlFor={"comments"}
+                        label={"Comments"}
+                        name={"comments"}
                         type={"text"}
                         value={qc.comment}
                         placeHolder={"Comments (QC lot, expiration date, etc."}
