@@ -111,15 +111,15 @@ const UpdateItemForm = ({id, reagentName, reagentLot}) =>{
                         />
                     
                     <div className="submit-form">
-                        <Button click={()=> handleSubmit()}>Submit</Button>
+                        <Button className={"btn"} click={()=> handleSubmit()}>Submit</Button>
                     </div>
                     <div>
-                        <Button click={() => handleFormChange()}>Cancel</Button>
+                        <Button className={"btn cancelBtn"} click={() => handleFormChange()}>Cancel</Button>
                     </div>
                 </form>
             </div>
             :
-            <div><Button click={() => handleFormChange()}>+/-</Button></div>}
+            <div><Button className={"btn"} click={() => handleFormChange()}>+/-</Button></div>}
         </div>
     )
 }

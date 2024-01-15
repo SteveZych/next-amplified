@@ -166,9 +166,9 @@ const AddReagent = () => {
                                         />
                                         </td>
 
-                                        <td>{!thisReagent.isEditing ? <Button click={()=> editReagent(thisReagent.id)}>Edit</Button> : <Button click={()=> saveReagent(index)}>Save</Button>}</td>
+                                        <td>{!thisReagent.isEditing ? <Button className={"btn"} click={()=> editReagent(thisReagent.id)}>Edit</Button> : <Button className={"btn"} click={()=> saveReagent(index)}>Save</Button>}</td>
 
-                                        <td><Button click={()=> deleteReagent(thisReagent.id)}>Delete</Button></td>
+                                        <td><Button className={"btn cancelBtn"} click={()=> deleteReagent(thisReagent.id)}>Delete</Button></td>
                                     </tr>
                                 )
                             })}
