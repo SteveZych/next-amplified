@@ -53,6 +53,11 @@ textarea{
     width: 90%;
     margin: auto;
     display: flex;
+    justify-content: space-between;
+}
+
+.pageHeaderForms{
+  display: flex;
 }
 
 .pageName{
@@ -264,3 +269,27 @@ textarea{
     text-align: start;
     margin-bottom: 0.5rem;
 }
+
+ /*//////////////////////////////*/
+  /*        INDIVIDUAL ITEM      */
+  /*/////////////////////////////*/
+
+
+  .icons{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .iconWrapper{
+    border: 2px solid var(--denimTwilight);
+    border-radius: 0.25rem;
+    margin: 1rem;
+  }
+
+  .icon{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+  }

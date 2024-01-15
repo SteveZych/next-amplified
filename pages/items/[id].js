@@ -6,6 +6,9 @@ import * as queries from '../../src/graphqlcopy/queries';
 import awsExports from "../../src/aws-exports";
 import Link from 'next/link';
 import SideBar from '../../components/sideBar';
+import UpdateItemForm from '../../components/updateItemForm';
+import AddQualityControlForm from '../../components/addQualityControlForm'; 
+import Header from '../../components/header';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -46,9 +49,24 @@ export default function IndividualItem({data}){
             <SideBar/>
             
         <div className="page">
-            <Icon number={item.currentQuantity} statement={"Current Quantity"}/> 
-            <Icon number={item.reagent.upperLimitQuantity} statement={"Target Quantity"}/>
-            <Icon number={getNextQcDate()} statement={"Next QC"}/>
+            <div className="pageHead">
+                <Header name={item.reagent.name}/>
+                <div className="pageHeaderForms">
+                    <UpdateItemForm id={item.id} reagentName={item.reagent.name} reagentLot={item.lot}/>
+                    <AddQualityControlForm id={item.id} reagentName={item.reagent.name} reagentLot={item.lot}/>
+                </div>
+            </div>
+           
+            <div className="icons">
+                <Icon number={item.lot} statement={"Lot"}/>
+                <Icon number={item.receivedDate} statement={"Received Date"}/>
+                <Icon number={item.expirationDate} statement={"Expiration Date"}/>
+                <Icon number={item.currentQuantity} statement={"Current Quantity"}/> 
+                <Icon number={item.reagent.upperLimitQuantity} statement={"Target Quantity"}/>
+                <Icon number={getNextQcDate()} statement={"Next QC"}/>
+            </div>
+                
+            
 
             {item.updates.items.length === 0 ? "No updates to this item.":
             <table>

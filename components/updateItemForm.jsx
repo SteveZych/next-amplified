@@ -119,7 +119,7 @@ const UpdateItemForm = ({id, reagentName, reagentLot}) =>{
                 </form>
             </div>
             :
-            <div><Button className={"btn"} click={() => handleFormChange()}>+/-</Button></div>}
+            <div><Button className={"btn"} click={() => handleFormChange()}>Add/Remove</Button></div>}
         </div>
     )
 }
