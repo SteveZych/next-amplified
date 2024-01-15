@@ -25,6 +25,22 @@ a {
     color: var(--denimTwilight);
 }
 
+input{
+    border-style: hidden;
+  }
+  
+  input:focus{
+    outline: none;
+  }
+
+select{
+    border-style: hidden;
+}
+
+textarea{
+    border-style: hidden;
+}
+
 
 /*////////////////////*/
   /*        PAGE      */
@@ -158,6 +174,18 @@ a {
     cursor: pointer;
   }
 
+  .cancelBtn{
+    border: 2px solid var(--bloodOrange);
+    color: var(--bloodOrange);
+  }
+
+  .cancelBtn:hover{
+    background-color: var(--bloodOrange);
+    color: var(--white);
+  }
+
+
+
   /*////////////////////*/
   /*        LINKS      */
   /*////////////////////*/
@@ -193,6 +221,46 @@ a {
     border-radius: 0.25rem; 
   }
 
+  .formInputWrapper{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--denimTwilight);
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+    padding: 0.25rem;
+  }
+
+.formInputLabel{
+    color: grey;
+    font-size: .85rem;
+    text-align: start;
+    margin-bottom: 0.5rem;
+}
   
+.formSelectWrapper{
+    border: 2px solid var(--denimTwilight);
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+    padding: 0.25rem;
+}
 
+.formSelect{
+    width: 100%;
+    padding: 0.5rem; 
+}
 
+.formTextareaWrapper{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--denimTwilight);
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+    padding: 0.25rem;
+}
+
+.formTextareaLabel{
+    color: grey;
+    font-size: 0.85rem;
+    text-align: start;
+    margin-bottom: 0.5rem;
+}

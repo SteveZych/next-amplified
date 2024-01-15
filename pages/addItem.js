@@ -67,7 +67,7 @@ function AddItem() {
                                   <td>{thisItem.qualityControl.items.length === 0 ? 
                                         "None"
                                         : thisItem.qualityControl.items[thisItem.qualityControl.items.length - 1].datePerformed }</td>
-                                  <td><Link href={`/items/${thisItem.id}`}><Button>Info</Button></Link></td>
+                                  <td><Link href={`/items/${thisItem.id}`}><Button className={"btn"}>Info</Button></Link></td>
                               </tr>
                           )
                       })}

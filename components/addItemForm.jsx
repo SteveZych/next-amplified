@@ -143,18 +143,18 @@ const AddItemForm = ({recallLisOfItems}) => {
                             />
                         
                         <div className="submit-form">
-                            <Button click={() => handleSubmit()}>Submit</Button>
+                            <Button className={"btn"} click={() => handleSubmit()}>Submit</Button>
                         </div>
                         <div>
-                            <Button click={() => handleFormChange()}>Cancel</Button>
+                            <Button className={"btn cancelBtn"} click={() => handleFormChange()}>Cancel</Button>
                         </div>
                     </form>
                 </div>
             )
         }else if (listReagents && !formState){
-            return <Button click={() => handleFormChange()}>+ Reagent</Button>
+            return <Button className={"btn"} click={() => handleFormChange()}>+ Reagent</Button>
         }else{
-            return <Link href="/addReagent"><Button>+ Reagent Template</Button></Link>
+            return <Link href="/addReagent"><Button className={"btn"}>+ Reagent Template</Button></Link>
         }
     }
 

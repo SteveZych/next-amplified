@@ -56,8 +56,13 @@ const AddReagentForm = ({recallReagentTemplateData}) => {
     }
 
     const handleToggle = (e) =>{
-        e.preventDefault()
-        setFormState(!formState)
+        setFormState(!formState);
+        setReagent({
+            name: "",
+            qualityControlInterval: "None",
+            upperLimitQuantity: "",
+            lowerLimitQuantity: ""
+        });
     }
 
     return(
@@ -102,12 +107,12 @@ const AddReagentForm = ({recallReagentTemplateData}) => {
                                 return <option key={index} value ={option}>{option}</option>
                             })}
                     </Select>
-                    <Button click={handleSubmit}>Submit</Button>
-                    <Button click={handleToggle}>Cancel</Button>
+                    <Button className={"btn"} click={handleSubmit}>Submit</Button>
+                    <Button className={"btn cancelBtn"} click={handleToggle}>Cancel</Button>
                     
                 </form>
             </div> 
-            : <Button click={handleToggle}>Add Reagent Template</Button>}
+            : <Button className={"btn"} click={handleToggle}>+ Reagent Template</Button>}
         </div>
     )
 

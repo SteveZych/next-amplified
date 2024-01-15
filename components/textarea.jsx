@@ -1,8 +1,8 @@
-export default function Input({htmlFor, label, name, type, value, placeHolder, onChange, disabled}){
+export default function Textarea({htmlFor, label, name, type, value, placeHolder, onChange, disabled}){
     return(
-        <div className="formInputWrapper">
-            {value ? <label className="formInputLabel" htmlFor={htmlFor}>{label}</label> : ''}
-            <input
+        <div className="formTextareaWrapper">
+            {value ? <label className="formTextareaLabel" htmlFor={htmlFor}>{label}</label> : ''}
+            <textarea
                 name={name}
                 type={type}
                 value={value}
