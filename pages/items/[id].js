@@ -84,7 +84,7 @@ export default function IndividualItem({data}){
                     <Table>
                         <thead>
                             <tr>
-                                <th>QC Performed</th>
+                                <th>Date Performed</th>
                                 <th>Performed By</th>
                                 <th>Comment</th>
                             </tr>
