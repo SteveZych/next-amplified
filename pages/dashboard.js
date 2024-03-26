@@ -32,7 +32,7 @@ function MainDashboard() {
   }, [])
 
   useEffect(() =>{
-    pendingQC().then(data => setQC(data))
+    pendingQC().then(data => setQC(data[0]))
     lowInventory().then(data => setInventory(data))
   }, [])
 

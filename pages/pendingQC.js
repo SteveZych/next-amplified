@@ -11,7 +11,7 @@ export default function PendingQC(){
     const [needsQC, setNeedsQC] = useState([])
 
     useEffect(() =>{
-        pendingQC().then(data => setNeedsQC(data))
+        pendingQC().then(data => setNeedsQC(data[0]))
     }, [])
 
     return(

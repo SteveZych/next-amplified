@@ -44,7 +44,7 @@ export async function pendingQC(){
                     continue;
                 }
             }
-            return needQC;
+            return [needQC, currentItems.length];
         }
     }catch(err){
         console.log(err)
