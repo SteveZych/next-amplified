@@ -3,6 +3,8 @@ import Link from 'next/link';
 import SideBar from "../components/sideBar";
 import Header from "../components/header";
 import {pendingQC} from '../Functions/getPendingQC'
+import AddQualityControlForm from "../components/addQualityControlForm";
+import UpdateItemForm from "../components/updateItemForm"
 
 export default function PendingQC(){
 
@@ -20,14 +22,16 @@ export default function PendingQC(){
                 <table>
                     <thead>
                         <tr>
-                        <td>Reagent Name</td>
-                        <td>Lot</td>
-                        <td>QC Interval</td>
-                        <td>Expiration Date</td>
-                        <td>Received Date</td>
-                        <td>Current Quantity</td>
-                        <td>Initial Quantity</td>
-                        <td>QC Performed</td>
+                        <th>Reagent Name</th>
+                        <th>Lot</th>
+                        <th>QC Interval</th>
+                        <th>Expiration Date</th>
+                        <th>Received Date</th>
+                        <th>Current Quantity</th>
+                        <th>Initial Quantity</th>
+                        <th>QC Performed</th>
+                        <th>Add QC</th>
+                        <th>Add/Remove</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,8 +56,8 @@ export default function PendingQC(){
                                     <td>{thisItem.qualityControl.items.length === 0 ? 
                                             "None"
                                             : thisItem.qualityControl.items[thisItem.qualityControl.items.length - 1].datePerformed }</td>
-                                    <td><button><Link href={`/qualityControl/${thisItem.id}`}>Add QC</Link></button></td>
-                                    <td><button><Link href={`/updateItem/${thisItem.id}`}>Update Item</Link></button></td>
+                                    <td><AddQualityControlForm id={thisItem.id} reagentName={thisItem.reagent.name} reagentLot={thisItem.lot}/></td>
+                                    <td><UpdateItemForm id={thisItem.id} reagentName={thisItem.reagent.name} reagentLot={thisItem.lot}/></td>
                                 </tr>
                             )
                         })}
