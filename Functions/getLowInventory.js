@@ -1,29 +1,28 @@
-import { reagentTemplateData } from "./reagentTemplateData";
+import { listItemsFunction } from "./listItemsFunction";
 
 export async function lowInventory(){
     try{
-        const reagents = await reagentTemplateData();
+        const currentItems = await listItemsFunction();
 
-        const currentLowInventory = []
+        const lowInventoryItems = [];
 
-        for (let i = 0; i < reagents.length; i++){
-            if (reagents[i].item.length === 0 ){
-                currentLowInventory.push(reagents[i])
-            }
-            if (reagents[i].item.length > 0){
-                let currentItemQuantity = 0;
-                for (let j = 0; j < reagents.item.length; j++){
-                    currentItemQuantity += reagents[i].item[j].currentQuantity
+        if (currentItems === false){
+            return [];
+        }else{
+            for (let i = 0; i < currentItems.length; i++){
+                if(currentItems[i].currentQuantity > 0){
+                    if (currentItems[i].currentQuantity < currentItems[i].reagent.lowerLimitQuantity){
+                        lowInventoryItems.push(currentItems[i]);
+                    }
+                }else{
+                    continue;
                 }
-                if (currentItemQuantity < reagent[i].upperLimitQuantity){
-                    currentLowInventory.push(reagents[i])
-                }
             }
+            return lowInventoryItems;
         }
-
-        return currentLowInventory;
-
     }catch(err){
-        console.log(err);
+        console.log(err)
     }
+    
+
 }
